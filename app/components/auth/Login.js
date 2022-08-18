@@ -65,7 +65,7 @@ const Login = () => {
                         </TouchableOpacity>
                     </View>
                     <TouchableOpacity style={styles.buttonLogin}>
-                        <Image source={Constants.icons.ic_buttonLogin} />
+                        <Image style={styles.img} source={Constants.icons.ic_buttonLogin} />
                         <Text style={styles.textButtonLogin}>Login</Text>
                     </TouchableOpacity>
                 </View>
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         textAlign: 'center',
         color: Constants.color.gray,
-        fontFamily: 'Poppins-Medium'
+        fontFamily: Constants.font.PoppinsMedium
     },
     buttonPassword: {
         flexDirection: 'row',
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     },
     textRegister: {
         fontSize: 14,
-        fontFamily: 'Poppins-Medium',
+        fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.gray,
         textAlign: 'center'
     }

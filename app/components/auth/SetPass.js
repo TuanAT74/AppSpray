@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 
         textAlign: 'center',
         marginTop: 37,
-        fontFamily: 'Poppins-SemiBold'
+        fontFamily: Constants.font.PoppinsSemiBold
     },
     image: {
         alignSelf: 'center',
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     },
     textSetup: {
         fontSize: 14,
-        fontFamily: 'Poppins-Medium',
+        fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.white,
         paddingVertical: 13
     }

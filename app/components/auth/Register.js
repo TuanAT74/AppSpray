@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
 
         textAlign: 'center',
         marginTop: 37,
-        fontFamily: 'Poppins-SemiBold'
+        fontFamily: Constants.font.PoppinsSemiBold
     },
     image: {
         alignSelf: 'center',
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         textAlign: 'center',
         color: Constants.color.gray,
-        fontFamily: 'Poppins-Medium'
+        fontFamily: Constants.font.PoppinsMedium
     },
     button: {
         flexDirection: 'row',
@@ -153,11 +153,11 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 14,
         paddingHorizontal: 12,
-        fontFamily: 'Poppins-Medium'
+        fontFamily: Constants.font.PoppinsMedium
     },
     textCountry: {
         fontSize: 14,
-        fontFamily: 'Poppins-Medium',
+        fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.gray,
         marginLeft: 5
     },
@@ -172,13 +172,13 @@ const styles = StyleSheet.create({
     },
     textContinue: {
         fontSize: 14,
-        fontFamily: 'Poppins-Medium',
+        fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.white,
         paddingVertical: 13
     },
     textLogin: {
         fontSize: 14,
-        fontFamily: 'Poppins-Medium',
+        fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.button,
         textAlign: 'center'
     }

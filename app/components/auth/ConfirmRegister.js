@@ -192,7 +192,6 @@ const styles = StyleSheet.create({
     textConfirm: {
         fontSize: 24,
         color: '#000',
-        fontWeight: 'SemiBold',
         textAlign: 'center',
         marginTop: 37,
         fontFamily: Constants.font.PoppinsSemiBold
@@ -230,7 +229,7 @@ const styles = StyleSheet.create({
     },
     textContinue: {
         fontSize: 14,
-        fontFamily: 'Poppins-Medium',
+        fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.white,
         paddingVertical: 13,
         fontWeight: 'SemiBold'
@@ -238,7 +237,7 @@ const styles = StyleSheet.create({
     input: {
         fontSize: 24,
         textAlign: 'center',
-        fontFamily: 'Poppins-Medium',
+        fontFamily: Constants.font.PoppinsMedium,
         includeFontPadding: false,
         color: Constants.color.black
     },
@@ -248,13 +247,13 @@ const styles = StyleSheet.create({
     },
     textCount: {
         fontSize: 14,
-        fontFamily: 'Poppins-Medium',
+        fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.button,
         textAlign: 'center'
     },
     textResend: {
         fontSize: 14,
-        fontFamily: 'Poppins-Medium',
+        fontFamily: Constants.font.PoppinsMedium,
         textAlign: 'center'
     }
 })
