@@ -5,9 +5,7 @@ import Constants from './../../controller/Constants'
 const Background = () => {
     return (
         <View style={styles.container}>
-            <View style={styles.background}>
-                <Image source={Constants.icons.ic_background} />
-            </View>
+            <Image source={Constants.icons.ic_background} style={styles.imageBrTop} />
             <View style={styles.spray}>
                 <Image source={Constants.icons.ic_spray} />
             </View>
@@ -29,9 +27,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         paddingBottom: 50
     },
-    background: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: Dimensions.get('window').width * 0.68
+    imageBrTop: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').width * 0.6
     }
 })

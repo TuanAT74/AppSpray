@@ -21,6 +21,7 @@ const validatePhone = (phone) => {
     }
     return true
 }
+
 const Register = () => {
     const navigation = useNavigation()
     const [phone, setPhone] = useState()
@@ -34,6 +35,7 @@ const Register = () => {
             handleOnRegister()
         }
     }
+
     const handleOnRegister = () => {
         navigation.navigate(Constants.screenName.ConfirmRegister)
     }

@@ -18,6 +18,7 @@ const Login = () => {
     const [confirmPassWord, setConfirmPassWord] = useState()
     const [checkPassWord, setCheckPassWord] = useState(true)
     const [checkPassWordConfirm, setCheckPassWordConfirm] = useState(true)
+    
     return (
         <View style={styles.container}>
             <Background screen='Background' />

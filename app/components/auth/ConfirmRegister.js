@@ -24,10 +24,7 @@ const ConfirmRegister = () => {
     const refCode2 = useRef()
     const refCode3 = useRef()
     const refCode4 = useRef()
-    // const [OTP1, setOTP1] = useState('0')
-    // const [OTP2, setOTP2] = useState('0')
-    // const [OTP3, setOTP3] = useState('0')
-    // const [OTP4, setOTP4] = useState('0')
+
 
     const countdown = () => {
         let interval = setInterval(() => {
