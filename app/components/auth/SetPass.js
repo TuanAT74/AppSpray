@@ -11,8 +11,10 @@ import React, { useState, useEffect } from 'react'
 import Background from './../background/Background'
 import Constants from './../../controller/Constants'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { useNavigation } from '@react-navigation/native'
 
 const SetPass = () => {
+    const navigation = useNavigation()
     const [passWord, setPassWord] = useState()
     const [confirmPassWord, setConfirmPassWord] = useState()
     const [checkPassWord, setCheckPassWord] = useState(true)

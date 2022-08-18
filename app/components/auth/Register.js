@@ -77,7 +77,11 @@ const Register = () => {
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        navigation.navigate(Constants.screenName.Login)
+                    }}
+                >
                     <Text style={styles.textLogin}>Login</Text>
                 </TouchableOpacity>
             </ScrollView>

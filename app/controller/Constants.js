@@ -19,7 +19,9 @@ export default Constants = {
         ic_phone: require('../assets/images/ic_phone.png'),
         ic_japan: require('../assets/images/ic_japan.png'),
         ic_confirm: require('../assets/images/ic_confirm.png'),
-        ic_security: require('../assets/images/ic_security.png')
+        ic_security: require('../assets/images/ic_security.png'),
+        ic_login: require('../assets/images/ic_login.png'),
+        ic_buttonLogin: require('../assets/images/ic_buttonLogin.png')
     },
     color: {
         gray: '#868686',

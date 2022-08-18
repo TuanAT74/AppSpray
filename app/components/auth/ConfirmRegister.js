@@ -11,7 +11,7 @@ import {
 import React, { useEffect, useRef, useState } from 'react'
 import Background from './../background/Background'
 import { useNavigation } from '@react-navigation/native'
-import Constants from '../../controller/Constants'
+import Constants from './../../controller/Constants'
 
 const ConfirmRegister = () => {
     const navigation = useNavigation()
@@ -24,10 +24,10 @@ const ConfirmRegister = () => {
     const refCode2 = useRef()
     const refCode3 = useRef()
     const refCode4 = useRef()
-    const [OTP1, setOTP1] = useState('0')
-    const [OTP2, setOTP2] = useState('0')
-    const [OTP3, setOTP3] = useState('0')
-    const [OTP4, setOTP4] = useState('0')
+    // const [OTP1, setOTP1] = useState('0')
+    // const [OTP2, setOTP2] = useState('0')
+    // const [OTP3, setOTP3] = useState('0')
+    // const [OTP4, setOTP4] = useState('0')
 
     const countdown = () => {
         let interval = setInterval(() => {
@@ -58,7 +58,10 @@ const ConfirmRegister = () => {
                         <View style={styles.buttonNumber}>
                             <TextInput
                                 ref={refCode1}
-                                style={styles.input}
+                                style={{
+                                    ...styles.input,
+                                    color: !code1 > 0 ? Constants.color.gray : Constants.color.black
+                                }}
                                 maxLength={1}
                                 placeholder='0'
                                 keyboardType='numeric'
@@ -75,7 +78,10 @@ const ConfirmRegister = () => {
                         <View style={styles.buttonNumber}>
                             <TextInput
                                 ref={refCode2}
-                                style={styles.input}
+                                style={{
+                                    ...styles.input,
+                                    color: !code2 > 0 ? Constants.color.gray : Constants.color.black
+                                }}
                                 maxLength={1}
                                 placeholder='0'
                                 keyboardType='numeric'
@@ -94,7 +100,10 @@ const ConfirmRegister = () => {
                             <TextInput
                                 ref={refCode3}
                                 maxLength={1}
-                                style={styles.input}
+                                style={{
+                                    ...styles.input,
+                                    color: !code3 > 0 ? Constants.color.gray : Constants.color.black
+                                }}
                                 placeholder='0'
                                 keyboardType='numeric'
                                 onChangeText={(code3) => {
@@ -112,7 +121,10 @@ const ConfirmRegister = () => {
                             <TextInput
                                 ref={refCode4}
                                 maxLength={1}
-                                style={styles.input}
+                                style={{
+                                    ...styles.input,
+                                    color: !code4 > 0 ? Constants.color.gray : Constants.color.black
+                                }}
                                 placeholder='0'
                                 keyboardType='numeric'
                                 onChangeText={(code4) => {
@@ -228,7 +240,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily: 'Poppins-Medium',
         includeFontPadding: false,
-        color: Constants.color.gray
+        color: Constants.color.black
     },
     viewButton: {
         flexDirection: 'row',
