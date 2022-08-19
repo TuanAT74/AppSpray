@@ -18,7 +18,7 @@ const Login = () => {
     const [confirmPassWord, setConfirmPassWord] = useState()
     const [checkPassWord, setCheckPassWord] = useState(true)
     const [checkPassWordConfirm, setCheckPassWordConfirm] = useState(true)
-    
+
     return (
         <View style={styles.container}>
             <Background screen='Background' />
@@ -65,9 +65,15 @@ const Login = () => {
                             />
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.buttonLogin}>
-                        <Image style={styles.img} source={Constants.icons.ic_buttonLogin} />
-                        <Text style={styles.textButtonLogin}>Login</Text>
+                    <TouchableOpacity>
+                        <LinearGradient
+                            colors={['#FF88E8', '#DF98EB', '#26F1FF']}
+                            style={styles.linearGradient}
+                            start={{ x: 0, y: 0.5 }}
+                            end={{ x: 1, y: 0.5 }}
+                        >
+                            <Text style={styles.textButtonLogin}>Login</Text>
+                        </LinearGradient>
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity>
@@ -133,7 +139,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: Constants.font.PoppinsMedium
     },
-    buttonLogin: {
+    linearGradient: {
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 22,
@@ -141,18 +147,17 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         marginBottom: 23
     },
-    textButtonLogin: {
-        ...StyleSheet.absoluteFillObject,
-        fontSize: 14,
-        fontFamily: Constants.font.PoppinsMedium,
-        color: Constants.color.white,
-        textAlign: 'center',
-        paddingVertical: 10
-    },
     textRegister: {
         fontSize: 14,
         fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.gray,
         textAlign: 'center'
+    },
+    textButtonLogin: {
+        fontSize: 14,
+        fontFamily: Constants.font.PoppinsMedium,
+        color: Constants.color.white,
+        textAlign: 'center',
+        paddingVertical: 13
     }
 })
