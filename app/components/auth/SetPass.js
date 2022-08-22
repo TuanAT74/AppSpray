@@ -8,7 +8,7 @@ import {
     ScrollView
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import Background from './../background/Background'
+import Background from './../common/Background'
 import Constants from './../../controller/Constants'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'

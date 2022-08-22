@@ -24,6 +24,10 @@
     {
       "path": "app/assets/fonts/Poppins-Thin.ttf",
       "sha1": "09ba4dcd5509c8085bf88c665dcc51cbdfced27b"
+    },
+    {
+      "path": "app/assets/fonts/Rubik-Medium.ttf",
+      "sha1": "c91959545dae337c923ad06bfd0ef27f94a97933"
     }
   ]
 }

@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from './../home/Home'
 import Login from './../auth/Login'
 import Constants from './../../controller/Constants'
 import { NavigationContainer } from '@react-navigation/native'
-import Background from './../background/Background'
+import Background from './../common/Background'
 import Register from '../auth/Register'
 import ConfirmRegister from './../auth/ConfirmRegister'
 import SetPass from './../auth/SetPass'
+import TabBarNavigation from './TabBarNavigation'
 
 const Stack = createNativeStackNavigator()
 
@@ -19,10 +20,15 @@ const RootNavigation = () => {
                 screenOptions={{
                     headerShown: false
                 }}
+                initialRouteName='Register'
             >
+                <Stack.Screen
+                    name={Constants.screenName.TabBarNavigation}
+                    component={TabBarNavigation}
+                />
                 <Stack.Screen name={Constants.screenName.Register} component={Register} />
                 <Stack.Screen name={Constants.screenName.Login} component={Login} />
-                <Stack.Screen name={Constants.screenName.Background} component={Background} />
+                {/* <Stack.Screen name={Constants.screenName.Background} component={Background} /> */}
                 <Stack.Screen
                     name={Constants.screenName.ConfirmRegister}
                     component={ConfirmRegister}

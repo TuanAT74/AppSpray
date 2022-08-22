@@ -9,13 +9,19 @@ import {
     ScrollView
 } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
-import Background from './../background/Background'
-import { useNavigation } from '@react-navigation/native'
+import Background from './../common/Background'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import Constants from './../../controller/Constants'
+import CommonAPIs from './../APIs/CommonAPIs'
 
 const ConfirmRegister = () => {
     const navigation = useNavigation()
-    const [timerCount, setTimer] = useState(30)
+    const route = useRoute()
+    const accessToken = route.params.accessToken
+    const phone = route.params.phone
+    console.log('accessToken', accessToken, phone)
+
+    const [timerCount, setTimer] = useState(0)
     const [code1, setCode1] = useState()
     const [code2, setCode2] = useState()
     const [code3, setCode3] = useState()
@@ -24,7 +30,6 @@ const ConfirmRegister = () => {
     const refCode2 = useRef()
     const refCode3 = useRef()
     const refCode4 = useRef()
-
 
     const countdown = () => {
         let interval = setInterval(() => {
@@ -38,6 +43,24 @@ const ConfirmRegister = () => {
     useEffect(() => {
         countdown()
     }, [])
+
+    const handleOnClickConfirm = () => {
+        if (!code1 || !code2 || !code3 || !code4) {
+            Alert.alert('Thông báo', 'Vui lòng nhập mã xác nhận')
+            return
+        }
+        CommonAPIs.veryPhone(phone, code1 + code2 + code3 + code4)
+            .then((res) => {
+                console.log('res', res.data.phone)
+                navigation.navigate(Constants.screenName.SetPass, {
+                    accessToken,
+                    phone
+                })
+            })
+            .catch((err) => {
+                alert(err.response.data.message)
+            })
+    }
 
     return (
         <View style={styles.container}>
@@ -134,12 +157,7 @@ const ConfirmRegister = () => {
                             />
                         </View>
                     </View>
-                    <TouchableOpacity
-                        style={styles.buttonContinue}
-                        onPress={() => {
-                            navigation.navigate(Constants.screenName.SetPass)
-                        }}
-                    >
+                    <TouchableOpacity style={styles.buttonContinue} onPress={handleOnClickConfirm}>
                         <Text style={styles.textContinue}>Continue</Text>
                     </TouchableOpacity>
                 </View>

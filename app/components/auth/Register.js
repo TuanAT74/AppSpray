@@ -9,11 +9,12 @@ import {
     ScrollView
 } from 'react-native'
 import React, { useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
-import Background from '../background/Background'
+import { useNavigation, useRoute } from '@react-navigation/native'
+import Background from '../common/Background'
 import Constants from '../../controller/Constants'
 import { Form, TextValidator } from 'react-native-validator-form'
 import AwesomeAlert from 'react-native-awesome-alerts'
+import CommonAPIs from './../APIs/CommonAPIs'
 
 const validatePhone = (phone) => {
     if (phone.length < 9 || phone.length > 12) {
@@ -29,15 +30,23 @@ const Register = () => {
     const handleOnClickRegister = () => {
         if (!phone) {
             Alert.alert('Thông báo', 'Vui lòng nhập số điện thoại')
+            return
         } else if (!validatePhone(phone)) {
             Alert.alert('Thông báo', 'Số điện thoại không hợp lệ')
-        } else {
-            handleOnRegister()
+            return
         }
-    }
 
-    const handleOnRegister = () => {
-        navigation.navigate(Constants.screenName.ConfirmRegister)
+        CommonAPIs.register(phone)
+            .then((res) => {
+                console.log('res', res.data.access_token)
+                navigation.navigate(Constants.screenName.ConfirmRegister, {
+                    accessToken: res.data.access_token,
+                    phone
+                })
+            })
+            .catch((err) => {
+                alert(err.response.data.message)
+            })
     }
 
     return (

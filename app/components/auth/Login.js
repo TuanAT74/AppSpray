@@ -8,16 +8,40 @@ import {
     ScrollView
 } from 'react-native'
 import React, { useState } from 'react'
-import Background from './../background/Background'
+import Background from './../common/Background'
 import Constants from './../../controller/Constants'
 import Icon from 'react-native-vector-icons/Ionicons'
 import LinearGradient from 'react-native-linear-gradient'
+import { useNavigation } from '@react-navigation/native'
+import CommonAPIs from './../APIs/CommonAPIs'
 
 const Login = () => {
+    const navigation = useNavigation()
     const [passWord, setPassWord] = useState()
-    const [confirmPassWord, setConfirmPassWord] = useState()
     const [checkPassWord, setCheckPassWord] = useState(true)
-    const [checkPassWordConfirm, setCheckPassWordConfirm] = useState(true)
+    const [phone, setPhone] = useState()
+
+    const handleLogin = () => {
+        if (!phone) {
+            alert('Please enter your phone number')
+            return
+        } else if (phone.length < 9 || phone.length > 12) {
+            alert('Phone number is not valid')
+            return
+        } else if (!passWord) {
+            alert('Please enter your password')
+            return
+        }
+        console.log('phone', phone, 'passWord', passWord)
+        CommonAPIs.login(phone, passWord)
+            .then((res) => {
+                navigation.navigate(Constants.screenName.TabBarNavigation)
+            })
+            .catch((err) => {
+                alert(err.response.data.message)
+            })
+            .finally(() => {})
+    }
 
     return (
         <View style={styles.container}>
@@ -31,10 +55,19 @@ const Login = () => {
                     <Text style={styles.textInput}>Type Phone Number and Password to Continue</Text>
                     <View style={styles.buttonPassword}>
                         <TextInput
+                            keyboardType='numeric'
+                            style={styles.textPassword}
+                            placeholder='Phone Number'
+                            onChangeText={setPhone}
+                            value={phone}
+                        />
+                    </View>
+                    <View style={styles.buttonPassword}>
+                        <TextInput
                             type='password'
                             style={styles.textPassword}
-                            placeholder='Phone'
-                            onChangeText={(passWord) => setPassWord(passWord)}
+                            placeholder=' Password'
+                            onChangeText={setPassWord}
                             value={passWord}
                             secureTextEntry={checkPassWord}
                         />
@@ -46,33 +79,14 @@ const Login = () => {
                             />
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.buttonPassword}>
-                        <TextInput
-                            type='password'
-                            style={styles.textPassword}
-                            placeholder=' Password'
-                            onChangeText={(confirmPassWord) => setConfirmPassWord(confirmPassWord)}
-                            value={confirmPassWord}
-                            secureTextEntry={checkPassWordConfirm}
-                        />
-                        <TouchableOpacity
-                            onPress={() => setCheckPassWordConfirm(!checkPassWordConfirm)}
-                        >
-                            <Icon
-                                name={!checkPassWordConfirm ? 'eye-outline' : 'eye-off-outline'}
-                                size={20}
-                                color={Constants.color.gray}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleLogin}>
                         <LinearGradient
-                            colors={['#FF88E8', '#DF98EB', '#26F1FF']}
+                            colors={['#26F1FF', '#DF98EB', '#FF88E8']}
                             style={styles.linearGradient}
                             start={{ x: 0, y: 0.5 }}
                             end={{ x: 1, y: 0.5 }}
                         >
-                            <Text style={styles.textButtonLogin}>Login</Text>
+                            <Text style={styles.textButtonLogin}>Sign in</Text>
                         </LinearGradient>
                     </TouchableOpacity>
                 </View>

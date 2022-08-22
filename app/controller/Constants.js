@@ -11,7 +11,8 @@ export default Constants = {
         Register: 'Register',
         Background: 'Background',
         ConfirmRegister: 'ConfirmRegister',
-        SetPass: 'SetPass'
+        SetPass: 'SetPass',
+        TabBarNavigation: 'TabBarNavigation'
     },
     icons: {
         ic_background: require('../assets/images/ic_background.png'),
@@ -21,14 +22,27 @@ export default Constants = {
         ic_confirm: require('../assets/images/ic_confirm.png'),
         ic_security: require('../assets/images/ic_security.png'),
         ic_login: require('../assets/images/ic_login.png'),
-        ic_buttonLogin: require('../assets/images/ic_buttonLogin.png')
+        ic_buttonLogin: require('../assets/images/ic_buttonLogin.png'),
+        ic_point: require('../assets/images/ic_point.png'),
+        ic_qrcode: require('../assets/images/ic_qrcode.png'),
+        ic_send: require('../assets/images/ic_send.png'),
+        ic_receive: require('../assets/images/ic_receive.png'),
+        ic_Restaurant: require('../assets/images/ic_restaurant.png'),
+        ic_Fashion: require('../assets/images/ic_fashion.png'),
+        ic_Car: require('../assets/images/ic_car.png')
+    },
+    image: {
+        img_Shushi: require('../assets/images/img_shushi.png'),
+        img_Caffe: require('../assets/images/img_caffe.png'),
+        img_Shadow: require('../assets/images/img_shadow.png')
     },
     color: {
         gray: '#868686',
         white: '#fff',
         black: '#000',
         border: '#CCCCE3',
-        button: '#00CEFF'
+        button: '#00CEFF',
+        buttonHome: '#7879E8'
     },
     font: {
         PoppinsBold: 'Poppins-Bold',
@@ -36,5 +50,6 @@ export default Constants = {
         PoppinsRegular: 'Poppins-Regular',
         PoppinsSemiBold: 'Poppins-SemiBold',
         PoppinsThin: 'Poppins-Thin'
-    }
+    },
+    baseURL: 'https://nexus-point-dev.test-development.work'
 }
