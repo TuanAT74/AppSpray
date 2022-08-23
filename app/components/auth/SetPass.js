@@ -11,7 +11,9 @@ import React, { useState, useEffect } from 'react'
 import Background from './../common/Background'
 import Constants from './../../controller/Constants'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
+import CommonAPIs from './../APIs/CommonAPIs'
+import RNProgressHud from 'progress-hud'
 
 const SetPass = () => {
     const navigation = useNavigation()
@@ -19,6 +21,32 @@ const SetPass = () => {
     const [confirmPassWord, setConfirmPassWord] = useState()
     const [checkPassWord, setCheckPassWord] = useState(true)
     const [checkPassWordConfirm, setCheckPassWordConfirm] = useState(true)
+    const route = useRoute()
+    const accessToken = route.params.accessToken
+    const phone = route.params.phone
+    console.log('accessToken', accessToken, phone)
+
+    const handleSetPassWord = () => {
+        if (passWord !== confirmPassWord) {
+            alert('Mật khẩu không khớp')
+            return
+        } else if (!passWord) {
+            alert('Vui lòng nhập mật khẩu')
+            return
+        }
+        RNProgressHud.showWithStatus('Loading...')
+
+        CommonAPIs.setPass(phone, passWord, accessToken)
+            .then((res) => {
+                navigation.navigate(Constants.screenName.Login)
+            })
+            .catch((err) => {
+                alert(err.response.data.message)
+            })
+            .finally(() => {
+                RNProgressHud.dismiss()
+            })
+    }
 
     return (
         <View style={styles.container}>
@@ -66,7 +94,7 @@ const SetPass = () => {
                             />
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.buttonSetup}>
+                    <TouchableOpacity style={styles.buttonSetup} onPress={handleSetPassWord}>
                         <Text style={styles.textSetup}>Setup</Text>
                     </TouchableOpacity>
                 </View>

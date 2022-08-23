@@ -8,7 +8,9 @@ const ListStore = ({ data, title }) => {
         <View style={styles.viewImageStore}>
             <View style={styles.textStore}>
                 <Text style={styles.textRecomended}>{title}</Text>
-                <Text style={styles.textSeeAll}>See all</Text>
+                <TouchableOpacity>
+                    <Text style={styles.textSeeAll}>See all</Text>
+                </TouchableOpacity>
             </View>
             <FlatList
                 data={data}

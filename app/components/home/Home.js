@@ -48,14 +48,14 @@ const category = [
 const listStore = [
     { id: 1, img: Constants.image.img_Shushi, name: 'T-JAY SUSHI', evaluate: '4.0' },
     { id: 2, img: Constants.image.img_Caffe, name: 'T-JAY CAFE', evaluate: '4.0' },
-    { id: 3, img: Constants.image.img_Caffe, name: 'T-JAY CAFE', evaluate: '4.0' },
+    { id: 3, img: Constants.image.img_Noodles, name: 'T-JAY CAFE', evaluate: '4.0' },
     { id: 4, img: Constants.image.img_Caffe, name: 'T-JAY CAFE', evaluate: '4.0' }
 ]
 
 const listStore1 = [
-    { id: 1, img: Constants.image.img_Shushi, name: 'T-JAY SUSHI', evaluate: '4.0' },
-    { id: 2, img: Constants.image.img_Caffe, name: 'T-JAY CAFE', evaluate: '4.0' },
-    { id: 3, img: Constants.image.img_Caffe, name: 'T-JAY CAFE', evaluate: '4.0' },
+    { id: 1, img: Constants.image.img_Seafood, name: 'T-JAY SUSHI', evaluate: '4.0' },
+    { id: 2, img: Constants.image.img_Noodles, name: 'T-JAY CAFE', evaluate: '4.0' },
+    { id: 3, img: Constants.image.img_Seafood, name: 'T-JAY CAFE', evaluate: '4.0' },
     { id: 4, img: Constants.image.img_Caffe, name: 'T-JAY CAFE', evaluate: '4.0' }
 ]
 

@@ -15,6 +15,7 @@ import Constants from '../../controller/Constants'
 import { Form, TextValidator } from 'react-native-validator-form'
 import AwesomeAlert from 'react-native-awesome-alerts'
 import CommonAPIs from './../APIs/CommonAPIs'
+import RNProgressHud from 'progress-hud'
 
 const validatePhone = (phone) => {
     if (phone.length < 9 || phone.length > 12) {
@@ -35,7 +36,7 @@ const Register = () => {
             Alert.alert('Thông báo', 'Số điện thoại không hợp lệ')
             return
         }
-
+        RNProgressHud.showWithStatus('Loading...')
         CommonAPIs.register(phone)
             .then((res) => {
                 console.log('res', res.data.access_token)
@@ -47,11 +48,14 @@ const Register = () => {
             .catch((err) => {
                 alert(err.response.data.message)
             })
+            .finally(() => {
+                RNProgressHud.dismiss()
+            })
     }
 
     return (
         <View style={styles.container}>
-            <Background screen='Background' />
+            <Background />
             <ScrollView style={styles.container}>
                 <View style={styles.viewRegister}>
                     <Text style={styles.textRegister}>Register</Text>

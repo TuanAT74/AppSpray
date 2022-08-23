@@ -22,7 +22,6 @@ export default Constants = {
         ic_confirm: require('../assets/images/ic_confirm.png'),
         ic_security: require('../assets/images/ic_security.png'),
         ic_login: require('../assets/images/ic_login.png'),
-        ic_buttonLogin: require('../assets/images/ic_buttonLogin.png'),
         ic_point: require('../assets/images/ic_point.png'),
         ic_qrcode: require('../assets/images/ic_qrcode.png'),
         ic_send: require('../assets/images/ic_send.png'),
@@ -34,7 +33,9 @@ export default Constants = {
     image: {
         img_Shushi: require('../assets/images/img_shushi.png'),
         img_Caffe: require('../assets/images/img_caffe.png'),
-        img_Shadow: require('../assets/images/img_shadow.png')
+        img_Shadow: require('../assets/images/img_shadow.png'),
+        img_Seafood: require('../assets/images/img_seafood.png'),
+        img_Noodles: require('../assets/images/img_noodles.png')
     },
     color: {
         gray: '#868686',

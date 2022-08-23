@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import LinearGradient from 'react-native-linear-gradient'
 import { useNavigation } from '@react-navigation/native'
 import CommonAPIs from './../APIs/CommonAPIs'
+import RNProgressHud from 'progress-hud'
 
 const Login = () => {
     const navigation = useNavigation()
@@ -33,6 +34,7 @@ const Login = () => {
             return
         }
         console.log('phone', phone, 'passWord', passWord)
+        RNProgressHud.showWithStatus('Loading...')
         CommonAPIs.login(phone, passWord)
             .then((res) => {
                 navigation.navigate(Constants.screenName.TabBarNavigation)
@@ -40,7 +42,9 @@ const Login = () => {
             .catch((err) => {
                 alert(err.response.data.message)
             })
-            .finally(() => {})
+            .finally(() => {
+                RNProgressHud.dismiss()
+            })
     }
 
     return (

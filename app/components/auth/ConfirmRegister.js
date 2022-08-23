@@ -13,15 +13,15 @@ import Background from './../common/Background'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import Constants from './../../controller/Constants'
 import CommonAPIs from './../APIs/CommonAPIs'
+import RNProgressHud from 'progress-hud'
 
 const ConfirmRegister = () => {
     const navigation = useNavigation()
     const route = useRoute()
-    const accessToken = route.params.accessToken
-    const phone = route.params.phone
-    console.log('accessToken', accessToken, phone)
+    const phone = route.params?.phone
+    const accessToken = route.params?.access_token
 
-    const [timerCount, setTimer] = useState(0)
+    const [timerCount, setTimer] = useState(30)
     const [code1, setCode1] = useState()
     const [code2, setCode2] = useState()
     const [code3, setCode3] = useState()
@@ -49,16 +49,20 @@ const ConfirmRegister = () => {
             Alert.alert('Thông báo', 'Vui lòng nhập mã xác nhận')
             return
         }
+        RNProgressHud.showWithStatus('Loading...')
         CommonAPIs.veryPhone(phone, code1 + code2 + code3 + code4)
             .then((res) => {
                 console.log('res', res.data.phone)
                 navigation.navigate(Constants.screenName.SetPass, {
-                    accessToken,
+                    accessToken: route.params?.access_token,
                     phone
                 })
             })
             .catch((err) => {
                 alert(err.response.data.message)
+            })
+            .finally(() => {
+                RNProgressHud.dismiss()
             })
     }
 

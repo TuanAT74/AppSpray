@@ -7,7 +7,8 @@ export default class CommonAPIs {
     static endpoints = {
         login: CommonAPIs.baseURL + '/api/login',
         register: CommonAPIs.baseURL + '/api/register',
-        veryPhone: CommonAPIs.baseURL + '/api/verify-phone'
+        veryPhone: CommonAPIs.baseURL + '/api/verify-phone',
+        setPassword: CommonAPIs.baseURL + '/api/confirm-password'
     }
 
     static headers = {
@@ -56,6 +57,23 @@ export default class CommonAPIs {
                 verification_code: code
             }
             let response = await axios.post(CommonAPIs.endpoints.veryPhone, data, { headers })
+
+            return Promise.resolve(response.data)
+        } catch (error) {
+            return Promise.reject(error)
+        }
+    }
+    static async setPass(phone, password, token) {
+        try {
+            const headers = {
+                ...this.headers,
+                Authorization: `Bearer ` + token
+            }
+            let data = {
+                phone,
+                password
+            }
+            let response = await axios.post(CommonAPIs.endpoints.setPassword, data, { headers })
 
             return Promise.resolve(response.data)
         } catch (error) {
