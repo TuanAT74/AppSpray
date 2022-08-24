@@ -1,15 +1,16 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-const Tab = createBottomTabNavigator()
 import React from 'react'
 import Home from './../home/Home'
 import Profile from './../profile/Profile'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Constants from './../../controller/Constants'
 import History from './../home/History'
-import Convert from './../home/Convert'
 import Scan from './../home/Scan'
 import { useNavigation } from '@react-navigation/native'
+import Charge from '../home/Charge'
+
+const Tab = createBottomTabNavigator()
 
 const TabBarNavigation = () => {
     const navigation = useNavigation()
@@ -24,7 +25,7 @@ const TabBarNavigation = () => {
 
                     if (route.name === 'Home') {
                         iconName = 'ios-home'
-                    } else if (route.name === 'Convert') {
+                    } else if (route.name === 'Charge') {
                         iconName = 'ios-git-compare-outline'
                     } else if (route.name === 'History') {
                         iconName = 'ios-timer-outline'
@@ -51,7 +52,7 @@ const TabBarNavigation = () => {
                 name='Scan'
                 component={Scan}
                 options={{
-                    tabBarIcon: ({ focused }) => (
+                    tabBarIcon: () => (
                         <TouchableOpacity
                             onPress={() => navigation.navigate(Constants.screenName.Scan)}
                         >
@@ -68,7 +69,7 @@ const TabBarNavigation = () => {
                     )
                 }}
             />
-            <Tab.Screen name='Convert' component={Convert} />
+            <Tab.Screen name='Charge' component={Charge} />
             <Tab.Screen name='Profile' component={Profile} />
         </Tab.Navigator>
     )
