@@ -12,8 +12,6 @@ import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import Background from '../common/Background'
 import Constants from '../../controller/Constants'
-import { Form, TextValidator } from 'react-native-validator-form'
-import AwesomeAlert from 'react-native-awesome-alerts'
 import CommonAPIs from './../APIs/CommonAPIs'
 import RNProgressHud from 'progress-hud'
 

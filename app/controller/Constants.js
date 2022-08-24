@@ -12,7 +12,10 @@ export default Constants = {
         Background: 'Background',
         ConfirmRegister: 'ConfirmRegister',
         SetPass: 'SetPass',
-        TabBarNavigation: 'TabBarNavigation'
+        TabBarNavigation: 'TabBarNavigation',
+        History: 'History',
+        Scan: 'Scan',
+        Convert: 'Convert'
     },
     icons: {
         ic_background: require('../assets/images/ic_background.png'),
@@ -28,7 +31,8 @@ export default Constants = {
         ic_receive: require('../assets/images/ic_receive.png'),
         ic_Restaurant: require('../assets/images/ic_restaurant.png'),
         ic_Fashion: require('../assets/images/ic_fashion.png'),
-        ic_Car: require('../assets/images/ic_car.png')
+        ic_Car: require('../assets/images/ic_car.png'),
+        ic_Scan: require('../assets/images/ic_scan.png')
     },
     image: {
         img_Shushi: require('../assets/images/img_shushi.png'),

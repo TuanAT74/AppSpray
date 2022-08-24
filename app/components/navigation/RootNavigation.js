@@ -10,6 +10,9 @@ import Register from '../auth/Register'
 import ConfirmRegister from './../auth/ConfirmRegister'
 import SetPass from './../auth/SetPass'
 import TabBarNavigation from './TabBarNavigation'
+import History from './../home/History'
+import Scan from './../home/Scan'
+import Convert from './../home/Convert'
 
 const Stack = createNativeStackNavigator()
 
@@ -34,6 +37,9 @@ const RootNavigation = () => {
                     component={ConfirmRegister}
                 />
                 <Stack.Screen name={Constants.screenName.SetPass} component={SetPass} />
+                <Stack.Screen name={Constants.screenName.History} component={History} />
+                <Stack.Screen name={Constants.screenName.Scan} component={Scan} />
+                <Stack.Screen name={Constants.screenName.Convert} component={Convert} />
             </Stack.Navigator>
         </NavigationContainer>
     )
