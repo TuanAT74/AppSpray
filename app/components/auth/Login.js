@@ -5,7 +5,8 @@ import {
     Image,
     TextInput,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    Alert
 } from 'react-native'
 import React, { useState } from 'react'
 import Background from './../common/Background'
@@ -24,13 +25,13 @@ const Login = () => {
 
     const handleLogin = () => {
         if (!phone) {
-            alert('Vui lòng nhập số điện thoại')
+            Alert.alert('Vui lòng nhập số điện thoại')
             return
         } else if (phone.length < 9 || phone.length > 12) {
-            alert('Số điện thoại không hợp lệ')
+            Alert.alert('Số điện thoại không hợp lệ')
             return
         } else if (!passWord) {
-            alert('Vui lòng nhập mật khẩu')
+            Alert.alert('Vui lòng nhập mật khẩu')
             return
         }
         console.log('phone', phone, 'passWord', passWord)

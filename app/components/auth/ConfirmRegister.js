@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     TextInput,
     Dimensions,
-    ScrollView
+    ScrollView,
+    Alert
 } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import Background from './../common/Background'
@@ -53,9 +54,8 @@ const ConfirmRegister = () => {
         RNProgressHud.show()
         CommonAPIs.veryPhone(phone, code1 + code2 + code3 + code4)
             .then((res) => {
-                console.log('res', res.data.phone)
                 navigation.navigate(Constants.screenName.SetPass, {
-                    accessToken: route.params?.access_token,
+                    accessToken: route.params?.accessToken,
                     phone
                 })
             })

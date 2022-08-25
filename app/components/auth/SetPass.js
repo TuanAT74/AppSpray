@@ -5,7 +5,8 @@ import {
     Image,
     TextInput,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    Alert
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Background from './../common/Background'
@@ -21,8 +22,6 @@ const SetPass = () => {
     const accessToken = route.params.accessToken
     const phone = route.params.phone
 
-    console.log('accessToken', accessToken, phone)
-
     const [passWord, setPassWord] = useState()
     const [confirmPassWord, setConfirmPassWord] = useState()
     const [checkPassWord, setCheckPassWord] = useState(true)
@@ -30,13 +29,13 @@ const SetPass = () => {
 
     const handleSetPassWord = () => {
         if (!passWord) {
-            alert('Vui lòng nhập mật khẩu')
+            Alert.alert('Vui lòng nhập mật khẩu')
             return
         } else if (!confirmPassWord) {
-            alert('Vui lòng xác nhận mật khẩu')
+            Alert.alert('Vui lòng xác nhận mật khẩu')
             return
         } else if (passWord !== confirmPassWord) {
-            alert('Mật khẩu không khớp')
+            Alert.alert('Mật khẩu không khớp')
             return
         }
         RNProgressHud.show()
@@ -45,7 +44,7 @@ const SetPass = () => {
                 navigation.navigate(Constants.screenName.Login)
             })
             .catch((err) => {
-                alert(err.response.data.message)
+                Alert.alert(err.response.data.message)
             })
             .finally(() => {
                 RNProgressHud.dismiss()

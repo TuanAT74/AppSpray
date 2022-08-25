@@ -15,13 +15,6 @@ import Constants from '../../controller/Constants'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import RNProgressHud from 'progress-hud'
 
-const validatePhone = (phone) => {
-    if (phone.length < 9 || phone.length > 12) {
-        return false
-    }
-    return true
-}
-
 const Register = () => {
     const navigation = useNavigation()
     const [phone, setPhone] = useState()
@@ -30,32 +23,32 @@ const Register = () => {
         if (!phone) {
             Alert.alert('Thông báo', 'Vui lòng nhập số điện thoại')
             return
-        } else if (!validatePhone(phone)) {
+        } else if (phone.length < 9 || phone.length > 12) {
             Alert.alert('Thông báo', 'Số điện thoại không hợp lệ')
             return
         }
         RNProgressHud.show()
         CommonAPIs.register(phone)
             .then((res) => {
-                console.log('res', res.data.access_token)
                 navigation.navigate(Constants.screenName.ConfirmRegister, {
                     accessToken: res.data.access_token,
                     phone
                 })
             })
             .catch((err) => {
-                alert(err.response.data.message)
+                Alert.alert(err.response.data.message)
             })
             .finally(() => {
                 RNProgressHud.dismiss()
             })
     }
+
     return (
         <View style={styles.container}>
             <Background />
             <ScrollView style={styles.container}>
                 <View style={styles.viewRegister}>
-                    <Text style={styles.textRegister}>Register</Text>
+                    <Text style={styles.textRegister}>Registerdgdfg</Text>
                     <View style={styles.image}>
                         <Image source={Constants.icons.ic_phone} />
                     </View>
@@ -67,7 +60,6 @@ const Register = () => {
                             <Image source={Constants.icons.ic_japan} />
                             <Text style={styles.textCountry}>+81</Text>
                         </View>
-
                         <TextInput
                             style={styles.input}
                             placeholder='+123 456 789'
