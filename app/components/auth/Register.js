@@ -48,7 +48,7 @@ const Register = () => {
             <Background />
             <ScrollView style={styles.container}>
                 <View style={styles.viewRegister}>
-                    <Text style={styles.textRegister}>Registerdgdfg</Text>
+                    <Text style={styles.textRegister}>Register</Text>
                     <View style={styles.image}>
                         <Image source={Constants.icons.ic_phone} />
                     </View>
@@ -62,6 +62,7 @@ const Register = () => {
                         </View>
                         <TextInput
                             style={styles.input}
+                            maxLength={12}
                             placeholder='+123 456 789'
                             keyboardType='numeric'
                             onChangeText={(text) => setPhone(text)}
@@ -71,9 +72,9 @@ const Register = () => {
                     <TouchableOpacity
                         disabled={!phone}
                         style={{
-                            ...styles.buttonContinue,
-                            backgroundColor:
-                                phone > 0 ? Constants.color.button : Constants.color.gray
+                            ...styles.buttonContinue
+                            // backgroundColor:
+                            //     phone.length > 0 ? Constants.color.button : Constants.color.gray
                         }}
                         onPress={() => handleOnClickRegister()}
                     >
@@ -82,7 +83,7 @@ const Register = () => {
                 </View>
                 <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate(Constants.screenName.Login)
+                        navigation.push(Constants.screenName.Login)
                     }}
                 >
                     <Text style={styles.textLogin}>Login</Text>
@@ -150,13 +151,14 @@ const styles = StyleSheet.create({
         borderRightWidth: 1,
         borderRightColor: Constants.color.border,
         paddingRight: 5,
-        paddingVertical: 15
+        paddingVertical: 10
     },
     input: {
         flex: 1,
         fontSize: 14,
         paddingHorizontal: 12,
-        fontFamily: Constants.font.PoppinsMedium
+        fontFamily: Constants.font.PoppinsMedium,
+        paddingVertical: 8
     },
     textCountry: {
         fontSize: 14,
@@ -183,6 +185,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.button,
-        textAlign: 'center'
+        textAlign: 'center',
+        textDecorationLine: 'underline'
     }
 })

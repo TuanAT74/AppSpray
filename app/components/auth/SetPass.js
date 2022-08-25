@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     buttonPassword: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 20,
+        marginTop: 15,
         paddingHorizontal: 15,
         borderColor: Constants.color.border,
         borderWidth: 1,
@@ -145,7 +145,8 @@ const styles = StyleSheet.create({
     textPassword: {
         flex: 1,
         fontSize: 14,
-        fontFamily: Constants.font.PoppinsMedium
+        fontFamily: Constants.font.PoppinsMedium,
+        paddingVertical: 8
     },
     viewSetPassWord: {
         marginHorizontal: 25,

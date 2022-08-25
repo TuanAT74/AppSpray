@@ -89,12 +89,19 @@ const Login = () => {
                             colors={['#26F1FF', '#DF98EB', '#FF88E8']}
                             style={styles.linearGradient}
                             start={{ x: 0, y: 0.5 }}
-                            end={{ x: 1, y: 0.5 }}
+                            end={{ x: 1.8, y: 0 }}
                         >
                             <Text style={styles.textButtonLogin}>Sign in</Text>
                         </LinearGradient>
                     </TouchableOpacity>
                 </View>
+                <TouchableOpacity
+                    onPress={() => {
+                        navigation.push(Constants.screenName.Register)
+                    }}
+                >
+                    <Text style={styles.textRegister}>Register</Text>
+                </TouchableOpacity>
                 <TouchableOpacity>
                     <Text style={styles.textRegister}>Forgot Password</Text>
                 </TouchableOpacity>
@@ -156,7 +163,8 @@ const styles = StyleSheet.create({
     textPassword: {
         flex: 1,
         fontSize: 14,
-        fontFamily: Constants.font.PoppinsMedium
+        fontFamily: Constants.font.PoppinsMedium,
+        paddingVertical: 8
     },
     linearGradient: {
         alignItems: 'center',
@@ -170,7 +178,9 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.gray,
-        textAlign: 'center'
+        textAlign: 'center',
+        textDecorationLine: 'underline',
+        color: Constants.color.button
     },
     textButtonLogin: {
         fontSize: 14,
