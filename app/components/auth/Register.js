@@ -12,7 +12,7 @@ import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import Background from '../common/Background'
 import Constants from '../../controller/Constants'
-import CommonAPIs from './../APIs/CommonAPIs'
+import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import RNProgressHud from 'progress-hud'
 
 const validatePhone = (phone) => {
@@ -34,7 +34,7 @@ const Register = () => {
             Alert.alert('Thông báo', 'Số điện thoại không hợp lệ')
             return
         }
-        RNProgressHud.showWithStatus('Loading...')
+        RNProgressHud.show()
         CommonAPIs.register(phone)
             .then((res) => {
                 console.log('res', res.data.access_token)
@@ -50,7 +50,6 @@ const Register = () => {
                 RNProgressHud.dismiss()
             })
     }
-
     return (
         <View style={styles.container}>
             <Background />
@@ -89,7 +88,6 @@ const Register = () => {
                         <Text style={styles.textContinue}>Continue</Text>
                     </TouchableOpacity>
                 </View>
-
                 <TouchableOpacity
                     onPress={() => {
                         navigation.navigate(Constants.screenName.Login)

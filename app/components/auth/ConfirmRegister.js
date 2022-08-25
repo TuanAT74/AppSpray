@@ -12,7 +12,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Background from './../common/Background'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import Constants from './../../controller/Constants'
-import CommonAPIs from './../APIs/CommonAPIs'
+import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import RNProgressHud from 'progress-hud'
 
 const ConfirmRegister = () => {
@@ -26,6 +26,7 @@ const ConfirmRegister = () => {
     const [code2, setCode2] = useState()
     const [code3, setCode3] = useState()
     const [code4, setCode4] = useState()
+
     const refCode1 = useRef()
     const refCode2 = useRef()
     const refCode3 = useRef()
@@ -49,7 +50,7 @@ const ConfirmRegister = () => {
             Alert.alert('Thông báo', 'Vui lòng nhập mã xác nhận')
             return
         }
-        RNProgressHud.showWithStatus('Loading...')
+        RNProgressHud.show()
         CommonAPIs.veryPhone(phone, code1 + code2 + code3 + code4)
             .then((res) => {
                 console.log('res', res.data.phone)

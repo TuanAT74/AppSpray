@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Convert = () => {
+const Charge = () => {
     return (
         <View>
-            <Text>Convert</Text>
+            <Text>Charge</Text>
         </View>
     )
 }
 
-export default Convert
+export default Charge
 
 const styles = StyleSheet.create({})

@@ -12,30 +12,34 @@ import Background from './../common/Background'
 import Constants from './../../controller/Constants'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import CommonAPIs from './../APIs/CommonAPIs'
+import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import RNProgressHud from 'progress-hud'
 
 const SetPass = () => {
     const navigation = useNavigation()
+    const route = useRoute()
+    const accessToken = route.params.accessToken
+    const phone = route.params.phone
+
+    console.log('accessToken', accessToken, phone)
+
     const [passWord, setPassWord] = useState()
     const [confirmPassWord, setConfirmPassWord] = useState()
     const [checkPassWord, setCheckPassWord] = useState(true)
     const [checkPassWordConfirm, setCheckPassWordConfirm] = useState(true)
-    const route = useRoute()
-    const accessToken = route.params.accessToken
-    const phone = route.params.phone
-    console.log('accessToken', accessToken, phone)
 
     const handleSetPassWord = () => {
-        if (passWord !== confirmPassWord) {
-            alert('Mật khẩu không khớp')
-            return
-        } else if (!passWord) {
+        if (!passWord) {
             alert('Vui lòng nhập mật khẩu')
             return
+        } else if (!confirmPassWord) {
+            alert('Vui lòng xác nhận mật khẩu')
+            return
+        } else if (passWord !== confirmPassWord) {
+            alert('Mật khẩu không khớp')
+            return
         }
-        RNProgressHud.showWithStatus('Loading...')
-
+        RNProgressHud.show()
         CommonAPIs.setPass(phone, passWord, accessToken)
             .then((res) => {
                 navigation.navigate(Constants.screenName.Login)
@@ -88,7 +92,7 @@ const SetPass = () => {
                             onPress={() => setCheckPassWordConfirm(!checkPassWordConfirm)}
                         >
                             <Icon
-                                name={!checkPassWordConfirm ? 'ios-eye' : 'eye-off-outline'}
+                                name={!checkPassWordConfirm ? 'eye-outline' : 'eye-off-outline'}
                                 size={20}
                                 color={Constants.color.gray}
                             />

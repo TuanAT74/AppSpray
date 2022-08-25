@@ -13,7 +13,7 @@ import Constants from './../../controller/Constants'
 import Icon from 'react-native-vector-icons/Ionicons'
 import LinearGradient from 'react-native-linear-gradient'
 import { useNavigation } from '@react-navigation/native'
-import CommonAPIs from './../APIs/CommonAPIs'
+import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import RNProgressHud from 'progress-hud'
 
 const Login = () => {
@@ -24,17 +24,17 @@ const Login = () => {
 
     const handleLogin = () => {
         if (!phone) {
-            alert('Please enter your phone number')
+            alert('Vui lòng nhập số điện thoại')
             return
         } else if (phone.length < 9 || phone.length > 12) {
-            alert('Phone number is not valid')
+            alert('Số điện thoại không hợp lệ')
             return
         } else if (!passWord) {
-            alert('Please enter your password')
+            alert('Vui lòng nhập mật khẩu')
             return
         }
         console.log('phone', phone, 'passWord', passWord)
-        RNProgressHud.showWithStatus('Loading...')
+        RNProgressHud.show()
         CommonAPIs.login(phone, passWord)
             .then((res) => {
                 navigation.navigate(Constants.screenName.TabBarNavigation)

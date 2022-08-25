@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Constants from './../../controller/Constants'
+import Constants from '../Constants'
 
 export default class CommonAPIs {
     static baseURL = Constants.baseURL
@@ -18,51 +18,48 @@ export default class CommonAPIs {
 
     static async login(phone, password) {
         try {
-            const headers = {
-                ...this.headers
-            }
             let data = {
                 phone,
                 password
             }
-            let response = await axios.post(CommonAPIs.endpoints.login, data, { headers })
-
+            let response = await axios.post(CommonAPIs.endpoints.login, data, {
+                headers: this.headers
+            })
             return Promise.resolve(response.data)
         } catch (error) {
             return Promise.reject(error)
         }
     }
+
     static async register(phone) {
         try {
-            const headers = {
-                ...this.headers
-            }
             let data = {
                 phone
             }
-            let response = await axios.post(CommonAPIs.endpoints.register, data, { headers })
-
+            let response = await axios.post(CommonAPIs.endpoints.register, data, {
+                headers: this.headers
+            })
             return Promise.resolve(response.data)
         } catch (error) {
             return Promise.reject(error)
         }
     }
+
     static async veryPhone(phone, code) {
         try {
-            const headers = {
-                ...this.headers
-            }
             let data = {
                 phone,
                 verification_code: code
             }
-            let response = await axios.post(CommonAPIs.endpoints.veryPhone, data, { headers })
-
+            let response = await axios.post(CommonAPIs.endpoints.veryPhone, data, {
+                headers: this.headers
+            })
             return Promise.resolve(response.data)
         } catch (error) {
             return Promise.reject(error)
         }
     }
+
     static async setPass(phone, password, token) {
         try {
             const headers = {
@@ -74,7 +71,6 @@ export default class CommonAPIs {
                 password
             }
             let response = await axios.post(CommonAPIs.endpoints.setPassword, data, { headers })
-
             return Promise.resolve(response.data)
         } catch (error) {
             return Promise.reject(error)
