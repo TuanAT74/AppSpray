@@ -17,7 +17,7 @@ import RNProgressHud from 'progress-hud'
 
 const Register = () => {
     const navigation = useNavigation()
-    const [phone, setPhone] = useState()
+    const [phone, setPhone] = useState('')
 
     const handleOnClickRegister = () => {
         if (!phone) {
@@ -31,7 +31,7 @@ const Register = () => {
         CommonAPIs.register(phone)
             .then((res) => {
                 navigation.navigate(Constants.screenName.ConfirmRegister, {
-                    accessToken: res.data.access_token,
+                    accessToken: res.data?.access_token,
                     phone
                 })
             })
@@ -72,9 +72,9 @@ const Register = () => {
                     <TouchableOpacity
                         disabled={!phone}
                         style={{
-                            ...styles.buttonContinue
-                            // backgroundColor:
-                            //     phone.length > 0 ? Constants.color.button : Constants.color.gray
+                            ...styles.buttonContinue,
+                            backgroundColor:
+                                phone.length > 0 ? Constants.color.button : Constants.color.gray
                         }}
                         onPress={() => handleOnClickRegister()}
                     >

@@ -1,5 +1,9 @@
 import axios from 'axios'
-import Constants from '../Constants'
+
+import StorageManager from './StorageManager'
+import Constants from './../Constants'
+import AppManager from './AppManager'
+import UserModel from '../model/UserModel'
 
 export default class CommonAPIs {
     static baseURL = Constants.baseURL
@@ -8,7 +12,9 @@ export default class CommonAPIs {
         login: CommonAPIs.baseURL + '/api/login',
         register: CommonAPIs.baseURL + '/api/register',
         veryPhone: CommonAPIs.baseURL + '/api/verify-phone',
-        setPassword: CommonAPIs.baseURL + '/api/confirm-password'
+        setPassword: CommonAPIs.baseURL + '/api/confirm-password',
+        category: CommonAPIs.baseURL + '/api/list-parent-category',
+        store: CommonAPIs.baseURL + '/api/list-store-parent-category'
     }
 
     static headers = {
@@ -24,6 +30,12 @@ export default class CommonAPIs {
             }
             let response = await axios.post(CommonAPIs.endpoints.login, data, {
                 headers: this.headers
+            })
+            // StorageManager.setData(Constants.keys.currentUser, {
+            //     access_token: response.data.access_token
+            // })
+            AppManager.shared.currentUser = new UserModel({
+                access_token: response.data.access_token
             })
             return Promise.resolve(response.data)
         } catch (error) {
@@ -72,6 +84,36 @@ export default class CommonAPIs {
             }
             let response = await axios.post(CommonAPIs.endpoints.setPassword, data, { headers })
             return Promise.resolve(response.data)
+        } catch (error) {
+            return Promise.reject(error)
+        }
+    }
+
+    static async category() {
+        try {
+            const headers = {
+                ...this.headers,
+                Authorization: `Bearer ` + AppManager.shared.isHaveAccessToken()
+            }
+
+            let response = await axios.get(CommonAPIs.endpoints.category, { headers })
+            return Promise.resolve(response.data.data)
+        } catch (error) {
+            return Promise.reject(error)
+        }
+    }
+
+    static async store(id) {
+        try {
+            const headers = {
+                ...this.headers,
+                Authorization: `Bearer ` + AppManager.shared.isHaveAccessToken()
+            }
+            console.log('id', id)
+            let response = await axios.get(CommonAPIs.endpoints.store + `?parent_id=${id}`, {
+                headers
+            })
+            return Promise.resolve(response.data.data)
         } catch (error) {
             return Promise.reject(error)
         }

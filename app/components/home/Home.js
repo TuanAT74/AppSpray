@@ -3,109 +3,75 @@ import React, { useState, useEffect } from 'react'
 import Background from './../common/Background'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Constants from './../../controller/Constants'
-import HeaderHome from '../background/HeaderHome'
 import ListStore from './../common/ListStore'
-
-const category = [
-    {
-        id: 1,
-        name: 'All',
-        type: 'All'
-    },
-    {
-        id: 2,
-        name: 'Restaurant',
-        type: 'Restaurant',
-        img: Constants.icons.ic_Restaurant
-    },
-    {
-        id: 3,
-        name: 'Fashion',
-        type: 'Fashion',
-        icon: 'ios-apps',
-        img: Constants.icons.ic_Fashion
-    },
-    {
-        id: 4,
-        name: 'Car',
-        type: 'Car',
-        img: Constants.icons.ic_Car
-    },
-    {
-        id: 5,
-        name: 'Electronic',
-        type: 'Electronic',
-        img: Constants.icons.ic_Car
-    },
-    {
-        id: 6,
-        name: 'Health',
-        type: 'Health',
-        img: Constants.icons.ic_Car
-    }
-]
-
-const listStore = [
-    { id: 1, img: Constants.image.img_Shushi, name: 'T-JAY SUSHI', evaluate: '4.0' },
-    { id: 2, img: Constants.image.img_Caffe, name: 'T-JAY CAFE', evaluate: '4.0' },
-    { id: 3, img: Constants.image.img_Noodles, name: 'T-JAY CAFE', evaluate: '4.0' },
-    { id: 4, img: Constants.image.img_Caffe, name: 'T-JAY CAFE', evaluate: '4.0' }
-]
-
-const listStore1 = [
-    { id: 1, img: Constants.image.img_Seafood, name: 'T-JAY SUSHI', evaluate: '4.0' },
-    { id: 2, img: Constants.image.img_Noodles, name: 'T-JAY CAFE', evaluate: '4.0' },
-    { id: 3, img: Constants.image.img_Seafood, name: 'T-JAY CAFE', evaluate: '4.0' },
-    { id: 4, img: Constants.image.img_Caffe, name: 'T-JAY CAFE', evaluate: '4.0' }
-]
+import HeaderHome from './../common/HeaderHome'
+import CommonAPIs from './../../controller/APIs/CommonAPIs'
+import { useRoute } from '@react-navigation/native'
+import StorageManager from './../../controller/APIs/StorageManager'
+import AppManager from './../../controller/APIs/AppManager'
 
 const Home = () => {
-    const [selected, setSelected] = useState(category[0])
+    const [selected, setSelected] = useState(1)
+    const [listCategory, setListCategory] = useState([])
+
+    const GetCategory = () => {
+        CommonAPIs.category()
+            .then((res) => {
+                setListCategory(res.data)
+            })
+            .catch((err) => {
+                alert(err.message)
+            })
+    }
+
+    useEffect(() => {
+        GetCategory()
+    }, [])
 
     return (
         <View style={styles.container}>
             <Background hideLogo={true} />
-
             <HeaderHome />
-            <ScrollView>
+            <ScrollView style={styles.scrollView}>
                 <View style={styles.viewCategory}>
                     <FlatList
-                        data={category}
+                        data={listCategory}
                         horizontal
                         renderItem={({ item }) => (
                             <TouchableOpacity
                                 style={{
                                     ...styles.buttonCategory,
                                     backgroundColor:
-                                        selected.name == item.type
-                                            ? Constants.color.buttonHome
-                                            : '#EAEAF6'
+                                        selected == item.id ? Constants.color.buttonHome : '#EAEAF6'
                                 }}
                                 onPress={() => {
-                                    setSelected(item)
+                                    setSelected(item.id)
                                 }}
                             >
                                 <View style={styles.button}>
-                                    <Image source={item.img} />
+                                    <Image
+                                        source={{
+                                            uri: item.icon_parent
+                                        }}
+                                        style={styles.imageStore}
+                                    />
                                     <Text
                                         style={{
                                             ...styles.textCategory,
                                             color:
-                                                selected.name == item.type
+                                                selected == item.id
                                                     ? Constants.color.white
                                                     : Constants.color.buttonHome
                                         }}
                                     >
-                                        {item.name}
+                                        {item.parent_name}
                                     </Text>
                                 </View>
                             </TouchableOpacity>
                         )}
                     />
                 </View>
-
-                <ListStore data={listStore} title='Recomended Store' />
-                <ListStore data={listStore1} title='Restaurant' />
+                <ListStore data={listCategory[0]} />
             </ScrollView>
         </View>
     )
@@ -120,25 +86,24 @@ const styles = StyleSheet.create({
     buttonCategory: {
         backgroundColor: Constants.color.buttonHome,
         borderRadius: 20,
-        paddingVertical: 8,
+        paddingVertical: 5,
         alignItems: 'center',
         paddingHorizontal: 20,
-
         marginRight: 10,
         justifyContent: 'center'
     },
     viewCategory: {
         flexDirection: 'row',
-        marginVertical: 20,
         marginBottom: 30,
-        marginHorizontal: 20
+        marginRight: 10,
+        marginLeft: 20
     },
     button: {
         flexDirection: 'row'
     },
     textCategory: {
         color: Constants.color.buttonHome,
-        fontFamily: 'Rubik-Medium'
+        fontFamily: Constants.font.PoppinsMedium
     },
     textStore: {
         flexDirection: 'row',
@@ -154,5 +119,15 @@ const styles = StyleSheet.create({
     textSeeAll: {
         fontSize: 12,
         fontFamily: Constants.font.PoppinsRegular
+    },
+    scrollView: {
+        marginTop: 30
+        // marginBottom: 10
+    },
+    imageStore: {
+        height: 20,
+        width: 20,
+        borderRadius: 20,
+        marginRight: 5
     }
 })

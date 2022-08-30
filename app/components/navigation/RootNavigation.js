@@ -21,7 +21,7 @@ const RootNavigation = () => {
                 screenOptions={{
                     headerShown: false
                 }}
-                initialRouteName='Register'
+                initialRouteName='Login'
             >
                 <Stack.Screen
                     name={Constants.screenName.TabBarNavigation}

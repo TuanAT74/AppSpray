@@ -66,12 +66,12 @@ const styles = StyleSheet.create({
     },
     textNexusPointNumber: {
         fontSize: 20,
-        fontFamily: Constants.font.PoppinsMedium,
+        fontFamily: Constants.font.PoppinsSemiBold,
         includeFontPadding: false
     },
     textNexusPoint: {
         fontSize: 8,
-        fontFamily: Constants.font.PoppinsMedium,
+        fontFamily: Constants.font.PoppinsSemiBold,
         includeFontPadding: false,
         paddingLeft: 15
     },
@@ -90,7 +90,8 @@ const styles = StyleSheet.create({
     },
     textEquiv: {
         fontSize: 14,
-        color: Constants.color.buttonHome
+        color: Constants.color.buttonHome,
+        fontFamily: Constants.font.PoppinsMedium
     },
     viewButton: {
         backgroundColor: Constants.color.white,
@@ -121,5 +122,9 @@ const styles = StyleSheet.create({
     },
     imgButton: {
         marginTop: 10
+    },
+    textAED: {
+        fontSize: 14,
+        fontFamily: Constants.font.PoppinsMedium
     }
 })

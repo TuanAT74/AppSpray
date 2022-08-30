@@ -20,7 +20,7 @@ const ConfirmRegister = () => {
     const navigation = useNavigation()
     const route = useRoute()
     const phone = route.params?.phone
-    const accessToken = route.params?.access_token
+    const accessToken = route.params.accessToken
 
     const [timerCount, setTimer] = useState(30)
     const [code1, setCode1] = useState()
@@ -55,7 +55,7 @@ const ConfirmRegister = () => {
         CommonAPIs.veryPhone(phone, code1 + code2 + code3 + code4)
             .then((res) => {
                 navigation.navigate(Constants.screenName.SetPass, {
-                    accessToken: route.params?.accessToken,
+                    accessToken,
                     phone
                 })
             })

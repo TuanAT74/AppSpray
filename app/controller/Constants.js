@@ -56,5 +56,9 @@ export default Constants = {
         PoppinsSemiBold: 'Poppins-SemiBold',
         PoppinsThin: 'Poppins-Thin'
     },
-    baseURL: 'https://nexus-point-dev.test-development.work'
+    baseURL: 'https://nexus-point-dev.test-development.work',
+
+    keys: {
+        currentUser: 'currentUser'
+    }
 }

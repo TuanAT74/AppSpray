@@ -17,11 +17,13 @@ import { useNavigation } from '@react-navigation/native'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import RNProgressHud from 'progress-hud'
 
+import StorageManager from './../../controller/APIs/StorageManager'
+
 const Login = () => {
     const navigation = useNavigation()
-    const [passWord, setPassWord] = useState()
+    const [passWord, setPassWord] = useState('123456')
     const [checkPassWord, setCheckPassWord] = useState(true)
-    const [phone, setPhone] = useState()
+    const [phone, setPhone] = useState('813924234')
 
     const handleLogin = () => {
         if (!phone) {
@@ -34,14 +36,13 @@ const Login = () => {
             Alert.alert('Vui lòng nhập mật khẩu')
             return
         }
-        console.log('phone', phone, 'passWord', passWord)
         RNProgressHud.show()
         CommonAPIs.login(phone, passWord)
             .then((res) => {
                 navigation.navigate(Constants.screenName.TabBarNavigation)
             })
             .catch((err) => {
-                alert(err.response.data.message)
+                Alert.alert(err.response.data.message)
             })
             .finally(() => {
                 RNProgressHud.dismiss()
