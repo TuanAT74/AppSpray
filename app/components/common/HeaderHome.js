@@ -11,7 +11,7 @@ const HeaderHome = () => {
                 <Icon name='notifications-outline' size={30} color={Constants.color.white} />
             </View>
             <View style={styles.viewNexusPoint}>
-                <Image source={Constants.icons.ic_point} />
+                <Image source={Constants.icons.ic_point} style={styles.imgPoint} />
                 <View style={styles.viewTextNexusPoint}>
                     <Text style={styles.textNexusPointNumber}>23.254</Text>
                     <Text style={styles.textNexusPoint}>Nexus Point</Text>
@@ -121,10 +121,16 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     imgButton: {
-        marginTop: 10
+        marginTop: 10,
+        width: 30,
+        height: 30
     },
     textAED: {
         fontSize: 14,
         fontFamily: Constants.font.PoppinsMedium
+    },
+    imgPoint: {
+        width: 30,
+        height: 30
     }
 })

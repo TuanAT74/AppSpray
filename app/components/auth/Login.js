@@ -51,12 +51,12 @@ const Login = () => {
 
     return (
         <View style={styles.container}>
-            <Background screen='Background' />
+            <Background color={Constants.color.white} />
             <ScrollView style={styles.container}>
                 <View style={styles.viewLogin}>
                     <Text style={styles.textLogin}>Login</Text>
                     <View style={styles.image}>
-                        <Image source={Constants.icons.ic_login} />
+                        <Image source={Constants.icons.ic_login} style={styles.icon} />
                     </View>
                     <Text style={styles.textInput}>Type Phone Number and Password to Continue</Text>
                     <View style={styles.buttonPassword}>
@@ -189,5 +189,9 @@ const styles = StyleSheet.create({
         color: Constants.color.white,
         textAlign: 'center',
         paddingVertical: 13
+    },
+    icon: {
+        width: 130,
+        height: 140
     }
 })

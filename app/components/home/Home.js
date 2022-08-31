@@ -9,15 +9,16 @@ import CommonAPIs from './../../controller/APIs/CommonAPIs'
 import { useRoute } from '@react-navigation/native'
 import StorageManager from './../../controller/APIs/StorageManager'
 import AppManager from './../../controller/APIs/AppManager'
+import { RNProgressHud } from 'progress-hud'
 
 const Home = () => {
-    const [selected, setSelected] = useState(1)
+    const [selected, setSelected] = useState(0)
     const [listCategory, setListCategory] = useState([])
 
     const GetCategory = () => {
         CommonAPIs.category()
             .then((res) => {
-                setListCategory(res.data)
+                setListCategory([Constants.allCategory, ...res.data])
             })
             .catch((err) => {
                 alert(err.message)
@@ -30,7 +31,7 @@ const Home = () => {
 
     return (
         <View style={styles.container}>
-            <Background hideLogo={true} />
+            <Background hideLogo={true} color='#F7F7F7' />
             <HeaderHome />
             <ScrollView style={styles.scrollView}>
                 <View style={styles.viewCategory}>
@@ -49,12 +50,16 @@ const Home = () => {
                                 }}
                             >
                                 <View style={styles.button}>
-                                    <Image
-                                        source={{
-                                            uri: item.icon_parent
-                                        }}
-                                        style={styles.imageStore}
-                                    />
+                                    {item.id == 0 ? (
+                                        <View></View>
+                                    ) : (
+                                        <Image
+                                            source={{
+                                                uri: item?.icon_parent
+                                            }}
+                                            style={styles.imageStore}
+                                        />
+                                    )}
                                     <Text
                                         style={{
                                             ...styles.textCategory,
@@ -71,7 +76,8 @@ const Home = () => {
                         )}
                     />
                 </View>
-                <ListStore data={listCategory[0]} />
+
+                <ListStore data={listCategory[1]} />
             </ScrollView>
         </View>
     )
@@ -102,7 +108,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     textCategory: {
-        color: Constants.color.buttonHome,
+        color: Constants.color.white,
         fontFamily: Constants.font.PoppinsMedium
     },
     textStore: {
@@ -127,7 +133,15 @@ const styles = StyleSheet.create({
     imageStore: {
         height: 20,
         width: 20,
-        borderRadius: 20,
         marginRight: 5
+    },
+    buttonAll: {
+        backgroundColor: Constants.color.buttonHome,
+        borderRadius: 20,
+        paddingVertical: 5,
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        marginRight: 10,
+        justifyContent: 'center'
     }
 })

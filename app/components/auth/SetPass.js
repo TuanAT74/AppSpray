@@ -53,7 +53,7 @@ const SetPass = () => {
 
     return (
         <View style={styles.container}>
-            <Background />
+            <Background color={Constants.color.white} />
             <ScrollView style={styles.container}>
                 <View style={styles.viewSetPassWord}>
                     <Text style={styles.text}> SET YOUR PASSWORD</Text>

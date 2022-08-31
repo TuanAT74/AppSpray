@@ -2,10 +2,15 @@ import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
 import React from 'react'
 import Constants from './../../controller/Constants'
 
-const Background = ({ hideLogo = false }) => {
+const Background = ({ hideLogo = false, color }) => {
     return (
-        <View style={styles.container}>
-            <Image source={Constants.icons.ic_background} style={styles.imageBrTop} />
+        <View style={{ ...styles.container, backgroundColor: color }}>
+            <Image
+                source={Constants.icons.ic_background}
+                style={{
+                    ...styles.imageBrTop
+                }}
+            />
             <View style={styles.spray}>
                 <Image
                     source={Constants.icons.ic_spray}
@@ -34,6 +39,6 @@ const styles = StyleSheet.create({
     },
     imageBrTop: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').width * 0.68
+        height: 250
     }
 })

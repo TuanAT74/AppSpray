@@ -3,44 +3,30 @@ import React, { useState, useEffect } from 'react'
 import Constants from './../../controller/Constants'
 import Icon from 'react-native-vector-icons/Ionicons'
 import CommonAPIs from './../../controller/APIs/CommonAPIs'
+import RNProgressHud from 'progress-hud'
 
 const ListStore = ({ data }) => {
     const [listStore, setListStore] = useState([])
+    console.log(listStore)
+
     const GetStore = () => {
+        RNProgressHud.show()
         CommonAPIs.store(data?.id)
             .then((res) => {
-                // console.log('store', res)
+                console.log(res?.data)
                 setListStore(res?.data)
             })
             .catch((err) => {
                 alert(err.message)
+            })
+            .finally(() => {
+                RNProgressHud.dismiss()
             })
     }
 
     useEffect(() => {
         GetStore()
     }, [data])
-
-    const showItems = (item) => {
-        console.log(item)
-        return (
-            <TouchableOpacity>
-                <View style={styles.viewImage}>
-                    <Image source={{ uri: item.item.avatar }} style={styles.imageStore} />
-                    <Image source={Constants.image.img_Shadow} style={styles.imageShadow} />
-                    <View style={styles.viewStore}>
-                        <Text style={styles.nameStore}>{item.item.name}</Text>
-                        <View style={styles.viewEvaluate}>
-                            <Icon name='ios-star' size={15} color='#ffc107' />
-                            <Text style={{ ...styles.nameStore, paddingLeft: 5 }}>
-                                {item.item.rate}
-                            </Text>
-                        </View>
-                    </View>
-                </View>
-            </TouchableOpacity>
-        )
-    }
 
     return (
         <View style={styles.viewImageStore}>
@@ -50,7 +36,27 @@ const ListStore = ({ data }) => {
                     <Text style={styles.textSeeAll}>See all</Text>
                 </TouchableOpacity>
             </View>
-            <FlatList data={listStore} horizontal renderItem={showItems} />
+            <FlatList
+                data={listStore}
+                horizontal
+                renderItem={({ item }) => (
+                    <TouchableOpacity>
+                        <View style={styles.viewImage}>
+                            <Image source={{ uri: item.avatar }} style={styles.imageStore} />
+                            <Image source={Constants.image.img_Shadow} style={styles.imageShadow} />
+                            <View style={styles.viewStore}>
+                                <Text style={styles.nameStore}>{item.name}</Text>
+                                <View style={styles.viewEvaluate}>
+                                    <Icon name='ios-star' size={15} color='#ffc107' />
+                                    <Text style={{ ...styles.nameStore, paddingLeft: 5 }}>
+                                        {item.rate}
+                                    </Text>
+                                </View>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                )}
+            />
         </View>
     )
 }

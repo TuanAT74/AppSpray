@@ -69,7 +69,7 @@ const ConfirmRegister = () => {
 
     return (
         <View style={styles.container}>
-            <Background screen='Background' />
+            <Background color={Constants.color.white} />
             <ScrollView>
                 <View style={styles.viewConfirm}>
                     <Text style={styles.textConfirm}>Verification</Text>
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
         fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.white,
         paddingVertical: 13,
-        fontWeight: 'SemiBold'
+        fontWeight: Constants.font.PoppinsSemiBold
     },
     input: {
         fontSize: 24,

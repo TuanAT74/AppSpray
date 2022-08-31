@@ -45,7 +45,7 @@ const Register = () => {
 
     return (
         <View style={styles.container}>
-            <Background />
+            <Background color={Constants.color.white} />
             <ScrollView style={styles.container}>
                 <View style={styles.viewRegister}>
                     <Text style={styles.textRegister}>Register</Text>

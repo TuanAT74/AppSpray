@@ -25,14 +25,22 @@ export default Constants = {
         ic_confirm: require('../assets/images/ic_confirm.png'),
         ic_security: require('../assets/images/ic_security.png'),
         ic_login: require('../assets/images/ic_login.png'),
+        ic_login: require('../assets/images/ic_login2.png'),
         ic_point: require('../assets/images/ic_point.png'),
+        ic_point: require('../assets/images/ic_point2.png'),
         ic_qrcode: require('../assets/images/ic_qrcode.png'),
+        ic_qrcode: require('../assets/images/ic_qrcode2.png'),
+        ic_qrcode: require('../assets/images/ic_qrcode3.png'),
         ic_send: require('../assets/images/ic_send.png'),
+        ic_send: require('../assets/images/ic_send2.png'),
         ic_receive: require('../assets/images/ic_receive.png'),
+        ic_receive: require('../assets/images/ic_receive2.png'),
         ic_Restaurant: require('../assets/images/ic_restaurant.png'),
         ic_Fashion: require('../assets/images/ic_fashion.png'),
         ic_Car: require('../assets/images/ic_car.png'),
-        ic_Scan: require('../assets/images/ic_scan.png')
+        ic_Scan: require('../assets/images/ic_scan.png'),
+        ic_Scan: require('../assets/images/ic_scan1.png'),
+        ic_Scan: require('../assets/images/ic_scan2.png')
     },
     image: {
         img_Shushi: require('../assets/images/img_shushi.png'),
@@ -60,5 +68,9 @@ export default Constants = {
 
     keys: {
         currentUser: 'currentUser'
+    },
+    allCategory: {
+        id: 0,
+        parent_name: 'All'
     }
 }
