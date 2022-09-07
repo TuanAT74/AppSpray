@@ -7,7 +7,6 @@ import RNProgressHud from 'progress-hud'
 
 const ListStore = ({ data }) => {
     const [listStore, setListStore] = useState([])
-    console.log(listStore)
 
     const GetStore = () => {
         RNProgressHud.show()

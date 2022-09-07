@@ -109,7 +109,7 @@ export default class CommonAPIs {
                 ...this.headers,
                 Authorization: `Bearer ` + AppManager.shared.isHaveAccessToken()
             }
-            console.log('id', id)
+            // console.log('id', id)
             let response = await axios.get(CommonAPIs.endpoints.store + `?parent_id=${id}`, {
                 headers
             })

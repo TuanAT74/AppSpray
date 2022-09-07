@@ -40,7 +40,13 @@ export default Constants = {
         ic_Car: require('../assets/images/ic_car.png'),
         ic_Scan: require('../assets/images/ic_scan.png'),
         ic_Scan: require('../assets/images/ic_scan1.png'),
-        ic_Scan: require('../assets/images/ic_scan2.png')
+        ic_Scan: require('../assets/images/ic_scan2.png'),
+        ic_Gallery: require('../assets/images/ic_gallery1.png'),
+        ic_Gallery: require('../assets/images/ic_gallery2.png'),
+        ic_Light: require('../assets/images/ic_light1.png'),
+        ic_Light: require('../assets/images/ic_light2.png'),
+        ic_Help: require('../assets/images/ic_help1.png'),
+        ic_Help: require('../assets/images/ic_help2.png')
     },
     image: {
         img_Shushi: require('../assets/images/img_shushi.png'),
@@ -55,7 +61,8 @@ export default Constants = {
         black: '#000',
         border: '#CCCCE3',
         button: '#00CEFF',
-        buttonHome: '#7879E8'
+        buttonHome: '#7879E8',
+        backgScan: 'rgba(0, 0, 0, 0.2)'
     },
     font: {
         PoppinsBold: 'Poppins-Bold',

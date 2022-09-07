@@ -2,13 +2,17 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Constants from './../../controller/Constants'
+import { useNavigation } from '@react-navigation/native'
 
 const HeaderHome = () => {
+    const navigation = useNavigation()
     return (
         <View>
             <View style={styles.viewHome}>
                 <Text style={styles.textHome}>HOME</Text>
-                <Icon name='notifications-outline' size={30} color={Constants.color.white} />
+                <TouchableOpacity>
+                    <Icon name='ios-notifications' size={30} color={Constants.color.white} />
+                </TouchableOpacity>
             </View>
             <View style={styles.viewNexusPoint}>
                 <Image source={Constants.icons.ic_point} style={styles.imgPoint} />
@@ -22,7 +26,12 @@ const HeaderHome = () => {
                 <Text style={styles.textAED}>AED</Text>
             </View>
             <View style={styles.viewButtonHeader}>
-                <TouchableOpacity style={styles.viewButton}>
+                <TouchableOpacity
+                    style={styles.viewButton}
+                    onPress={() => {
+                        navigation.push(Constants.screenName.Scan)
+                    }}
+                >
                     <Image source={Constants.icons.ic_qrcode} style={styles.imgButton} />
                     <Text style={styles.textButton}>Scan</Text>
                 </TouchableOpacity>
