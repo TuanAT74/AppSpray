@@ -22,6 +22,7 @@ const Scan = () => {
     const [isBarcodeRead, setIsBarcodeRead] = useState(false)
     const [barcodeType, setBarcodeType] = useState('')
     const [barcodeValue, setBarcodeValue] = useState('')
+    const [shouldReadBarCode, setShouldReadBarCode] = useState('')
 
     useEffect(() => {
         if (isBarcodeRead) {
@@ -42,23 +43,34 @@ const Scan = () => {
         if (!isBarcodeRead) {
             console.log(JSON.parse(event.data))
             handleCheckType(JSON.parse(event.data))
+            setIsBarcodeRead(true)
+            navigation.navigate(Constants.screenName.TabBarNavigation)
         }
     }
     const handleCheckType = (data) => {
-        switch (data.type) {
-            case 0:
-                Alert.alert('Thông báo', data.data)
-                break
-            default:
-                break
-        }
+        // switch (data.type) {
+        //     case 0:
+        //         Alert.alert('Thông báo', data.data)
+        //         break
+        //     default:
+        //         break
+        // }
+        try {
+            if (data.type == 0) {
+                Alert.alert('Phone number', data.data)
+                return
+            } else if (data.type == 1) {
+                Alert.alert('Wallet', data.data)
+            }
+        } catch (error) {}
     }
     return (
         <View style={{ flex: 1 }}>
             <RNCamera
                 style={styles.camera}
+                autoFocus='on'
                 captureAudio={false}
-                // barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
+                barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
                 androidCameraPermissionOptions={{
                     title: 'Cấp quyền truy cập camera',
                     message: 'Vui lòng cấp quyền truy cập camera để sử dụng chức năng này!',
