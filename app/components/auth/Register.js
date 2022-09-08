@@ -21,10 +21,10 @@ const Register = () => {
 
     const handleOnClickRegister = () => {
         if (!phone) {
-            Alert.alert('Thông báo', 'Vui lòng nhập số điện thoại')
+            Alert.alert('Notification', 'Please enter the phone number')
             return
         } else if (phone.length < 9 || phone.length > 12) {
-            Alert.alert('Thông báo', 'Số điện thoại không hợp lệ')
+            Alert.alert('Notification', 'invalid phone number')
             return
         }
         RNProgressHud.show()

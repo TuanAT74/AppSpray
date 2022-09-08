@@ -27,13 +27,13 @@ const Login = () => {
 
     const handleLogin = () => {
         if (!phone) {
-            Alert.alert('Vui lòng nhập số điện thoại')
+            Alert.alert('Notification', 'Please enter the phone number')
             return
         } else if (phone.length < 9 || phone.length > 12) {
-            Alert.alert('Số điện thoại không hợp lệ')
+            Alert.alert('Notification', 'invalid phone number')
             return
         } else if (!passWord) {
-            Alert.alert('Vui lòng nhập mật khẩu')
+            Alert.alert('Notification', 'Please enter a password')
             return
         }
         RNProgressHud.show()

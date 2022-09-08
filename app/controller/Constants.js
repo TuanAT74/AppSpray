@@ -79,5 +79,10 @@ export default Constants = {
     allCategory: {
         id: 0,
         parent_name: 'All'
+    },
+    QRCodeType: {
+        app: 'NexusPoint',
+        phone: 0,
+        wallet: 1
     }
 }

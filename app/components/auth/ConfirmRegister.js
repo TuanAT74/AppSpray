@@ -48,7 +48,7 @@ const ConfirmRegister = () => {
 
     const handleOnClickConfirm = () => {
         if (!code1 || !code2 || !code3 || !code4) {
-            Alert.alert('Thông báo', 'Vui lòng nhập mã xác nhận')
+            Alert.alert('Notification', 'Please enter the confirmation code')
             return
         }
         RNProgressHud.show()

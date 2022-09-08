@@ -29,13 +29,13 @@ const SetPass = () => {
 
     const handleSetPassWord = () => {
         if (!passWord) {
-            Alert.alert('Vui lòng nhập mật khẩu')
+            Alert.alert('Please enter a password')
             return
         } else if (!confirmPassWord) {
-            Alert.alert('Vui lòng xác nhận mật khẩu')
+            Alert.alert('Please confirm password')
             return
         } else if (passWord !== confirmPassWord) {
-            Alert.alert('Mật khẩu không khớp')
+            Alert.alert('Password incorrect')
             return
         }
         RNProgressHud.show()

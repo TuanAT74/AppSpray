@@ -15,55 +15,81 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import ImagePicker from 'react-native-image-crop-picker'
 import { useNavigation } from '@react-navigation/core'
 import Constants from './../../controller/Constants'
-import { QRscanner } from 'react-native-qr-decode-image-camera'
+import RNQRGenerator from 'rn-qr-generator'
+
+const HandleButtonImage = ({ title, icon, onPress }) => {
+    return (
+        <View>
+            <TouchableOpacity onPress={onPress}>
+                <Image source={icon} style={styles.icon} />
+            </TouchableOpacity>
+            <Text style={styles.textGallery}>{title}</Text>
+        </View>
+    )
+}
 
 const Scan = () => {
     const navigation = useNavigation()
     const [isBarcodeRead, setIsBarcodeRead] = useState(false)
-    const [barcodeType, setBarcodeType] = useState('')
-    const [barcodeValue, setBarcodeValue] = useState('')
-    const [shouldReadBarCode, setShouldReadBarCode] = useState('')
+    const [image, setImage] = useState()
 
-    useEffect(() => {
-        if (isBarcodeRead) {
-            Alert.alert(barcodeType, barcodeValue, [
-                {
-                    text: 'OK',
-                    onPress: () => {
-                        setIsBarcodeRead(false)
-                        setBarcodeType('')
-                        setBarcodeValue('')
-                    }
-                }
-            ])
+    const Generator = (uri) => {
+        console.log('uri', uri)
+        RNQRGenerator.detect({
+            uri
+        }).then((response) => {
+            const { values } = response
+            const dataValues = JSON.parse(values)
+            console.log('sss', JSON.parse(values))
+            if (
+                dataValues.type == Constants.QRCodeType.phone &&
+                dataValues.app == Constants.QRCodeType.app
+            ) {
+                Alert.alert('Phone number', dataValues.data)
+            } else alert('Cannot detect QR code in image')
+        })
+    }
+
+    const isJsonString = (str) => {
+        try {
+            JSON.parse(str)
+        } catch (error) {
+            return false
         }
-    }, [isBarcodeRead, barcodeType, barcodeValue])
+        return true
+    }
 
     const onBarcodeRead = (event) => {
+        console.log(typeof event.data)
         if (!isBarcodeRead) {
-            console.log(JSON.parse(event.data))
-            handleCheckType(JSON.parse(event.data))
+            if (isJsonString(event.data)) {
+                handleCheckType(JSON.parse(event.data))
+            }
             setIsBarcodeRead(true)
-            navigation.navigate(Constants.screenName.TabBarNavigation)
         }
     }
+
     const handleCheckType = (data) => {
-        // switch (data.type) {
-        //     case 0:
-        //         Alert.alert('Thông báo', data.data)
-        //         break
-        //     default:
-        //         break
-        // }
-        try {
-            if (data.type == 0) {
-                Alert.alert('Phone number', data.data)
-                return
-            } else if (data.type == 1) {
-                Alert.alert('Wallet', data.data)
-            }
-        } catch (error) {}
+        if (data.type == Constants.QRCodeType.phone && data.app == Constants.QRCodeType.app) {
+            console.log(data.app, data.type)
+            Alert.alert('Phone number', data.data)
+        } else if (
+            data.type == Constants.QRCodeType.wallet &&
+            data.app == Constants.QRCodeType.app
+        ) {
+            Alert.alert('Wallet', data.data)
+        } else {
+            alert('Cannot detect QR code in image')
+        }
     }
+
+    const onShowGallery = () => {
+        ImagePicker.openPicker({}).then((image) => {
+            Generator(image.path)
+            console.log(image)
+        })
+    }
+
     return (
         <View style={{ flex: 1 }}>
             <RNCamera
@@ -72,10 +98,10 @@ const Scan = () => {
                 captureAudio={false}
                 barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
                 androidCameraPermissionOptions={{
-                    title: 'Cấp quyền truy cập camera',
-                    message: 'Vui lòng cấp quyền truy cập camera để sử dụng chức năng này!',
-                    buttonPositive: 'Đồng ý',
-                    buttonNegative: 'Hủy'
+                    title: 'Grant camera access',
+                    message: 'Please grant camera access to use this function!',
+                    buttonPositive: 'Agree',
+                    buttonNegative: 'Cancel'
                 }}
                 onBarCodeRead={onBarcodeRead}
             >
@@ -111,25 +137,13 @@ const Scan = () => {
                     </View>
                     <View style={styles.viewBot} />
                     <View style={styles.viewIcon}>
-                        <View>
-                            <TouchableOpacity>
-                                <Image source={Constants.icons.ic_Gallery} style={styles.icon} />
-                            </TouchableOpacity>
-                            <Text style={styles.textGallery}>Gallery</Text>
-                        </View>
-
-                        <View>
-                            <TouchableOpacity>
-                                <Image source={Constants.icons.ic_Light} style={styles.icon} />
-                            </TouchableOpacity>
-                            <Text style={styles.textGallery}>Light</Text>
-                        </View>
-                        <View>
-                            <TouchableOpacity>
-                                <Image source={Constants.icons.ic_Help} style={styles.icon} />
-                            </TouchableOpacity>
-                            <Text style={styles.textGallery}>Help</Text>
-                        </View>
+                        <HandleButtonImage
+                            title='Gallery'
+                            icon={Constants.icons.ic_Gallery}
+                            onPress={onShowGallery}
+                        />
+                        <HandleButtonImage title='Light' icon={Constants.icons.ic_Light} />
+                        <HandleButtonImage title='Help' icon={Constants.icons.ic_Help} />
                     </View>
                 </View>
             </RNCamera>
@@ -153,7 +167,6 @@ const styles = StyleSheet.create({
     camera: {
         flex: 1
     },
-    contentView: {},
     titleText: {
         fontSize: 16,
         color: Constants.color.white,
