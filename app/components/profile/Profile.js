@@ -41,7 +41,7 @@ const Profile = () => {
     return (
         <>
             <ScrollView style={styles.container}>
-                <Background />
+                <Background hideLogo={true} color='#F7F7F7' />
                 <View style={styles.viewProfile}>
                     <Text style={styles.textProfile}>PROFILE</Text>
                     <TouchableOpacity>
@@ -172,13 +172,15 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     inforUser: {
-        marginLeft: 25
+        // marginLeft: 25
+        alignItems: 'center',
+        marginHorizontal: 20
     },
     textUser: {
         fontSize: 20,
-        fontFamily: Constants.font.PoppinsBold,
+        fontFamily: Constants.font.PoppinsSemiBold,
         textAlign: 'center',
-        color: Constants.color.colorText
+        color: Constants.color.black
     },
     textPhone: {
         fontSize: 14,

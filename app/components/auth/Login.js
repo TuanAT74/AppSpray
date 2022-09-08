@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     },
     textLogin: {
         fontSize: 24,
-        color: '#000',
+        color: Constants.color.black,
         textAlign: 'center',
         marginTop: 37,
         fontFamily: Constants.font.PoppinsSemiBold
