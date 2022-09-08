@@ -15,7 +15,7 @@ export default Constants = {
         TabBarNavigation: 'TabBarNavigation',
         History: 'History',
         Scan: 'Scan',
-        Charge: 'Charge'
+        ChangeProfile: 'ChangeProfile'
     },
     icons: {
         ic_background: require('../assets/images/ic_background.png'),
@@ -45,15 +45,25 @@ export default Constants = {
         ic_Gallery: require('../assets/images/ic_gallery2.png'),
         ic_Light: require('../assets/images/ic_light1.png'),
         ic_Light: require('../assets/images/ic_light2.png'),
-        ic_Help: require('../assets/images/ic_help1.png'),
-        ic_Help: require('../assets/images/ic_help2.png')
+        ic_Help1: require('../assets/images/ic_help1.png'),
+        ic_Help1: require('../assets/images/ic_help2.png'),
+        ic_Factor: require('../assets/images/ic_factor.png'),
+        ic_Profile: require('../assets/images/ic_profile.png'),
+        ic_Payment: require('../assets/images/ic_payment.png'),
+        ic_Setting: require('../assets/images/ic_setting.png'),
+        ic_Service: require('../assets/images/ic_service.png'),
+        ic_Help: require('../assets/images/ic_help.png'),
+        ic_Logout: require('../assets/images/ic_logout.png'),
+        ic_Right: require('../assets/images/ic_right.png')
     },
     image: {
         img_Shushi: require('../assets/images/img_shushi.png'),
         img_Caffe: require('../assets/images/img_caffe.png'),
         img_Shadow: require('../assets/images/img_shadow.png'),
         img_Seafood: require('../assets/images/img_seafood.png'),
-        img_Noodles: require('../assets/images/img_noodles.png')
+        img_Noodles: require('../assets/images/img_noodles.png'),
+        img_Avatar: require('../assets/images/img_avatar.png'),
+        img_Qrcode: require('../assets/images/img_qrcode.png')
     },
     color: {
         gray: '#868686',

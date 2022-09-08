@@ -143,7 +143,7 @@ const Scan = () => {
                             onPress={onShowGallery}
                         />
                         <HandleButtonImage title='Light' icon={Constants.icons.ic_Light} />
-                        <HandleButtonImage title='Help' icon={Constants.icons.ic_Help} />
+                        <HandleButtonImage title='Help' icon={Constants.icons.ic_Help1} />
                     </View>
                 </View>
             </RNCamera>

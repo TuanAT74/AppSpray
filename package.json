@@ -26,6 +26,7 @@
     "react-native-curved-bottom-bar": "^2.0.1",
     "react-native-image-crop-picker": "^0.38.0",
     "react-native-linear-gradient": "^2.6.2",
+    "react-native-paper": "^4.12.4",
     "react-native-permissions": "^3.6.1",
     "react-native-qr-decode-image-camera": "^1.1.1",
     "react-native-qrcode-scanner": "^1.5.5",

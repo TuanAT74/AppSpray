@@ -10,7 +10,7 @@ import SetPass from './../auth/SetPass'
 import TabBarNavigation from './TabBarNavigation'
 import History from './../home/History'
 import Scan from './../home/Scan'
-import Charge from '../home/Charge'
+import ChangeProfile from './../profile/ChangeProfile'
 
 const Stack = createNativeStackNavigator()
 
@@ -36,7 +36,8 @@ const RootNavigation = () => {
                 <Stack.Screen name={Constants.screenName.SetPass} component={SetPass} />
                 <Stack.Screen name={Constants.screenName.History} component={History} />
                 <Stack.Screen name={Constants.screenName.Scan} component={Scan} />
-                <Stack.Screen name={Constants.screenName.Charge} component={Charge} />
+
+                <Stack.Screen name={Constants.screenName.ChangeProfile} component={ChangeProfile} />
             </Stack.Navigator>
         </NavigationContainer>
     )

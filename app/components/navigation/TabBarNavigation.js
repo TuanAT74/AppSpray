@@ -8,7 +8,7 @@ import Constants from './../../controller/Constants'
 import History from './../home/History'
 import Scan from './../home/Scan'
 import { useNavigation } from '@react-navigation/native'
-import Charge from '../home/Charge'
+import ChangeProfile from './../profile/ChangeProfile'
 
 const Tab = createBottomTabNavigator()
 
@@ -69,7 +69,7 @@ const TabBarNavigation = () => {
                     )
                 }}
             />
-            <Tab.Screen name='Charge' component={Charge} />
+            <Tab.Screen name='Charge' component={ChangeProfile} />
             <Tab.Screen name='Profile' component={Profile} />
         </Tab.Navigator>
     )
