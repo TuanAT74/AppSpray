@@ -32,6 +32,7 @@ const Scan = () => {
     const navigation = useNavigation()
     const [isBarcodeRead, setIsBarcodeRead] = useState(false)
     const [image, setImage] = useState()
+    const [flash, setFlash] = useState(false)
 
     const Generator = (uri) => {
         console.log('uri', uri)
@@ -69,6 +70,10 @@ const Scan = () => {
         }
     }
 
+    const onChangeFlashMode = () => {
+        setFlash(!flash)
+    }
+
     const handleCheckType = (data) => {
         if (data.type == Constants.QRCodeType.phone && data.app == Constants.QRCodeType.app) {
             console.log(data.app, data.type)
@@ -96,7 +101,7 @@ const Scan = () => {
                 style={styles.camera}
                 autoFocus='on'
                 captureAudio={false}
-                barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
+                flashMode={flash ? 'torch' : 'off'}
                 androidCameraPermissionOptions={{
                     title: 'Grant camera access',
                     message: 'Please grant camera access to use this function!',
@@ -142,7 +147,11 @@ const Scan = () => {
                             icon={Constants.icons.ic_Gallery}
                             onPress={onShowGallery}
                         />
-                        <HandleButtonImage title='Light' icon={Constants.icons.ic_Light} />
+                        <HandleButtonImage
+                            title='Light'
+                            icon={Constants.icons.ic_Light}
+                            onPress={onChangeFlashMode}
+                        />
                         <HandleButtonImage title='Help' icon={Constants.icons.ic_Help1} />
                     </View>
                 </View>

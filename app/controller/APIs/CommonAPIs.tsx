@@ -14,7 +14,8 @@ export default class CommonAPIs {
         veryPhone: CommonAPIs.baseURL + '/api/verify-phone',
         setPassword: CommonAPIs.baseURL + '/api/confirm-password',
         category: CommonAPIs.baseURL + '/api/list-parent-category',
-        store: CommonAPIs.baseURL + '/api/list-store-parent-category'
+        store: CommonAPIs.baseURL + '/api/list-store-parent-category',
+        updateProfile: CommonAPIs.baseURL + '/api/setup-profile'
     }
 
     static headers = {
@@ -115,6 +116,58 @@ export default class CommonAPIs {
             })
             return Promise.resolve(response.data.data)
         } catch (error) {
+            return Promise.reject(error)
+        }
+    }
+
+    static async updateProfile(data) {
+        try {
+            if (!AppManager.shared.isHaveAccessToken()) {
+                return Promise.reject(Constants.tokenError)
+            }
+            const headers = {
+                ...this.headers,
+                Authorization: `Bearer ${AppManager.shared.currentUser?.accessToken}`
+            }
+            let response = await axios.put(CommonAPIs.endpoints.updateProfile, data, { headers })
+            let user = new UserModel(response.data?.data)
+            user.accessToken = AppManager.shared.currentUser?.accessToken
+            AppManager.shared.currentUser = user
+            StorageManager.setData(Constants.keys.currentUser, user.toDictionary())
+            return Promise.resolve(response.data?.data)
+        } catch (error) {
+            return Promise.reject(error)
+        }
+    }
+
+    static async updateAvatar(avatar_file) {
+        try {
+            const imageData = {
+                uri: avatar_file?.path,
+                // type: avatar_file?.type,
+                type: 'multipart/form-data',
+                name:
+                    avatar_file?.filename ||
+                    Math.floor(Math.random() * Math.floor(999999999)) + '.jpg'
+            }
+            const formData = new FormData()
+            formData.append('avatar', imageData)
+            formData.append('_method', 'PUT')
+            const headers = {
+                Authorization: `Bearer ${AppManager.shared.currentUser?.accessToken}`,
+                'Content-Type': 'multipart/form-data'
+            }
+
+            let response = await axios.post(CommonAPIs.endpoints.updateProfile, formData, {
+                headers
+            })
+            let user = new UserModel(response.data?.data)
+            user.accessToken = AppManager.shared.currentUser?.accessToken
+            AppManager.shared.currentUser = user
+            StorageManager.setData(Constants.keys.currentUser, user.toDictionary())
+            return Promise.resolve(user)
+        } catch (error) {
+            console.log(error)
             return Promise.reject(error)
         }
     }

@@ -5,16 +5,98 @@ import {
     Image,
     TextInput,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    LogBox,
+    Alert
 } from 'react-native'
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import Background from './../common/Background'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Constants from './../../controller/Constants'
 import { useNavigation } from '@react-navigation/native'
+import ImagePicker from 'react-native-image-crop-picker'
+import ActionSheet from 'react-native-actionsheet'
+import CommonAPIs from '../../controller/APIs/CommonAPIs'
+import AppManager from '../../controller/APIs/AppManager'
+import RNProgressHud from 'progress-hud'
+
+LogBox.ignoreLogs(['Animated: `useNativeDriver`', 'componentWillReceiveProps'])
 
 const ChangeProfile = () => {
     const navigation = useNavigation()
+    const [profile, setProfile] = useState()
+
+    const refActionSheet = useRef(null)
+
+    const onShowImageActionSheet = () => {
+        refActionSheet.current?.show(true)
+    }
+
+    const getAvatar = () => {
+        if (
+            AppManager.shared.currentUser?.avatar != null &&
+            AppManager.shared.currentUser?.avatar !== ''
+        ) {
+            return { uri: AppManager.shared.currentUser?.avatar }
+        }
+        return Constants.image.img_Avatar
+    }
+
+    const onSuccessed = (user) => {
+        setProfile(user)
+    }
+
+    const onFailed = (error) => {
+        Alert.alert(
+            'Notification',
+            error?.response?.data?.message ??
+                error?.message ??
+                'An error has occurred. Please try again!'
+        )
+    }
+
+    const updateAvatar = (image) => {
+        RNProgressHud.show()
+        CommonAPIs.updateAvatar(image)
+
+            .then((res) => {
+                onSuccessed()
+            })
+            .catch((err) => {
+                onFailed()
+            })
+            .finally(() => RNProgressHud.dismiss())
+    }
+
+    const openCamera = () => {
+        ImagePicker.openCamera({
+            cropping: true,
+            freeStyleCropEnabled: false,
+            compressImageMaxWidth: 300
+        }).then((image) => {
+            updateAvatar(image)
+        })
+    }
+
+    const openLibrary = () => {
+        ImagePicker.openPicker({
+            cropping: true,
+            freeStyleCropEnabled: false,
+            multiple: false,
+            compressImageMaxWidth: 300
+        }).then((image) => {
+            updateAvatar(image)
+        })
+    }
+
+    const handlePickerImage = (index) => {
+        if (index == 0) {
+            openCamera()
+        } else if (index == 1) {
+            openLibrary()
+        }
+    }
+
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -33,14 +115,20 @@ const ChangeProfile = () => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.viewChange}>
-                    <Image source={Constants.image.img_Avatar} style={styles.imgAvatar} />
+                    <TouchableOpacity onPress={onShowImageActionSheet}>
+                        <Image source={getAvatar()} style={styles.imgAvatar} />
+                    </TouchableOpacity>
                     <View style={{ ...styles.viewInformation, marginTop: 20 }}>
                         <Text style={styles.textName}>Name</Text>
                         <TextInput style={styles.TextInput} placeholder='Jonathan Doe' />
                     </View>
                     <View style={styles.viewInformation}>
                         <Text style={styles.textName}>Phone</Text>
-                        <TextInput style={styles.TextInput} placeholder='0912 - 339 -3493' />
+                        <TextInput
+                            style={styles.TextInput}
+                            placeholder='0912 - 339 -3493'
+                            keyboardType='numeric'
+                        />
                     </View>
                     <View style={styles.viewInformation}>
                         <Text style={styles.textName}>NXD Deposite Address</Text>
@@ -53,6 +141,13 @@ const ChangeProfile = () => {
                         <Text style={styles.textSave}>Save</Text>
                     </TouchableOpacity>
                 </View>
+                <ActionSheet
+                    ref={refActionSheet}
+                    title={'Choose photo'}
+                    options={['Camera', 'Photo library', 'Cancel']}
+                    cancelButtonIndex={2}
+                    onPress={handlePickerImage}
+                />
             </View>
         </ScrollView>
     )
@@ -88,8 +183,8 @@ const styles = StyleSheet.create({
         borderRadius: 25
     },
     imgAvatar: {
-        width: 65,
-        height: 65,
+        width: 80,
+        height: 80,
         alignSelf: 'center',
         marginTop: 20
     },

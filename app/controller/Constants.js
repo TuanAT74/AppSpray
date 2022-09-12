@@ -94,5 +94,6 @@ export default Constants = {
         app: 'NexusPoint',
         phone: 0,
         wallet: 1
-    }
+    },
+    tokenError: new Error('AccessToken does not exist!')
 }

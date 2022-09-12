@@ -12,7 +12,6 @@ const ListStore = ({ data }) => {
         RNProgressHud.show()
         CommonAPIs.store(data?.id)
             .then((res) => {
-                console.log(res?.data)
                 setListStore(res?.data)
             })
             .catch((err) => {
