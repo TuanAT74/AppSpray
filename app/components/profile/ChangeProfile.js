@@ -98,11 +98,7 @@ const ChangeProfile = () => {
         }
     }
 
-    useEffect(() => {
-        navigation.addListener('focus', () => {
-            setProfile(AppManager.shared.currentUser)
-        })
-    }, [])
+    
 
     return (
         <ScrollView>
