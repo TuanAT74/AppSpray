@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
 
 import { Switch } from 'react-native-paper'
@@ -7,19 +7,8 @@ import Constants from '../../controller/Constants'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
 import Background from './../common/Background'
-
-// let dataQRCode = {
-//     phone: {
-//         app: 'NexusPoint',
-//         type: 0,
-//         data: '0348000950'
-//     },
-//     wallet: {
-//         app: 'NexusPoint',
-//         type: 1,
-//         data: 'TPza8tkcTfGa4XzyZoMbGEjpuyaBUJBsN9'
-//     }
-// }
+import AppManager from '../../controller/APIs/AppManager'
+import CommonAPIs from './../../controller/APIs/CommonAPIs'
 
 const Profile = () => {
     const [isModalVisible, setModalVisible] = useState(false)
@@ -27,16 +16,35 @@ const Profile = () => {
     const [isSwitchOn, setIsSwitchOn] = useState(false)
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
     const navigation = useNavigation()
+    const [profile, setProfile] = useState(AppManager.shared.currentUser)
 
-    // const onQrcodePhone = () => {
-    //     setDataQR(dataQRCode.phone)
-    //     setModalVisible(true)
-    // }
+    const getAvatar = () => {
+        if (
+            AppManager.shared.currentUser?.avatar != null &&
+            AppManager.shared.currentUser?.avatar !== ''
+        ) {
+            return { uri: AppManager.shared.currentUser?.avatar }
+        }
+        return Constants.image.img_Avatar
+    }
 
-    // const onQrcodeWallet = () => {
-    //     setDataQR(dataQRCode.wallet)
-    //     setModalVisible(true)
-    // }
+    const getUserProfile = () => {
+        CommonAPIs.getUserProfile()
+            .then((data) => {
+                setProfile(data)
+            })
+            .catch((error) => console.log(error))
+    }
+
+    useEffect(() => {
+        getUserProfile()
+    }, [])
+
+    useEffect(() => {
+        navigation.addListener('focus', () => {
+            setProfile(AppManager.shared.currentUser)
+        })
+    }, [])
 
     return (
         <>
@@ -49,7 +57,7 @@ const Profile = () => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.boxProfile}>
-                    <Image source={Constants.image.img_Avatar} style={styles.imgAvatar} />
+                    <Image source={getAvatar()} style={styles.imgAvatar} />
                     <View style={styles.boxInforUser}>
                         <Image source={Constants.image.img_Qrcode} style={styles.imgQrcode} />
                         <View style={styles.inforUser}>
@@ -98,7 +106,7 @@ const Profile = () => {
                     <TouchableOpacity
                         style={{ ...styles.button, justifyContent: 'space-between' }}
                         onPress={() => {
-                            navigation.navigate(Constants.screenName.ChangeProfile)
+                            navigation.push(Constants.screenName.ChangeProfile)
                         }}
                     >
                         <View style={styles.boxIconText}>
@@ -163,8 +171,9 @@ const styles = StyleSheet.create({
     imgAvatar: {
         marginTop: 35,
         marginBottom: 13,
-        width: 60,
-        height: 60
+        width: 70,
+        height: 70,
+        borderRadius: 20
     },
     imgQrcode: {
         width: 23,

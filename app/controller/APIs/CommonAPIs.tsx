@@ -15,7 +15,8 @@ export default class CommonAPIs {
         setPassword: CommonAPIs.baseURL + '/api/confirm-password',
         category: CommonAPIs.baseURL + '/api/list-parent-category',
         store: CommonAPIs.baseURL + '/api/list-store-parent-category',
-        updateProfile: CommonAPIs.baseURL + '/api/setup-profile'
+        updateProfile: CommonAPIs.baseURL + '/api/setup-profile',
+        userProfile: CommonAPIs.baseURL + '/api/user-profile'
     }
 
     static headers = {
@@ -168,6 +169,26 @@ export default class CommonAPIs {
             return Promise.resolve(user)
         } catch (error) {
             console.log(error)
+            return Promise.reject(error)
+        }
+    }
+
+    static async getUserProfile() {
+        try {
+            if (!AppManager.shared.isHaveAccessToken()) {
+                return Promise.reject(Constants.tokenError)
+            }
+            const headers = {
+                ...this.headers,
+                Authorization: `Bearer ${AppManager.shared.currentUser?.accessToken}`
+            }
+            let response = await axios.get(CommonAPIs.endpoints.userProfile, { headers })
+            let user = new UserModel(response.data?.data)
+            user.accessToken = AppManager.shared.currentUser?.accessToken
+            AppManager.shared.currentUser = user
+            StorageManager.setData(Constants.keys.currentUser, user.toDictionary())
+            return Promise.resolve(user)
+        } catch (error) {
             return Promise.reject(error)
         }
     }

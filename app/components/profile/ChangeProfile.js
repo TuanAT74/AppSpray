@@ -19,12 +19,13 @@ import ActionSheet from 'react-native-actionsheet'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import AppManager from '../../controller/APIs/AppManager'
 import RNProgressHud from 'progress-hud'
+import StorageManager from './../../controller/APIs/StorageManager'
 
 LogBox.ignoreLogs(['Animated: `useNativeDriver`', 'componentWillReceiveProps'])
 
 const ChangeProfile = () => {
     const navigation = useNavigation()
-    const [profile, setProfile] = useState()
+    const [profile, setProfile] = useState(AppManager.shared.currentUser)
 
     const refActionSheet = useRef(null)
 
@@ -42,7 +43,7 @@ const ChangeProfile = () => {
         return Constants.image.img_Avatar
     }
 
-    const onSuccessed = (user) => {
+    const onSuccess = (user) => {
         setProfile(user)
     }
 
@@ -60,7 +61,7 @@ const ChangeProfile = () => {
         CommonAPIs.updateAvatar(image)
 
             .then((res) => {
-                onSuccessed()
+                onSuccess()
             })
             .catch((err) => {
                 onFailed()
@@ -96,6 +97,12 @@ const ChangeProfile = () => {
             openLibrary()
         }
     }
+
+    useEffect(() => {
+        navigation.addListener('focus', () => {
+            setProfile(AppManager.shared.currentUser)
+        })
+    }, [])
 
     return (
         <ScrollView>
@@ -183,10 +190,11 @@ const styles = StyleSheet.create({
         borderRadius: 25
     },
     imgAvatar: {
-        width: 80,
-        height: 80,
+        width: 70,
+        height: 70,
         alignSelf: 'center',
-        marginTop: 20
+        marginTop: 20,
+        borderRadius: 20
     },
     TextInput: {
         borderWidth: 1,

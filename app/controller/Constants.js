@@ -15,7 +15,9 @@ export default Constants = {
         TabBarNavigation: 'TabBarNavigation',
         History: 'History',
         Scan: 'Scan',
-        ChangeProfile: 'ChangeProfile'
+        ChangeProfile: 'ChangeProfile',
+        Convert: 'Convert',
+        StoreDetail: 'StoreDetail'
     },
     icons: {
         ic_background: require('../assets/images/ic_background.png'),

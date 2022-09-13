@@ -8,7 +8,7 @@ import Constants from './../../controller/Constants'
 import History from './../home/History'
 import Scan from './../home/Scan'
 import { useNavigation } from '@react-navigation/native'
-import ChangeProfile from './../profile/ChangeProfile'
+import Convert from './../home/Convert'
 
 const Tab = createBottomTabNavigator()
 
@@ -25,7 +25,7 @@ const TabBarNavigation = () => {
 
                     if (route.name === 'Home') {
                         iconName = 'ios-home'
-                    } else if (route.name === 'Charge') {
+                    } else if (route.name === 'Convert') {
                         iconName = 'ios-git-compare-outline'
                     } else if (route.name === 'History') {
                         iconName = 'ios-timer-outline'
@@ -69,7 +69,7 @@ const TabBarNavigation = () => {
                     )
                 }}
             />
-            <Tab.Screen name='Charge' component={ChangeProfile} />
+            <Tab.Screen name='Convert' component={Convert} />
             <Tab.Screen name='Profile' component={Profile} />
         </Tab.Navigator>
     )

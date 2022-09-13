@@ -4,8 +4,10 @@ import Constants from './../../controller/Constants'
 import Icon from 'react-native-vector-icons/Ionicons'
 import CommonAPIs from './../../controller/APIs/CommonAPIs'
 import RNProgressHud from 'progress-hud'
+import { useNavigation } from '@react-navigation/native'
 
 const ListStore = ({ data }) => {
+    const navigation = useNavigation()
     const [listStore, setListStore] = useState([])
 
     const GetStore = () => {
@@ -38,7 +40,11 @@ const ListStore = ({ data }) => {
                 data={listStore}
                 horizontal
                 renderItem={({ item }) => (
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.push(Constants.screenName.StoreDetail)
+                        }}
+                    >
                         <View style={styles.viewImage}>
                             <Image source={{ uri: item.avatar }} style={styles.imageStore} />
                             <Image source={Constants.image.img_Shadow} style={styles.imageShadow} />
