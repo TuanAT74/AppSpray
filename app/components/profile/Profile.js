@@ -16,7 +16,7 @@ const Profile = () => {
     const [isSwitchOn, setIsSwitchOn] = useState(false)
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
     const navigation = useNavigation()
-    const [profile, setProfile] = useState(AppManager.shared.currentUser)
+    const [profile, setProfile] = useState()
 
     const getAvatar = () => {
         if (

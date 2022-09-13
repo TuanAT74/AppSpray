@@ -25,7 +25,7 @@ LogBox.ignoreLogs(['Animated: `useNativeDriver`', 'componentWillReceiveProps'])
 
 const ChangeProfile = () => {
     const navigation = useNavigation()
-    const [profile, setProfile] = useState(AppManager.shared.currentUser)
+    const [profile, setProfile] = useState()
 
     const refActionSheet = useRef(null)
 
