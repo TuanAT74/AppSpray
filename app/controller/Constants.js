@@ -56,7 +56,8 @@ export default Constants = {
         ic_Service: require('../assets/images/ic_service.png'),
         ic_Help: require('../assets/images/ic_help.png'),
         ic_Logout: require('../assets/images/ic_logout.png'),
-        ic_Right: require('../assets/images/ic_right.png')
+        ic_Right: require('../assets/images/ic_right.png'),
+        ic_Gps: require('../assets/images/ic_gps.png')
     },
     image: {
         img_Shushi: require('../assets/images/img_shushi.png'),
@@ -65,7 +66,8 @@ export default Constants = {
         img_Seafood: require('../assets/images/img_seafood.png'),
         img_Noodles: require('../assets/images/img_noodles.png'),
         img_Avatar: require('../assets/images/img_avatar.png'),
-        img_Qrcode: require('../assets/images/img_qrcode.png')
+        img_Qrcode: require('../assets/images/img_qrcode.png'),
+        img_StoreDetail: require('../assets/images/img_StoreDetail.png')
     },
     color: {
         gray: '#868686',
@@ -74,7 +76,8 @@ export default Constants = {
         border: '#CCCCE3',
         button: '#00CEFF',
         buttonHome: '#7879E8',
-        backgScan: 'rgba(0, 0, 0, 0.2)'
+        backgScan: 'rgba(0, 0, 0, 0.2)',
+        backgroundHome: '#F7F7F7'
     },
     font: {
         PoppinsBold: 'Poppins-Bold',
