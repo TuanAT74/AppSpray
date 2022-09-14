@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native'
 import Background from './../common/Background'
 import AppManager from '../../controller/APIs/AppManager'
 import CommonAPIs from './../../controller/APIs/CommonAPIs'
+import Header from './../common/Header'
 
 const Profile = () => {
     const [isModalVisible, setModalVisible] = useState(false)
@@ -50,12 +51,13 @@ const Profile = () => {
         <>
             <ScrollView style={styles.container}>
                 <Background hideLogo={true} color='#F7F7F7' />
-                <View style={styles.viewProfile}>
+                <Header title='PROFILE' />
+                {/* <View style={styles.viewProfile}>
                     <Text style={styles.textProfile}>PROFILE</Text>
                     <TouchableOpacity>
                         <Icon name='ios-notifications' size={30} color={Constants.color.white} />
                     </TouchableOpacity>
-                </View>
+                </View> */}
                 <View style={styles.boxProfile}>
                     <Image source={getAvatar()} style={styles.imgAvatar} />
                     <View style={styles.boxInforUser}>
@@ -256,19 +258,19 @@ const styles = StyleSheet.create({
     boxIconText: {
         flexDirection: 'row',
         alignItems: 'center'
-    },
-    viewProfile: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: 20
-        // marginTop: 20
-    },
-    textProfile: {
-        fontSize: 30,
-        color: Constants.color.white,
-        fontFamily: Constants.font.PoppinsMedium
     }
+    // viewProfile: {
+    //     flexDirection: 'row',
+    //     alignItems: 'center',
+    //     justifyContent: 'space-between',
+    //     padding: 20
+    //     // marginTop: 20
+    // },
+    // textProfile: {
+    //     fontSize: 30,
+    //     color: Constants.color.white,
+    //     fontFamily: Constants.font.PoppinsMedium
+    // }
 })
 
 export default Profile

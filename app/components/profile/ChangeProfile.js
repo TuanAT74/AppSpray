@@ -20,6 +20,7 @@ import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import AppManager from '../../controller/APIs/AppManager'
 import RNProgressHud from 'progress-hud'
 import StorageManager from './../../controller/APIs/StorageManager'
+import Header from './../common/Header'
 
 LogBox.ignoreLogs(['Animated: `useNativeDriver`', 'componentWillReceiveProps'])
 
@@ -108,19 +109,7 @@ const ChangeProfile = () => {
         <ScrollView>
             <View style={styles.container}>
                 <Background />
-                <View style={styles.viewHeader}>
-                    <TouchableOpacity
-                        onPress={() => {
-                            navigation.goBack()
-                        }}
-                    >
-                        <Icon name='chevron-back-outline' size={35} style={styles.icon} />
-                    </TouchableOpacity>
-                    <Text style={styles.textChangeProfile}>Change Profile</Text>
-                    <TouchableOpacity>
-                        <Icon name='ios-notifications' size={30} style={styles.icon} />
-                    </TouchableOpacity>
-                </View>
+                <Header title='CHANGE PROFILE' showBackButton />
                 <View style={styles.viewChange}>
                     <TouchableOpacity onPress={onShowImageActionSheet}>
                         <Image source={getAvatar()} style={styles.imgAvatar} />
