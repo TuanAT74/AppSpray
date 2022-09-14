@@ -10,8 +10,10 @@ import { useRoute } from '@react-navigation/native'
 import StorageManager from './../../controller/APIs/StorageManager'
 import AppManager from './../../controller/APIs/AppManager'
 import { RNProgressHud } from 'progress-hud'
+import { useNavigation } from '@react-navigation/core'
 
 const Home = () => {
+    const navigation = useNavigation()
     const [selected, setSelected] = useState(0)
     const [listCategory, setListCategory] = useState([])
 
@@ -33,6 +35,25 @@ const Home = () => {
         <View style={styles.container}>
             <Background hideLogo={true} color='#F7F7F7' />
             <HeaderHome />
+            <View style={styles.viewButtonHeader}>
+                <TouchableOpacity
+                    style={styles.viewButton}
+                    onPress={() => {
+                        navigation.push(Constants.screenName.Scan)
+                    }}
+                >
+                    <Image source={Constants.icons.ic_qrcode} style={styles.imgButton} />
+                    <Text style={styles.textButton}>Scan</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.viewButton}>
+                    <Image source={Constants.icons.ic_send} style={styles.imgButton} />
+                    <Text style={styles.textButton}>Send</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.viewButton}>
+                    <Image source={Constants.icons.ic_receive} style={styles.imgButton} />
+                    <Text style={styles.textButton}>Receive</Text>
+                </TouchableOpacity>
+            </View>
             <ScrollView style={styles.scrollView}>
                 <View style={styles.viewCategory}>
                     <FlatList
@@ -143,5 +164,37 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         marginRight: 10,
         justifyContent: 'center'
+    },
+    viewButtonHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: 20,
+        marginTop: 20
+    },
+    viewButton: {
+        backgroundColor: Constants.color.white,
+        width: 76,
+        height: 76,
+        borderRadius: 20,
+        shadowColor: '#666',
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 3,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    textButton: {
+        fontSize: 14,
+        fontFamily: Constants.font.PoppinsMedium,
+        marginTop: 5
+    },
+    imgButton: {
+        marginTop: 10,
+        width: 30,
+        height: 30
     }
 })

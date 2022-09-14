@@ -25,25 +25,6 @@ const HeaderHome = () => {
                 <Text style={styles.textEquiv}>Equiv :</Text>
                 <Text style={styles.textAED}>AED</Text>
             </View>
-            <View style={styles.viewButtonHeader}>
-                <TouchableOpacity
-                    style={styles.viewButton}
-                    onPress={() => {
-                        navigation.push(Constants.screenName.Scan)
-                    }}
-                >
-                    <Image source={Constants.icons.ic_qrcode} style={styles.imgButton} />
-                    <Text style={styles.textButton}>Scan</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.viewButton}>
-                    <Image source={Constants.icons.ic_send} style={styles.imgButton} />
-                    <Text style={styles.textButton}>Send</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.viewButton}>
-                    <Image source={Constants.icons.ic_receive} style={styles.imgButton} />
-                    <Text style={styles.textButton}>Receive</Text>
-                </TouchableOpacity>
-            </View>
         </View>
     )
 }
