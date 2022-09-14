@@ -1,9 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, StatusBar, SafeAreaView } from 'react-native'
 import React from 'react'
 import RootNavigation from './app/components/navigation/RootNavigation'
 
 const App = () => {
-    return <RootNavigation />
+    return (
+        <>
+            <StatusBar translucent backgroundColor='transparent' />
+            <RootNavigation />
+        </>
+    )
 }
 
 export default App

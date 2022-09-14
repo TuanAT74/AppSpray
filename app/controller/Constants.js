@@ -17,7 +17,9 @@ export default Constants = {
         Scan: 'Scan',
         ChangeProfile: 'ChangeProfile',
         Convert: 'Convert',
-        StoreDetail: 'StoreDetail'
+        StoreDetail: 'StoreDetail',
+        SuccessTransaction: 'SuccessTransaction',
+        Complete: 'Complete'
     },
     icons: {
         ic_background: require('../assets/images/ic_background.png'),
@@ -57,7 +59,8 @@ export default Constants = {
         ic_Help: require('../assets/images/ic_help.png'),
         ic_Logout: require('../assets/images/ic_logout.png'),
         ic_Right: require('../assets/images/ic_right.png'),
-        ic_Gps: require('../assets/images/ic_gps.png')
+        ic_Gps: require('../assets/images/ic_gps.png'),
+        ic_Balance: require('../assets/images/ic_Balance.png')
     },
     image: {
         img_Shushi: require('../assets/images/img_shushi.png'),
@@ -67,7 +70,9 @@ export default Constants = {
         img_Noodles: require('../assets/images/img_noodles.png'),
         img_Avatar: require('../assets/images/img_avatar.png'),
         img_Qrcode: require('../assets/images/img_qrcode.png'),
-        img_StoreDetail: require('../assets/images/img_StoreDetail.png')
+        img_StoreDetail: require('../assets/images/img_StoreDetail.png'),
+        img_SuccessTransaction: require('../assets/images/img_SuccessTransaction.png'),
+        img_Complete: require('../assets/images/img_complete.png')
     },
     color: {
         gray: '#868686',

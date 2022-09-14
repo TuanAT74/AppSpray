@@ -11,9 +11,10 @@ import TabBarNavigation from './TabBarNavigation'
 import History from './../home/History'
 import Scan from './../home/Scan'
 import ChangeProfile from './../profile/ChangeProfile'
-import Charge from './../home/Charge'
 import Convert from './../home/Convert'
 import StoreDetail from './../home/StoreDetail'
+import SuccessTransaction from '../sendpoint/SuccessTransaction'
+import Complete from '../sendpoint/Complete'
 
 const Stack = createNativeStackNavigator()
 
@@ -24,7 +25,7 @@ const RootNavigation = () => {
                 screenOptions={{
                     headerShown: false
                 }}
-                initialRouteName='Login'
+                initialRouteName='SuccessTransaction'
             >
                 <Stack.Screen
                     name={Constants.screenName.TabBarNavigation}
@@ -42,6 +43,11 @@ const RootNavigation = () => {
                 <Stack.Screen name={Constants.screenName.Convert} component={Convert} />
                 <Stack.Screen name={Constants.screenName.ChangeProfile} component={ChangeProfile} />
                 <Stack.Screen name={Constants.screenName.StoreDetail} component={StoreDetail} />
+                <Stack.Screen
+                    name={Constants.screenName.SuccessTransaction}
+                    component={SuccessTransaction}
+                />
+                <Stack.Screen name={Constants.screenName.Complete} component={Complete} />
             </Stack.Navigator>
         </NavigationContainer>
     )
