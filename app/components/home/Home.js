@@ -11,6 +11,7 @@ import StorageManager from './../../controller/APIs/StorageManager'
 import AppManager from './../../controller/APIs/AppManager'
 import { RNProgressHud } from 'progress-hud'
 import { useNavigation } from '@react-navigation/core'
+import Header from './../common/Header'
 
 const Home = () => {
     const navigation = useNavigation()
@@ -34,6 +35,7 @@ const Home = () => {
     return (
         <View style={styles.container}>
             <Background hideLogo={true} color='#F7F7F7' />
+            <Header />
             <HeaderHome />
             <View style={styles.viewButtonHeader}>
                 <TouchableOpacity

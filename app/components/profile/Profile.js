@@ -52,12 +52,6 @@ const Profile = () => {
             <ScrollView style={styles.container}>
                 <Background hideLogo={true} color='#F7F7F7' />
                 <Header title='PROFILE' />
-                {/* <View style={styles.viewProfile}>
-                    <Text style={styles.textProfile}>PROFILE</Text>
-                    <TouchableOpacity>
-                        <Icon name='ios-notifications' size={30} color={Constants.color.white} />
-                    </TouchableOpacity>
-                </View> */}
                 <View style={styles.boxProfile}>
                     <Image source={getAvatar()} style={styles.imgAvatar} />
                     <View style={styles.boxInforUser}>

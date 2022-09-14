@@ -8,12 +8,6 @@ const HeaderHome = () => {
     const navigation = useNavigation()
     return (
         <View>
-            <View style={styles.viewHome}>
-                <Text style={styles.textHome}>HOME</Text>
-                <TouchableOpacity>
-                    <Icon name='ios-notifications' size={30} color={Constants.color.white} />
-                </TouchableOpacity>
-            </View>
             <View style={styles.viewNexusPoint}>
                 <Image source={Constants.icons.ic_point} style={styles.imgPoint} />
                 <View style={styles.viewTextNexusPoint}>
