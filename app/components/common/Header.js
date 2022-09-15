@@ -41,12 +41,7 @@ const styles = StyleSheet.create({
     viewProfile: {
         flexDirection: 'row',
         alignItems: 'center',
-
         justifyContent: 'space-between',
-
-        padding: 20,
-        marginTop: 20,
-
         marginHorizontal: 20,
         paddingTop: 20,
         marginBottom: 20
