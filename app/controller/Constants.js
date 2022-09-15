@@ -18,10 +18,12 @@ export default Constants = {
         ChangeProfile: 'ChangeProfile',
         Convert: 'Convert',
         StoreDetail: 'StoreDetail',
-
         SuccessTransaction: 'SuccessTransaction',
         Complete: 'Complete',
+<<<<<<< HEAD
 
+=======
+>>>>>>> 17f81936315e1b88bc7eac663d31f7fa9158c7e1
         RemittanceAmount: 'RemittanceAmount',
         PaymentDetails: 'PaymentDetails'
     },
