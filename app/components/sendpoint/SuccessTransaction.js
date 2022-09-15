@@ -3,8 +3,10 @@ import React from 'react'
 import Background from '../common/Background'
 import Constants from '../../controller/Constants'
 import Header from '../common/Header'
+import { useNavigation } from '@react-navigation/native'
 
 const SuccessTransaction = () => {
+    const navigation = useNavigation()
     return (
         <>
             <Background color={Constants.color.white} />
@@ -43,7 +45,10 @@ const SuccessTransaction = () => {
                             <Text style={styles.textNexusPoint}>Nexus Point</Text>
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate(Constants.screenName.Home)}
+                        style={styles.button}
+                    >
                         <Text style={styles.textButton}>Back to home</Text>
                     </TouchableOpacity>
                 </View>

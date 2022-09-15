@@ -4,8 +4,10 @@ import Background from './../common/Background'
 import Header from '../common/Header'
 import HeaderHome from '../common/HeaderHome'
 import Constants from './../../controller/Constants'
+import { useNavigation } from '@react-navigation/native'
 
 const PaymentDetails = () => {
+    const navigation = useNavigation()
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -35,7 +37,10 @@ const PaymentDetails = () => {
                 </View>
             </ScrollView>
             <View style={styles.viewButtonConfirm}>
-                <TouchableOpacity style={styles.buttonNext}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate(Constants.screenName.Complete)}
+                    style={styles.buttonNext}
+                >
                     <Text style={styles.textNext}>Confirm</Text>
                 </TouchableOpacity>
             </View>
