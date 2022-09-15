@@ -13,9 +13,10 @@ import {
 import { RNCamera } from 'react-native-camera'
 import Icon from 'react-native-vector-icons/Ionicons'
 import ImagePicker from 'react-native-image-crop-picker'
-import { useNavigation } from '@react-navigation/core'
+import { useNavigation, useRoute } from '@react-navigation/core'
 import Constants from './../../controller/Constants'
 import RNQRGenerator from 'rn-qr-generator'
+import RNProgressHud from 'progress-hud'
 
 const HandleButtonImage = ({ title, icon, onPress }) => {
     return (
@@ -33,22 +34,24 @@ const Scan = () => {
     const [isBarcodeRead, setIsBarcodeRead] = useState(false)
     const [image, setImage] = useState()
     const [flash, setFlash] = useState(false)
+    const cameraRef = useRef()
 
     const Generator = (uri) => {
-        console.log('uri', uri)
+        RNProgressHud.show()
         RNQRGenerator.detect({
             uri
-        }).then((response) => {
-            const { values } = response
-            const dataValues = JSON.parse(values)
-            console.log('sss', JSON.parse(values))
-            if (
-                dataValues.type == Constants.QRCodeType.phone &&
-                dataValues.app == Constants.QRCodeType.app
-            ) {
-                Alert.alert('Phone number', dataValues.data)
-            } else alert('Cannot detect QR code in image')
         })
+            .then((response) => {
+                const { values } = response
+                const dataValues = JSON.parse(values)
+                if (
+                    dataValues.type == Constants.QRCodeType.phone &&
+                    dataValues.app == Constants.QRCodeType.app
+                ) {
+                    navigation.push(Constants.screenName.RemittanceAmount)
+                }
+            })
+            .finally(() => RNProgressHud.dismiss())
     }
 
     const isJsonString = (str) => {
@@ -76,15 +79,14 @@ const Scan = () => {
 
     const handleCheckType = (data) => {
         if (data.type == Constants.QRCodeType.phone && data.app == Constants.QRCodeType.app) {
-            console.log(data.app, data.type)
-            Alert.alert('Phone number', data.data)
+            navigation.navigate(Constants.screenName.RemittanceAmount)
         } else if (
             data.type == Constants.QRCodeType.wallet &&
             data.app == Constants.QRCodeType.app
         ) {
             Alert.alert('Wallet', data.data)
         } else {
-            alert('Cannot detect QR code in image')
+            return
         }
     }
 
@@ -98,6 +100,7 @@ const Scan = () => {
     return (
         <View style={{ flex: 1 }}>
             <RNCamera
+                ref={cameraRef}
                 style={styles.camera}
                 autoFocus='on'
                 captureAudio={false}
