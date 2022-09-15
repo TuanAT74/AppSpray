@@ -22,7 +22,7 @@ const PaymentDetails = () => {
                         <Text style={styles.textName}>Amount</Text>
                         <View>
                             <Text style={styles.textJame}>-500</Text>
-                            <Text style={styles.textNexus}>Nexus Point</Text>
+                            <Text style={styles.textNexusPoint}>Nexus Point</Text>
                         </View>
                     </View>
                     <View style={styles.viewTotal}>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: Constants.font.PoppinsMedium
     },
-    textNexus: {
+    textNexusPoint: {
         fontFamily: Constants.font.PoppinsMedium
     },
     buttonNext: {

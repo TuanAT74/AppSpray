@@ -51,7 +51,7 @@ const RemittanceAmount = () => {
             icon: Constants.icons.sendPink,
             name: 'Electricity',
             date: '2 Jun 2020',
-            point: '-500'
+            point: '-501'
         }
     ]
 
