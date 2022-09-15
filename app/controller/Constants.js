@@ -17,7 +17,9 @@ export default Constants = {
         Scan: 'Scan',
         ChangeProfile: 'ChangeProfile',
         Convert: 'Convert',
-        StoreDetail: 'StoreDetail'
+        StoreDetail: 'StoreDetail',
+        RemittanceAmount: 'RemittanceAmount',
+        PaymentDetails: 'PaymentDetails'
     },
     icons: {
         ic_background: require('../assets/images/ic_background.png'),
@@ -57,7 +59,9 @@ export default Constants = {
         ic_Help: require('../assets/images/ic_help.png'),
         ic_Logout: require('../assets/images/ic_logout.png'),
         ic_Right: require('../assets/images/ic_right.png'),
-        ic_Gps: require('../assets/images/ic_gps.png')
+        ic_Gps: require('../assets/images/ic_gps.png'),
+        sendPink: require('../assets/images/ic_sendpink.png'),
+        Divider: require('../assets/images/ic_divider.png')
     },
     image: {
         img_Shushi: require('../assets/images/img_shushi.png'),

@@ -14,6 +14,8 @@ import ChangeProfile from './../profile/ChangeProfile'
 import Charge from './../home/Charge'
 import Convert from './../home/Convert'
 import StoreDetail from './../home/StoreDetail'
+import RemittanceAmount from './../sendpoint/RemittanceAmount'
+import PaymentDetails from './../sendpoint/PaymentDetails'
 
 const Stack = createNativeStackNavigator()
 
@@ -42,6 +44,14 @@ const RootNavigation = () => {
                 <Stack.Screen name={Constants.screenName.Convert} component={Convert} />
                 <Stack.Screen name={Constants.screenName.ChangeProfile} component={ChangeProfile} />
                 <Stack.Screen name={Constants.screenName.StoreDetail} component={StoreDetail} />
+                <Stack.Screen
+                    name={Constants.screenName.RemittanceAmount}
+                    component={RemittanceAmount}
+                />
+                <Stack.Screen
+                    name={Constants.screenName.PaymentDetails}
+                    component={PaymentDetails}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     )

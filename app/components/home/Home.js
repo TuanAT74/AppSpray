@@ -47,7 +47,12 @@ const Home = () => {
                     <Image source={Constants.icons.ic_qrcode} style={styles.imgButton} />
                     <Text style={styles.textButton}>Scan</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.viewButton}>
+                <TouchableOpacity
+                    style={styles.viewButton}
+                    onPress={() => {
+                        navigation.push(Constants.screenName.RemittanceAmount)
+                    }}
+                >
                     <Image source={Constants.icons.ic_send} style={styles.imgButton} />
                     <Text style={styles.textButton}>Send</Text>
                 </TouchableOpacity>
