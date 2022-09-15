@@ -43,11 +43,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
         justifyContent: 'space-between',
-<<<<<<< HEAD
+
         padding: 20,
         marginTop: 20,
-=======
->>>>>>> 17f81936315e1b88bc7eac663d31f7fa9158c7e1
 
         marginHorizontal: 20,
         paddingTop: 20,
