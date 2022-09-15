@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native'
 const HeaderHome = () => {
     const navigation = useNavigation()
     return (
-        <View>
+        <>
             <View style={styles.viewNexusPoint}>
                 <Image source={Constants.icons.ic_point} style={styles.imgPoint} />
                 <View style={styles.viewTextNexusPoint}>
@@ -19,7 +19,7 @@ const HeaderHome = () => {
                 <Text style={styles.textEquiv}>Equiv :</Text>
                 <Text style={styles.textAED}>AED</Text>
             </View>
-        </View>
+        </>
     )
 }
 
