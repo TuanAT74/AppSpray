@@ -20,7 +20,6 @@ import Complete from '../sendpoint/Complete'
 import RemittanceAmount from './../sendpoint/RemittanceAmount'
 import PaymentDetails from './../sendpoint/PaymentDetails'
 
-
 const Stack = createNativeStackNavigator()
 
 const RootNavigation = () => {
@@ -49,12 +48,11 @@ const RootNavigation = () => {
                 <Stack.Screen name={Constants.screenName.ChangeProfile} component={ChangeProfile} />
                 <Stack.Screen name={Constants.screenName.StoreDetail} component={StoreDetail} />
                 <Stack.Screen
-
                     name={Constants.screenName.SuccessTransaction}
                     component={SuccessTransaction}
                 />
                 <Stack.Screen name={Constants.screenName.Complete} component={Complete} />
-
+                <Stack.Screen
                     name={Constants.screenName.RemittanceAmount}
                     component={RemittanceAmount}
                 />
@@ -62,7 +60,6 @@ const RootNavigation = () => {
                     name={Constants.screenName.PaymentDetails}
                     component={PaymentDetails}
                 />
-
             </Stack.Navigator>
         </NavigationContainer>
     )
