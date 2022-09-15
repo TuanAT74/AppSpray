@@ -6,9 +6,10 @@ import {
     Image,
     FlatList,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    Alert
 } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Background from '../common/Background'
 import Header from '../common/Header'
 import HeaderHome from '../common/HeaderHome'
@@ -17,6 +18,7 @@ import { useNavigation } from '@react-navigation/core'
 
 const RemittanceAmount = () => {
     const navigation = useNavigation()
+    const [point, setPoint] = useState('')
     const list = [
         {
             id: 1,
@@ -55,6 +57,14 @@ const RemittanceAmount = () => {
         }
     ]
 
+    const handleClickOnNext = () => {
+        if (!point) {
+            Alert.alert('Notification', 'Please enter the number of points')
+            return
+        }
+        navigation.push(Constants.screenName.PaymentDetails)
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -68,6 +78,8 @@ const RemittanceAmount = () => {
                             placeholder='123.000'
                             style={styles.textInput}
                             keyboardType='numeric'
+                            onChangeText={(text) => setPoint(text)}
+                            value={point}
                         />
                         <Image source={Constants.icons.ic_point} style={styles.iconPoint} />
                     </View>
@@ -80,7 +92,7 @@ const RemittanceAmount = () => {
                 <View style={{ backgroundColor: Constants.color.white }}>
                     <FlatList
                         data={list}
-                        scrollEnabled={true}
+                        scrollEnabled={false}
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
                             <View style={styles.viewList}>
@@ -101,12 +113,7 @@ const RemittanceAmount = () => {
                 </View>
             </ScrollView>
             <View style={styles.viewButton}>
-                <TouchableOpacity
-                    style={styles.buttonNext}
-                    onPress={() => {
-                        navigation.push(Constants.screenName.PaymentDetails)
-                    }}
-                >
+                <TouchableOpacity style={styles.buttonNext} onPress={handleClickOnNext}>
                     <Text style={styles.textNext}>Next</Text>
                 </TouchableOpacity>
             </View>
