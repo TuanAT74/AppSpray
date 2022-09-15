@@ -5,7 +5,7 @@ import RootNavigation from './app/components/navigation/RootNavigation'
 const App = () => {
     return (
         <>
-            <StatusBar translucent backgroundColor='transparent' />
+            {/* <StatusBar translucent backgroundColor='transparent' /> */}
             <RootNavigation />
         </>
     )

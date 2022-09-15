@@ -43,14 +43,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
         justifyContent: 'space-between',
-        padding: 20,
-        marginTop: 20
 
-        // justifyContent: 'space-between',
-        marginHorizontal: 15,
-        marginTop: 20,
+        marginHorizontal: 20,
+        paddingTop: 20,
         marginBottom: 20
-
     },
     textProfile: {
         fontSize: 30,
