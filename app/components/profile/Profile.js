@@ -11,13 +11,40 @@ import AppManager from '../../controller/APIs/AppManager'
 import CommonAPIs from './../../controller/APIs/CommonAPIs'
 import Header from './../common/Header'
 
+import ImgQrCode from '../common/ImgQrCode'
+
+let dataQRCode = {
+    phone: {
+        app: 'NexusPoint',
+        type: 0,
+        data: '0348000950'
+    },
+    wallet: {
+        app: 'NexusPoint',
+        type: 1,
+        data: 'TPza8tkcTfGa4XzyZoMbGEjpuyaBUJBsN9'
+    }
+}
+
 const Profile = () => {
+    const navigation = useNavigation()
+
     const [isModalVisible, setModalVisible] = useState(false)
     const [dataQR, setDataQR] = useState([])
     const [isSwitchOn, setIsSwitchOn] = useState(false)
-    const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
-    const navigation = useNavigation()
     const [profile, setProfile] = useState()
+
+    const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
+
+    const onQrcodePhone = () => {
+        setDataQR(dataQRCode.phone)
+        setModalVisible(true)
+    }
+
+    const onQrcodeWallet = () => {
+        setDataQR(dataQRCode.wallet)
+        setModalVisible(true)
+    }
 
     const getAvatar = () => {
         if (
@@ -52,6 +79,11 @@ const Profile = () => {
             <ScrollView style={styles.container}>
                 <Background hideLogo={true} color='#F7F7F7' />
                 <Header title='PROFILE' />
+                <ImgQrCode
+                    isModalVisible={isModalVisible}
+                    setModalVisible={(value) => setModalVisible(value)}
+                    dataQR={dataQR}
+                />
                 <View style={styles.boxProfile}>
                     <Image source={getAvatar()} style={styles.imgAvatar} />
                     <View style={styles.boxInforUser}>
@@ -62,7 +94,7 @@ const Profile = () => {
                         </View>
                     </View>
                     <View style={styles.boxQrCode}>
-                        <TouchableOpacity style={styles.buttonQr}>
+                        <TouchableOpacity onPress={onQrcodePhone} style={styles.buttonQr}>
                             <Image
                                 source={Constants.image.img_Qrcode}
                                 style={styles.imgQrcodeInButton}
@@ -72,7 +104,7 @@ const Profile = () => {
                                 <Text style={styles.textQr}>QR Code</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.buttonQr}>
+                        <TouchableOpacity onPress={onQrcodeWallet} style={styles.buttonQr}>
                             <Image
                                 source={Constants.image.img_Qrcode}
                                 style={styles.imgQrcodeInButton}

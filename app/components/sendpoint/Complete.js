@@ -3,8 +3,10 @@ import React from 'react'
 import Background from '../common/Background'
 import Constants from '../../controller/Constants'
 import Header from '../common/Header'
+import { useNavigation } from '@react-navigation/native'
 
 const Complete = () => {
+    const navigation = useNavigation()
     return (
         <>
             <Background color={Constants.color.white} />
@@ -18,7 +20,10 @@ const Complete = () => {
                 <View style={styles.boxContent}>
                     <Text style={styles.textTitle}>Payment complete</Text>
                     <Image source={Constants.image.img_Complete} style={styles.img} />
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate(Constants.screenName.SuccessTransaction)}
+                        style={styles.button}
+                    >
                         <Text style={styles.textButton}>Confirm</Text>
                     </TouchableOpacity>
                 </View>
