@@ -18,13 +18,10 @@ export default Constants = {
         ChangeProfile: 'ChangeProfile',
         Convert: 'Convert',
         StoreDetail: 'StoreDetail',
-
         SuccessTransaction: 'SuccessTransaction',
-        Complete: 'Complete'
-
+        Complete: 'Complete',
         RemittanceAmount: 'RemittanceAmount',
         PaymentDetails: 'PaymentDetails'
-
     },
     icons: {
         ic_background: require('../assets/images/ic_background.png'),
@@ -66,11 +63,10 @@ export default Constants = {
         ic_Right: require('../assets/images/ic_right.png'),
         ic_Gps: require('../assets/images/ic_gps.png'),
 
-        ic_Balance: require('../assets/images/ic_Balance.png')
+        ic_Balance: require('../assets/images/ic_Balance.png'),
 
         sendPink: require('../assets/images/ic_sendpink.png'),
         Divider: require('../assets/images/ic_divider.png')
-
     },
     image: {
         img_Shushi: require('../assets/images/img_shushi.png'),
