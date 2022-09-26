@@ -16,7 +16,11 @@ const Header = ({
         <View style={styles.viewProfile}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 {showBackButton && (
-                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                    <TouchableOpacity
+                        style={styles.backButton}
+                        onPress={() => navigation.goBack()}
+                        activeOpacity={0.6}
+                    >
                         <Image source={Constants.icons.Left} style={styles.icon} />
                     </TouchableOpacity>
                 )}

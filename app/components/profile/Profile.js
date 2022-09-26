@@ -32,7 +32,7 @@ const ButtonItem = ({ title, onPress, icon, iconToWard = false, toggle = false }
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
 
     return (
-        <TouchableOpacity style={styles.button} onPress={onPress} activeOpacity={1}>
+        <TouchableOpacity style={styles.button} onPress={onPress} activeOpacity={0.6}>
             <View style={styles.boxIconText}>
                 <Image source={icon} style={styles.icButton} />
                 <Text style={styles.textButton}>{title}</Text>

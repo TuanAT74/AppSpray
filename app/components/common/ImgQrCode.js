@@ -84,16 +84,12 @@ const ImgQrCode = ({ isModalVisible, setModalVisible, dataQR }) => {
 
 const styles = StyleSheet.create({
     modalBackGround: {
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        justifyContent: 'center',
-        alignItems: 'center'
+        backgroundColor: 'rgba(0,0,0,0.5)'
     },
     modalContainer: {
         backgroundColor: 'white',
         borderRadius: 15,
-        alignItems: 'center',
-        width: 345
+        alignItems: 'center'
     },
     imgQrCode: {
         color: 'white',
