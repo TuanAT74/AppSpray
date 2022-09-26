@@ -66,6 +66,7 @@ const Home = () => {
                     <FlatList
                         data={listCategory}
                         horizontal
+                        showsHorizontalScrollIndicator={false}
                         renderItem={({ item }) => (
                             <TouchableOpacity
                                 style={{
