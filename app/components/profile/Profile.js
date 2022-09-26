@@ -139,7 +139,7 @@ const Profile = () => {
                     />
                     <ButtonItem
                         title='Change Profile'
-                        onPress={Constants.screenName.ChangeProfile}
+                        onPress={navigation.navigate(Constants.screenName.ChangeProfile)}
                         icon={Constants.icons.ic_Profile}
                         iconToWard={true}
                     />
@@ -197,7 +197,6 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     inforUser: {
-        // marginLeft: 25
         alignItems: 'center',
         marginHorizontal: 20
     },
@@ -215,7 +214,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginVertical: 20,
         justifyContent: 'space-between'
-        // marginHorizontal: 5
     },
     buttonQr: {
         borderWidth: 1,
@@ -259,12 +257,7 @@ const styles = StyleSheet.create({
         fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.colorText
     },
-    // icButton: {
-    //     marginLeft: 20
-    // },
-    // ic_Right: {
-    //     marginRight: 20
-    // },
+
     textButtonLight: {
         marginVertical: 18,
         marginLeft: 12,
@@ -275,18 +268,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     }
-    // viewProfile: {
-    //     flexDirection: 'row',
-    //     alignItems: 'center',
-    //     justifyContent: 'space-between',
-    //     padding: 20
-    //     // marginTop: 20
-    // },
-    // textProfile: {
-    //     fontSize: 30,
-    //     color: Constants.color.white,
-    //     fontFamily: Constants.font.PoppinsMedium
-    // }
 })
 
 export default Profile
