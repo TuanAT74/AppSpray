@@ -32,7 +32,7 @@ const ButtonItem = ({ title, onPress, icon, iconToWard = false, toggle = false }
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
 
     return (
-        <TouchableOpacity style={styles.button} onPress={onPress} activeOpacity={1}>
+        <TouchableOpacity style={styles.button} onPress={onPress}>
             <View style={styles.boxIconText}>
                 <Image source={icon} style={styles.icButton} />
                 <Text style={styles.textButton}>{title}</Text>
@@ -139,7 +139,7 @@ const Profile = () => {
                     />
                     <ButtonItem
                         title='Change Profile'
-                        onPress={navigation.navigate(Constants.screenName.ChangeProfile)}
+                        onPress={() => navigation.navigate(Constants.screenName.ChangeProfile)}
                         icon={Constants.icons.ic_Profile}
                         iconToWard={true}
                     />
