@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: Constants.font.PoppinsMedium,
         flex: 1,
-        paddingVertical: 10
+        paddingVertical: 8
     },
     viewPoint: {
         flexDirection: 'row',

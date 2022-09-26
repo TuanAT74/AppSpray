@@ -123,7 +123,7 @@ const Scan = () => {
                                 navigation.goBack()
                             }}
                         >
-                            <Icon name='chevron-back-outline' size={30} color='#fff' />
+                            <Image source={Constants.icons.Left} style={{ marginLeft: 20 }} />
                             <Text style={styles.scanText}>SCAN</Text>
                         </TouchableOpacity>
                     </View>
@@ -198,7 +198,8 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: Constants.color.white,
         marginLeft: 12,
-        fontFamily: Constants.font.PoppinsMedium
+        fontFamily: Constants.font.PoppinsMedium,
+        includeFontPadding: false
     },
     viewIcon: {
         backgroundColor: Constants.color.backgScan,

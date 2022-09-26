@@ -26,13 +26,25 @@ let dataQRCode = {
     }
 }
 
-const ButtonItem = ({ title, onPress, icon, iconToWard = false, toggle = false }) => {
+const ButtonItem = ({
+    title,
+    onPress,
+    icon,
+    iconToWard = false,
+    toggle = false,
+    disabled = false
+}) => {
     const [isSwitchOn, setIsSwitchOn] = useState(true)
 
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
 
     return (
-        <TouchableOpacity style={styles.button} onPress={onPress} activeOpacity={0.6}>
+        <TouchableOpacity
+            style={styles.button}
+            onPress={onPress}
+            activeOpacity={0.6}
+            disabled={disabled}
+        >
             <View style={styles.boxIconText}>
                 <Image source={icon} style={styles.icButton} />
                 <Text style={styles.textButton}>{title}</Text>
@@ -136,6 +148,7 @@ const Profile = () => {
                         title='2 Factor Authentication'
                         icon={Constants.icons.ic_Factor}
                         toggle={true}
+                        disabled
                     />
                     <ButtonItem
                         title='Change Profile'
