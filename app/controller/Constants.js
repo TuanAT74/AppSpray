@@ -65,7 +65,8 @@ export default Constants = {
         ic_Balance: require('../assets/images/ic_Balance.png'),
         sendPink: require('../assets/images/ic_sendpink.png'),
         Divider: require('../assets/images/ic_divider.png'),
-        Download: require('../assets/images/ic_download.png')
+        Download: require('../assets/images/ic_download.png'),
+        Left: require('../assets/images/ic_left.png')
     },
     image: {
         img_Shushi: require('../assets/images/img_shushi.png'),

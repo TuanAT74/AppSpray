@@ -139,7 +139,7 @@ const Profile = () => {
                     />
                     <ButtonItem
                         title='Change Profile'
-                        onPress={navigation.navigate(Constants.screenName.ChangeProfile)}
+                        onPress={() => navigation.navigate(Constants.screenName.ChangeProfile)}
                         icon={Constants.icons.ic_Profile}
                         iconToWard={true}
                     />
