@@ -39,6 +39,7 @@ const ListStore = ({ data }) => {
             <FlatList
                 data={listStore}
                 horizontal
+                showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => (
                     <TouchableOpacity
                         onPress={() => {

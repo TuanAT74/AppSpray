@@ -26,15 +26,30 @@ let dataQRCode = {
     }
 }
 
+const ButtonItem = ({ title, onPress, icon, iconToWard = false, toggle = false }) => {
+    const [isSwitchOn, setIsSwitchOn] = useState(true)
+
+    const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
+
+    return (
+        <TouchableOpacity style={styles.button} onPress={onPress} activeOpacity={1}>
+            <View style={styles.boxIconText}>
+                <Image source={icon} style={styles.icButton} />
+                <Text style={styles.textButton}>{title}</Text>
+            </View>
+            {iconToWard && <Image source={Constants.icons.ic_Right} style={styles.ic_Right} />}
+            {toggle && <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color='#7879E8' />}
+        </TouchableOpacity>
+    )
+}
+
 const Profile = () => {
     const navigation = useNavigation()
 
     const [isModalVisible, setModalVisible] = useState(false)
     const [dataQR, setDataQR] = useState([])
-    const [isSwitchOn, setIsSwitchOn] = useState(false)
-    const [profile, setProfile] = useState()
 
-    const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
+    const [profile, setProfile] = useState()
 
     const onQrcodePhone = () => {
         setDataQR(dataQRCode.phone)
@@ -116,62 +131,35 @@ const Profile = () => {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View>
-                    <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
-                        <View style={styles.boxIconText}>
-                            <Image source={Constants.icons.ic_Factor} style={styles.icButton} />
-                            <Text style={styles.textButton}>2 Factor Authentication</Text>
-                        </View>
-                        <View>
-                            <Switch
-                                value={isSwitchOn}
-                                onValueChange={onToggleSwitch}
-                                color='#7879E8'
-                                style={{ marginRight: 15 }}
-                            />
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={{ ...styles.button, justifyContent: 'space-between' }}
-                        onPress={() => {
-                            navigation.push(Constants.screenName.ChangeProfile)
-                        }}
-                    >
-                        <View style={styles.boxIconText}>
-                            <Image source={Constants.icons.ic_Profile} style={styles.icButton} />
-                            <Text style={styles.textButton}>Change Profile</Text>
-                        </View>
-                        <Image source={Constants.icons.ic_Right} style={styles.ic_Right} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
-                        <View style={styles.boxIconText}>
-                            <Image source={Constants.icons.ic_Payment} style={styles.icButton} />
-                            <Text style={styles.textButton}>Payment History</Text>
-                        </View>
-                        <Image source={Constants.icons.ic_Right} style={styles.ic_Right} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
-                        <View style={styles.boxIconText}>
-                            <Image source={Constants.icons.ic_Setting} style={styles.icButton} />
-                            <Text style={styles.textButton}>Setting</Text>
-                        </View>
-                        <Image source={Constants.icons.ic_Right} style={styles.ic_Right} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
-                        <View style={styles.boxIconText}>
-                            <Image source={Constants.icons.ic_Service} style={styles.icButton} />
-                            <Text style={styles.textButton}>Terms of Services</Text>
-                        </View>
-                        <Image source={Constants.icons.ic_Right} style={styles.ic_Right} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
-                        <Image source={Constants.icons.ic_Help} style={styles.icButton} />
-                        <Text style={styles.textButtonLight}>Help & Support</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ ...styles.button, marginBottom: 20 }}>
-                        <Image source={Constants.icons.ic_Logout} style={styles.icButton} />
-                        <Text style={styles.textButtonLight}>Logout</Text>
-                    </TouchableOpacity>
+                <View style={{ marginBottom: 24 }}>
+                    <ButtonItem
+                        title='2 Factor Authentication'
+                        icon={Constants.icons.ic_Factor}
+                        toggle={true}
+                    />
+                    <ButtonItem
+                        title='Change Profile'
+                        onPress={Constants.screenName.ChangeProfile}
+                        icon={Constants.icons.ic_Profile}
+                        iconToWard={true}
+                    />
+                    <ButtonItem
+                        title='Payment History'
+                        icon={Constants.icons.ic_Payment}
+                        iconToWard={true}
+                    />
+                    <ButtonItem
+                        title='Setting'
+                        icon={Constants.icons.ic_Setting}
+                        iconToWard={true}
+                    />
+                    <ButtonItem
+                        title='Terms of Services'
+                        icon={Constants.icons.ic_Service}
+                        iconToWard={true}
+                    />
+                    <ButtonItem title='Help & Support' icon={Constants.icons.ic_Help} />
+                    <ButtonItem title='Logout' icon={Constants.icons.ic_Logout} />
                 </View>
             </ScrollView>
         </>
@@ -260,7 +248,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20,
         borderRadius: 10,
-        shadowRadius: 20
+        shadowRadius: 20,
+        justifyContent: 'space-between',
+        paddingHorizontal: 20
     },
     textButton: {
         marginVertical: 18,
@@ -269,12 +259,12 @@ const styles = StyleSheet.create({
         fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.colorText
     },
-    icButton: {
-        marginLeft: 20
-    },
-    ic_Right: {
-        marginRight: 20
-    },
+    // icButton: {
+    //     marginLeft: 20
+    // },
+    // ic_Right: {
+    //     marginRight: 20
+    // },
     textButtonLight: {
         marginVertical: 18,
         marginLeft: 12,
