@@ -34,7 +34,7 @@ const ButtonItem = ({ title, onPress, icon, iconToWard = false, toggle = false }
     return (
         <TouchableOpacity style={styles.button} onPress={onPress}>
             <View style={styles.boxIconText}>
-                <Image source={icon} style={styles.icButton} />
+                <Image source={icon} />
                 <Text style={styles.textButton}>{title}</Text>
             </View>
             {iconToWard && <Image source={Constants.icons.ic_Right} style={styles.ic_Right} />}
