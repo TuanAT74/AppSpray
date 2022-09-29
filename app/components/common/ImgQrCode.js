@@ -37,13 +37,13 @@ const ImgQrCode = ({ title, value, dataQR, isModalVisible, setModalVisible }) =>
 
         if (productQRref) {
             productQRref.toDataURL((data) => {
-                let filePath = RNFS.CachesDirectoryPath + `/${dataQR.value}.png`
+                let filePath = RNFS.CachesDirectoryPath + `/${value}.png`
                 RNFS.writeFile(filePath, data, 'base64')
                     .then((success) => {
                         return CameraRoll.save(filePath, 'photo')
                     })
                     .then(() => {
-                        ToastAndroid.show('Lưu QR Code vào thư viện thành công', ToastAndroid.LONG)
+                        ToastAndroid.show('Save QR Code complete', ToastAndroid.LONG)
                     })
             })
         }
