@@ -1,30 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
-
 import { Switch } from 'react-native-paper'
-
 import Constants from '../../controller/Constants'
-import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
 import Background from './../common/Background'
 import AppManager from '../../controller/APIs/AppManager'
 import CommonAPIs from './../../controller/APIs/CommonAPIs'
 import Header from './../common/Header'
-
 import ImgQrCode from '../common/ImgQrCode'
-
-let dataQRCode = {
-    phone: {
-        app: 'NexusPoint',
-        type: 0,
-        data: '12345678910'
-    },
-    wallet: {
-        app: 'NexusPoint',
-        type: 1,
-        data: 'TPza8tkcTfGa4XzyZoMbGEjpuyaBUJBsN9'
-    }
-}
 
 const ButtonItem = ({
     title,
@@ -46,7 +29,7 @@ const ButtonItem = ({
             disabled={disabled}
         >
             <View style={styles.boxIconText}>
-                <Image source={icon} style={styles.icButton} />
+                <Image source={icon} />
                 <Text style={styles.textButton}>{title}</Text>
             </View>
             {iconToWard && <Image source={Constants.icons.ic_Right} style={styles.ic_Right} />}
@@ -59,17 +42,9 @@ const Profile = () => {
     const navigation = useNavigation()
 
     const [isModalVisible, setModalVisible] = useState(false)
-    const [dataQR, setDataQR] = useState([])
-
     const [profile, setProfile] = useState()
     console.log(profile)
     const onQrcodePhone = () => {
-        setDataQR(dataQRCode.phone)
-        setModalVisible(true)
-    }
-
-    const onQrcodeWallet = () => {
-        setDataQR(dataQRCode.wallet)
         setModalVisible(true)
     }
 
@@ -104,34 +79,41 @@ const Profile = () => {
     return (
         <>
             <ScrollView style={styles.container}>
-                <Background hideLogo={true} color='#F7F7F7' />
-                <Header title='PROFILE' />
                 <ImgQrCode
+                    title='Nexus Point'
+                    value={AppManager.shared.currentUser?.phone ?? ''}
+                    dataQR={`{"app": "NexusPoint","type": "0", "phone": "${AppManager.shared.currentUser?.phone}"}`}
                     isModalVisible={isModalVisible}
                     setModalVisible={(value) => setModalVisible(value)}
-                    dataQR={dataQR}
                 />
+                <Background hideLogo={true} color='#F7F7F7' />
+                <Header title='PROFILE' />
                 <View style={styles.boxProfile}>
                     <Image source={getAvatar()} style={styles.imgAvatar} />
                     <View style={styles.boxInforUser}>
                         <Image source={Constants.image.img_Qrcode} style={styles.imgQrcode} />
                         <View style={styles.inforUser}>
                             <Text style={styles.textUser}>Jonathan Doe</Text>
-                            <Text style={styles.textPhone}>No.0912-339-3493</Text>
+                            <Text style={styles.textPhone}>No.{profile?.phone}</Text>
                         </View>
+                        <View style={{ width: 23 }}></View>
                     </View>
                     <View style={styles.boxQrCode}>
-                        <TouchableOpacity onPress={onQrcodePhone} style={styles.buttonQr}>
+                        <TouchableOpacity
+                            onPress={onQrcodePhone}
+                            activeOpacity={0.8}
+                            style={styles.buttonQr}
+                        >
                             <Image
                                 source={Constants.image.img_Qrcode}
                                 style={styles.imgQrcodeInButton}
                             />
                             <View style={styles.boxTextQr}>
-                                <Text style={styles.textOnQr}>NexusPoint</Text>
+                                <Text style={styles.textOnQr}>Nexus Point</Text>
                                 <Text style={styles.textQr}>QR Code</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={onQrcodeWallet} style={styles.buttonQr}>
+                        <TouchableOpacity activeOpacity={0.8} style={styles.buttonQr}>
                             <Image
                                 source={Constants.image.img_Qrcode}
                                 style={styles.imgQrcodeInButton}
@@ -185,7 +167,6 @@ const styles = StyleSheet.create({
     },
     boxProfile: {
         backgroundColor: Constants.color.white,
-        alignItems: 'center',
         marginHorizontal: 20,
         borderRadius: 10,
         elevation: 1
@@ -193,25 +174,27 @@ const styles = StyleSheet.create({
     boxInforUser: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: '85%',
         borderBottomWidth: 1,
-        borderColor: Constants.color.border
+        borderColor: Constants.color.border,
+        justifyContent: 'space-between',
+        paddingHorizontal: 40,
+        marginHorizontal: 20
     },
     imgAvatar: {
         marginTop: 35,
         marginBottom: 13,
         width: 70,
         height: 70,
-        borderRadius: 20
+        borderRadius: 20,
+        alignSelf: 'center',
+        resizeMode: 'contain'
     },
     imgQrcode: {
         width: 23,
-        height: 23,
-        marginLeft: 30
+        height: 23
     },
     inforUser: {
-        alignItems: 'center',
-        marginHorizontal: 20
+        alignItems: 'center'
     },
     textUser: {
         fontSize: 20,
@@ -226,7 +209,8 @@ const styles = StyleSheet.create({
     boxQrCode: {
         flexDirection: 'row',
         marginVertical: 20,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginHorizontal: 20
     },
     buttonQr: {
         borderWidth: 1,
@@ -235,12 +219,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
         borderColor: Constants.color.border,
-        paddingHorizontal: 15,
-        paddingVertical: 5,
-        marginHorizontal: 5
+        paddingHorizontal: 18,
+        paddingVertical: 0
     },
     boxTextQr: {
-        marginLeft: 10
+        marginLeft: 15
     },
     textOnQr: {
         fontSize: 10,
