@@ -33,7 +33,6 @@ export default class TransactionAPIs {
             let response = await axios.post(TransactionAPIs.endpoints.sendPoint, data, { headers })
             return Promise.resolve(response.data?.data)
         } catch (error) {
-            console.log(error?.response)
             return Promise.reject(error)
         }
     }
@@ -51,17 +50,11 @@ export default class TransactionAPIs {
                 ...this.headers,
                 Authorization: `Bearer ${AppManager.shared.currentUser?.accessToken}`
             }
-            console.log('1', data)
-            console.log('2', TransactionAPIs.endpoints.paymentDetails)
-
             let response = await axios.post(TransactionAPIs.endpoints.paymentDetails, data, {
                 headers
             })
-            console.log('gh', response.data)
             return Promise.resolve(response.data?.data)
         } catch (error) {
-            console.log('er')
-
             return Promise.reject(error)
         }
     }

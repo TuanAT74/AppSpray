@@ -65,7 +65,6 @@ const RemittanceAmount = () => {
     ]
 
     const showPaymentDetails = (data) => {
-        console.log(1)
         navigation.push(Constants.screenName.PaymentDetails, {
             point,
             phone,
@@ -76,8 +75,6 @@ const RemittanceAmount = () => {
     }
 
     const onFailed = (error) => {
-        console.log(2)
-
         Alert.alert(
             'Notification',
             error?.response?.data?.message ??
@@ -91,8 +88,7 @@ const RemittanceAmount = () => {
             Alert.alert('Notification', 'Please enter the number of points')
             return
         }
-        console.log('kkk', AppManager.shared.currentUser?.point)
-        if (Number(point) > Number(AppManager.shared.currentUser?.point)) {
+        if (Number(point) > Number(AppManager.shared.currentUser?.points)) {
             Alert.alert(
                 'Notification',
                 'Please enter the number of points less than or equal to the current number of points!!'

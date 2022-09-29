@@ -10,8 +10,6 @@ const Complete = () => {
     const route = useRoute()
     const phone = route.params?.phone ?? ''
     const point = route.params?.point ?? 0
-
-    console.log(phone, point)
     return (
         <>
             <Background color={Constants.color.white} />

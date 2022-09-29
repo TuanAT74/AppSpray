@@ -12,7 +12,6 @@ export default class StorageManager {
     static getData = async (key) => {
         try {
             let data = await AsyncStorage.getItem(key)
-            console.log(data)
             return data != null ? JSON.parse(data) : null
         } catch (error) {
             return null

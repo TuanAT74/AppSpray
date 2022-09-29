@@ -112,7 +112,6 @@ export default class CommonAPIs {
                 ...this.headers,
                 Authorization: `Bearer ` + AppManager.shared.isHaveAccessToken()
             }
-            // console.log('id', id)
             let response = await axios.get(CommonAPIs.endpoints.store + `?parent_id=${id}`, {
                 headers
             })
@@ -169,7 +168,6 @@ export default class CommonAPIs {
             StorageManager.setData(Constants.keys.currentUser, user.toDictionary())
             return Promise.resolve(user)
         } catch (error) {
-            console.log(error)
             return Promise.reject(error)
         }
     }
