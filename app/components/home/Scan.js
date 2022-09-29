@@ -46,14 +46,14 @@ const Scan = () => {
             .then((response) => {
                 const { values } = response
                 const dataValues = JSON.parse(values)
+                console.log(dataValues)
                 if (
                     dataValues.type == Constants.QRCodeType.phone &&
                     dataValues.app == Constants.QRCodeType.app
                 ) {
                     navigation.push(Constants.screenName.RemittanceAmount, {
-                        phone: dataValues.data
+                        phone: dataValues.phone
                     })
-                    console.log(dataValues.data)
                 } else {
                     Alert.alert('Notification', 'Please check the QR code again!')
                 }
@@ -97,8 +97,6 @@ const Scan = () => {
     }
 
     const handleCheckType = (data) => {
-        console.log(data.phone)
-
         if (data.type == Constants.QRCodeType.phone && data.app == Constants.QRCodeType.app) {
             navigation.navigate(Constants.screenName.RemittanceAmount, {
                 phone: data.phone

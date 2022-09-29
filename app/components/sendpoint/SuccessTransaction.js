@@ -1,12 +1,18 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import Background from '../common/Background'
 import Constants from '../../controller/Constants'
 import Header from '../common/Header'
-import { useNavigation } from '@react-navigation/native'
 
 const SuccessTransaction = () => {
     const navigation = useNavigation()
+    const route = useRoute()
+    const name = route.params?.name ?? ''
+    const balance = route.params?.balance ?? 0
+    const amount = route.params?.amount ?? 0
+    const transaction_fee = route.params?.transaction_fee ?? 0
+
     return (
         <>
             <Background color={Constants.color.white} />
@@ -22,26 +28,26 @@ const SuccessTransaction = () => {
                     <Text style={styles.textTitle}>Successful Transaction</Text>
                     <View style={[styles.info, styles.infoName]}>
                         <Text style={styles.textInfoDefault}>Name</Text>
-                        <Text style={styles.textInfoTransaction}>James Ronald</Text>
+                        <Text style={styles.textInfoTransaction}>{name}</Text>
                     </View>
                     <View style={styles.info}>
                         <Text style={styles.textInfoDefault}>Balance in Wallet</Text>
                         <View style={styles.point}>
-                            <Text style={styles.textInfoTransaction}>5000</Text>
+                            <Text style={styles.textInfoTransaction}>{balance}</Text>
                             <Text style={styles.textNexusPoint}>Nexus Point</Text>
                         </View>
                     </View>
                     <View style={styles.info}>
                         <Text style={styles.textInfoDefault}>Amount</Text>
                         <View style={styles.point}>
-                            <Text style={styles.textInfoTransaction}>-500</Text>
+                            <Text style={styles.textInfoTransaction}>-{amount}</Text>
                             <Text style={styles.textNexusPoint}>Nexus Point</Text>
                         </View>
                     </View>
                     <View style={styles.info}>
                         <Text style={styles.textInfoDefault}>Transaction Fee</Text>
                         <View style={styles.point}>
-                            <Text style={styles.textInfoTransaction}>-15</Text>
+                            <Text style={styles.textInfoTransaction}>{transaction_fee}</Text>
                             <Text style={styles.textNexusPoint}>Nexus Point</Text>
                         </View>
                     </View>

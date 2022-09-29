@@ -1,15 +1,44 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import React from 'react'
+import RNProgressHud from 'progress-hud'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import Background from '../common/Background'
 import Constants from '../../controller/Constants'
 import Header from '../common/Header'
-import { useNavigation, useRoute } from '@react-navigation/native'
+import TransactionAPIs from './../../controller/APIs/TransactionAPIs'
 
 const Complete = () => {
     const navigation = useNavigation()
     const route = useRoute()
     const phone = route.params?.phone ?? ''
     const point = route.params?.point ?? 0
+
+    const onSuccessed = (data) => {
+        navigation.push(Constants.screenName.SuccessTransaction, {
+            name: data?.name,
+            balance: data?.balance,
+            amount: data.amount,
+            transaction_fee: data?.transaction_fee
+        })
+    }
+
+    const onFailed = (error) => {
+        Alert.alert(
+            'Notification',
+            error?.response?.data?.message ??
+                error?.message ??
+                'An error has occurred. Please try again!'
+        )
+    }
+
+    const ConfirmSendPoint = () => {
+        RNProgressHud.show()
+        TransactionAPIs.sendPoint(phone, point)
+            .then(onSuccessed)
+            .catch(onFailed)
+            .finally(() => RNProgressHud.dismiss())
+    }
+
     return (
         <>
             <Background color={Constants.color.white} />
@@ -23,10 +52,7 @@ const Complete = () => {
                 <View style={styles.boxContent}>
                     <Text style={styles.textTitle}>Payment complete</Text>
                     <Image source={Constants.image.img_Complete} style={styles.img} />
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate(Constants.screenName.SuccessTransaction)}
-                        style={styles.button}
-                    >
+                    <TouchableOpacity onPress={ConfirmSendPoint} style={styles.button}>
                         <Text style={styles.textButton}>Confirm</Text>
                     </TouchableOpacity>
                 </View>
