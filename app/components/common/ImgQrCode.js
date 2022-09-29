@@ -25,7 +25,7 @@ import Constants from '../../controller/Constants'
 //5 . npm i react-native-modal @react-native-community/cameraroll '@react-native-clipboard/clipboard
 // 6. npm install --save fbjs
 
-const ImgQrCode = ({ isModalVisible, setModalVisible, dataQR }) => {
+const ImgQrCode = ({ title, value, dataQR, isModalVisible, setModalVisible }) => {
     const [productQRref, setProductQRref] = useState()
 
     const downloadQRCode = async () => {
@@ -37,7 +37,7 @@ const ImgQrCode = ({ isModalVisible, setModalVisible, dataQR }) => {
 
         if (productQRref) {
             productQRref.toDataURL((data) => {
-                let filePath = RNFS.CachesDirectoryPath + `/${dataQR.data}.png`
+                let filePath = RNFS.CachesDirectoryPath + `/${dataQR.value}.png`
                 RNFS.writeFile(filePath, data, 'base64')
                     .then((success) => {
                         return CameraRoll.save(filePath, 'photo')
@@ -50,7 +50,7 @@ const ImgQrCode = ({ isModalVisible, setModalVisible, dataQR }) => {
     }
 
     const copyPhone = () => {
-        Clipboard.setString(dataQR.data)
+        Clipboard.setString(value)
         alert('coppy thành công')
     }
 
@@ -58,13 +58,11 @@ const ImgQrCode = ({ isModalVisible, setModalVisible, dataQR }) => {
         <Modal isVisible={isModalVisible} onBackdropPress={() => setModalVisible(false)}>
             <View style={styles.modalContainer}>
                 <View style={styles.boxText}>
-                    <Text style={styles.textTittle}>
-                        {dataQR.type == 0 ? 'Nexus point' : 'NEXToken'}
-                    </Text>
+                    <Text style={styles.textTittle}>{title}</Text>
                     <Text style={styles.textTittle}>QR Code</Text>
                 </View>
                 <QRCode
-                    value={JSON.stringify(dataQR)}
+                    value={dataQR}
                     size={160}
                     getRef={(c) => setProductQRref(c)}
                     quietZone={10} // set nền trắng chữ đen khi lưu ảnh vào thư viện
@@ -73,7 +71,7 @@ const ImgQrCode = ({ isModalVisible, setModalVisible, dataQR }) => {
                 <TouchableOpacity onPress={downloadQRCode}>
                     <Image source={Constants.icons.Download} style={{ marginVertical: 20 }} />
                 </TouchableOpacity>
-                <Text style={styles.textPhone}>{dataQR.data}</Text>
+                <Text style={styles.textPhone}>{value}</Text>
                 <TouchableOpacity onPress={copyPhone} style={styles.buttonCopy}>
                     <Text style={styles.textCopy}>Copy</Text>
                 </TouchableOpacity>
