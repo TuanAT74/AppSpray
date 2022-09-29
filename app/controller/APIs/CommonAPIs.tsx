@@ -16,7 +16,8 @@ export default class CommonAPIs {
         category: CommonAPIs.baseURL + '/api/list-parent-category',
         store: CommonAPIs.baseURL + '/api/list-store-parent-category',
         updateProfile: CommonAPIs.baseURL + '/api/setup-profile',
-        userProfile: CommonAPIs.baseURL + '/api/user-profile'
+        userProfile: CommonAPIs.baseURL + '/api/user-profile',
+        sendPoint: CommonAPIs.baseURL + 'api/send-point'
     }
 
     static headers = {

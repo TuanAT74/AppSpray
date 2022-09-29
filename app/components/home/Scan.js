@@ -32,11 +32,13 @@ const HandleButtonImage = ({ title, icon, onPress }) => {
 const Scan = () => {
     const navigation = useNavigation()
     const [isBarcodeRead, setIsBarcodeRead] = useState(false)
-    const [image, setImage] = useState()
     const [flash, setFlash] = useState(false)
     const cameraRef = useRef()
+    const isScanning = useRef(true)
+    const route = useRoute()
+    const phone = route.params?.phone ?? ''
 
-    const Generator = (uri) => {
+    const GeneratorQRCode = (uri) => {
         RNProgressHud.show()
         RNQRGenerator.detect({
             uri
@@ -48,7 +50,12 @@ const Scan = () => {
                     dataValues.type == Constants.QRCodeType.phone &&
                     dataValues.app == Constants.QRCodeType.app
                 ) {
-                    navigation.push(Constants.screenName.RemittanceAmount)
+                    navigation.push(Constants.screenName.RemittanceAmount, {
+                        phone: dataValues.data
+                    })
+                    console.log(dataValues.data)
+                } else {
+                    Alert.alert('Notification', 'Please check the QR code again!')
                 }
             })
             .finally(() => RNProgressHud.dismiss())
@@ -64,7 +71,6 @@ const Scan = () => {
     }
 
     const onBarcodeRead = (event) => {
-        console.log(typeof event.data)
         if (!isBarcodeRead) {
             if (isJsonString(event.data)) {
                 handleCheckType(JSON.parse(event.data))
@@ -72,28 +78,39 @@ const Scan = () => {
             setIsBarcodeRead(true)
         }
     }
+    // const onBarcodeRead = (event) => {
+    //     if (!isScanning.current) {
+    //         return
+    //     }
+    //     try {
+    //         const data = JSON.parse(event?.data)
+    //         if (data?.type != null) {
+    //             handleCheckType(data)
+    //             isScanning.current = false
+    //             return
+    //         }
+    //     } catch (error) {}
+    // }
 
     const onChangeFlashMode = () => {
         setFlash(!flash)
     }
 
     const handleCheckType = (data) => {
+        console.log(data.phone)
+
         if (data.type == Constants.QRCodeType.phone && data.app == Constants.QRCodeType.app) {
-            navigation.navigate(Constants.screenName.RemittanceAmount)
-        } else if (
-            data.type == Constants.QRCodeType.wallet &&
-            data.app == Constants.QRCodeType.app
-        ) {
-            Alert.alert('Wallet', data.data)
+            navigation.navigate(Constants.screenName.RemittanceAmount, {
+                phone: data.phone
+            })
         } else {
-            return
+            Alert.alert('Notification', 'Please check the QR code again!')
         }
     }
 
     const onShowGallery = () => {
         ImagePicker.openPicker({}).then((image) => {
-            Generator(image.path)
-            console.log(image)
+            GeneratorQRCode(image.path)
         })
     }
 

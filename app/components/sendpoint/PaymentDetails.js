@@ -4,10 +4,27 @@ import Background from './../common/Background'
 import Header from '../common/Header'
 import HeaderHome from '../common/HeaderHome'
 import Constants from './../../controller/Constants'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
 const PaymentDetails = () => {
     const navigation = useNavigation()
+    const route = useRoute()
+    const phone = route.params?.phone ?? ''
+    const point = route.params?.point ?? 0
+    const total = route.params?.total ?? 0
+    const transactionFee = route.params?.transactionFee ?? 0
+    const name = route.params?.name ?? ''
+
+    const onSendPointSuccessed = (data) => {
+        navigation.push(Constants.screenName.Complete, {
+            point,
+            transactionFee: data?.transaction_fee,
+            name,
+            balance: data?.balance,
+            phone
+        })
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -18,29 +35,26 @@ const PaymentDetails = () => {
                 <View style={styles.viewInformation}>
                     <View style={{ ...styles.viewName, marginTop: 20 }}>
                         <Text style={styles.textName}>Name</Text>
-                        <Text style={styles.textJame}>James Ronald</Text>
+                        <Text style={styles.textJame}>{name}</Text>
                     </View>
                     <View style={styles.viewName}>
                         <Text style={styles.textName}>Amount</Text>
                         <View>
-                            <Text style={styles.textJame}>-500</Text>
+                            <Text style={styles.textJame}>-{point}</Text>
                             <Text style={styles.textNexusPoint}>Nexus Point</Text>
                         </View>
                     </View>
                     <View style={styles.viewTotal}>
                         <Text style={styles.textName}>TOTAL</Text>
                         <View>
-                            <Text style={styles.textJame}>-500</Text>
+                            <Text style={styles.textJame}>-{point}</Text>
                             <Text style={styles.textNexus}>Nexus Point</Text>
                         </View>
                     </View>
                 </View>
             </ScrollView>
             <View style={styles.viewButtonConfirm}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate(Constants.screenName.Complete)}
-                    style={styles.buttonNext}
-                >
+                <TouchableOpacity onPress={onSendPointSuccessed} style={styles.buttonNext}>
                     <Text style={styles.textNext}>Confirm</Text>
                 </TouchableOpacity>
             </View>

@@ -3,10 +3,15 @@ import React from 'react'
 import Background from '../common/Background'
 import Constants from '../../controller/Constants'
 import Header from '../common/Header'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
 const Complete = () => {
     const navigation = useNavigation()
+    const route = useRoute()
+    const phone = route.params?.phone ?? ''
+    const point = route.params?.point ?? 0
+
+    console.log(phone, point)
     return (
         <>
             <Background color={Constants.color.white} />
