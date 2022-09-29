@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
-
 import { Switch } from 'react-native-paper'
-
 import Constants from '../../controller/Constants'
-import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
 import Background from './../common/Background'
 import AppManager from '../../controller/APIs/AppManager'
@@ -32,7 +29,7 @@ const ButtonItem = ({
             disabled={disabled}
         >
             <View style={styles.boxIconText}>
-                <Image source={icon} style={styles.icButton} />
+                <Image source={icon} />
                 <Text style={styles.textButton}>{title}</Text>
             </View>
             {iconToWard && <Image source={Constants.icons.ic_Right} style={styles.ic_Right} />}
@@ -46,6 +43,7 @@ const Profile = () => {
 
     const [isModalVisible, setModalVisible] = useState(false)
     const [profile, setProfile] = useState()
+    console.log(profile?.phone)
 
     const onQrcodePhone = () => {
         setModalVisible(true)
@@ -82,8 +80,6 @@ const Profile = () => {
     return (
         <>
             <ScrollView style={styles.container}>
-                <Background hideLogo={true} color='#F7F7F7' />
-                <Header title='PROFILE' />
                 <ImgQrCode
                     title='Nexus Point'
                     value={AppManager.shared.currentUser?.phone ?? ''}
@@ -91,13 +87,15 @@ const Profile = () => {
                     isModalVisible={isModalVisible}
                     setModalVisible={(value) => setModalVisible(value)}
                 />
+                <Background hideLogo={true} color='#F7F7F7' />
+                <Header title='PROFILE' />
                 <View style={styles.boxProfile}>
                     <Image source={getAvatar()} style={styles.imgAvatar} />
                     <View style={styles.boxInforUser}>
                         <Image source={Constants.image.img_Qrcode} style={styles.imgQrcode} />
                         <View style={styles.inforUser}>
                             <Text style={styles.textUser}>Jonathan Doe</Text>
-                            <Text style={styles.textPhone}>No.0912-339-3493</Text>
+                            <Text style={styles.textPhone}>No.{profile?.phone}</Text>
                         </View>
                         <View style={{ width: 23 }}></View>
                     </View>
@@ -189,7 +187,8 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         borderRadius: 20,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        resizeMode: 'contain'
     },
     imgQrcode: {
         width: 23,

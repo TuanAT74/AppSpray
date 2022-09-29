@@ -11,7 +11,6 @@ import {
 } from 'react-native'
 import React, { useRef, useState, useEffect } from 'react'
 import Background from './../common/Background'
-import Icon from 'react-native-vector-icons/Ionicons'
 import Constants from './../../controller/Constants'
 import { useNavigation } from '@react-navigation/native'
 import ImagePicker from 'react-native-image-crop-picker'
@@ -19,7 +18,6 @@ import ActionSheet from 'react-native-actionsheet'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import AppManager from '../../controller/APIs/AppManager'
 import RNProgressHud from 'progress-hud'
-import StorageManager from './../../controller/APIs/StorageManager'
 import Header from './../common/Header'
 
 LogBox.ignoreLogs(['Animated: `useNativeDriver`', 'componentWillReceiveProps'])
@@ -183,7 +181,8 @@ const styles = StyleSheet.create({
         height: 70,
         alignSelf: 'center',
         marginTop: 20,
-        borderRadius: 20
+        borderRadius: 20,
+        resizeMode: 'contain'
     },
     TextInput: {
         borderWidth: 1,
