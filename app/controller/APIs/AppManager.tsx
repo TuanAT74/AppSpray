@@ -7,5 +7,6 @@ export default class AppManager {
 
     isHaveAccessToken = () => {
         return this.currentUser?.accessToken
+        // return this.currentUser?.accessToken != null && this.currentUser?.accessToken != ''
     }
 }

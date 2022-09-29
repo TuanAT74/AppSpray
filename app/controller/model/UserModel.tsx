@@ -5,6 +5,7 @@ export default class UserModel {
     name: string = ''
     phone: string = ''
     avatar: string = ''
+    point: number = 0
     constructor(data?: any) {
         // this.id = data?.id || ''
         this.accessToken = data?.access_token || ''
@@ -12,6 +13,7 @@ export default class UserModel {
         this.name = data?.name
         this.phone = data?.phone ?? ''
         this.avatar = data?.avatar
+        this.point = data?.point
     }
 
     toDictionary() {
@@ -20,11 +22,15 @@ export default class UserModel {
             id: this.id,
             name: this.name,
             avatar: this.avatar,
-            phone: this.phone
+            phone: this.phone,
+            point: this.point
         }
     }
 
     setAvatar(url: string) {
         this.avatar = url
+    }
+    setPoints(point: number) {
+        this.point = point
     }
 }

@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Constants from './../../controller/Constants'
 import { useNavigation } from '@react-navigation/native'
+import AppManager from './../../controller/APIs/AppManager'
 
 const HeaderHome = () => {
     const navigation = useNavigation()

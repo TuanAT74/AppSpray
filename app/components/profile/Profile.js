@@ -17,7 +17,7 @@ let dataQRCode = {
     phone: {
         app: 'NexusPoint',
         type: 0,
-        data: '0348000950'
+        data: '12345678910'
     },
     wallet: {
         app: 'NexusPoint',
@@ -62,7 +62,7 @@ const Profile = () => {
     const [dataQR, setDataQR] = useState([])
 
     const [profile, setProfile] = useState()
-
+    console.log(profile)
     const onQrcodePhone = () => {
         setDataQR(dataQRCode.phone)
         setModalVisible(true)

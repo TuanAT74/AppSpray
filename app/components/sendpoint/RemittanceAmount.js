@@ -14,11 +14,18 @@ import Background from '../common/Background'
 import Header from '../common/Header'
 import HeaderHome from '../common/HeaderHome'
 import Constants from './../../controller/Constants'
-import { useNavigation } from '@react-navigation/core'
+import { useNavigation, useRoute } from '@react-navigation/core'
+import RNProgressHud from 'progress-hud'
+import CommonAPIs from './../../controller/APIs/CommonAPIs'
+import TransactionAPIs from './../../controller/APIs/TransactionAPIs'
+import AppManager from '../../controller/APIs/AppManager'
 
 const RemittanceAmount = () => {
     const navigation = useNavigation()
     const [point, setPoint] = useState('')
+    const route = useRoute()
+    const phone = route.params?.phone ?? ''
+
     const list = [
         {
             id: 1,
@@ -57,12 +64,50 @@ const RemittanceAmount = () => {
         }
     ]
 
+    const showPaymentDetails = (data) => {
+        console.log(1)
+        navigation.push(Constants.screenName.PaymentDetails, {
+            point,
+            phone,
+            total: data?.total,
+            name: data?.name,
+            transaction_fee: data?.transaction_fee
+        })
+    }
+
+    const onFailed = (error) => {
+        console.log(2)
+
+        Alert.alert(
+            'Notification',
+            error?.response?.data?.message ??
+                error?.message ??
+                'An error has occurred. Please try again!'
+        )
+    }
+
     const handleClickOnNext = () => {
-        if (!point) {
+        if (!point || point === 0) {
             Alert.alert('Notification', 'Please enter the number of points')
             return
         }
-        navigation.push(Constants.screenName.PaymentDetails)
+        console.log('kkk', AppManager.shared.currentUser?.point)
+        if (Number(point) > Number(AppManager.shared.currentUser?.point)) {
+            Alert.alert(
+                'Notification',
+                'Please enter the number of points less than or equal to the current number of points!!'
+            )
+            return
+        }
+        if (phone === '') {
+            Alert.alert('Notification', 'Please input the phone number!')
+            return
+        }
+        RNProgressHud.show()
+        TransactionAPIs.getPaymentDetails(phone, point)
+            .then(showPaymentDetails)
+            .catch(onFailed)
+            .finally(() => RNProgressHud.dismiss())
     }
 
     return (
