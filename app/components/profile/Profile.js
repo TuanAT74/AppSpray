@@ -43,7 +43,6 @@ const Profile = () => {
 
     const [isModalVisible, setModalVisible] = useState(false)
     const [profile, setProfile] = useState()
-    console.log(profile)
     const onQrcodePhone = () => {
         setModalVisible(true)
     }
