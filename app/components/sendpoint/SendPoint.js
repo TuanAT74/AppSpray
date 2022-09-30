@@ -13,7 +13,7 @@ const SendPoint = () => {
     const phone = route.params?.phone ?? ''
     const point = route.params?.point ?? 0
 
-    const onSuccessed = (data) => {
+    const onSuccesse = (data) => {
         navigation.push(Constants.screenName.SuccessTransaction, {
             name: data?.name,
             balance: data?.balance,
@@ -22,7 +22,7 @@ const SendPoint = () => {
         })
     }
 
-    const onFailed = (error) => {
+    const onFaile = (error) => {
         Alert.alert(
             'Notification',
             error?.response?.data?.message ??
@@ -34,8 +34,8 @@ const SendPoint = () => {
     const ConfirmSendPoint = () => {
         RNProgressHud.show()
         TransactionAPIs.sendPoint(phone, point)
-            .then(onSuccessed)
-            .catch(onFailed)
+            .then(onSuccesse)
+            .catch(onFaile)
             .finally(() => RNProgressHud.dismiss())
     }
 
