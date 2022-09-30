@@ -115,7 +115,7 @@ const RemittanceAmount = () => {
                             placeholder='123.000'
                             style={styles.textInput}
                             keyboardType='numeric'
-                            onChangeText={(text) => setPoint(text)}
+                            onChangeText={setPoint}
                             value={point}
                         />
                         <Image source={Constants.icons.ic_point} style={styles.iconPoint} />
@@ -166,7 +166,8 @@ const styles = StyleSheet.create({
     },
     viewRemittanceAmount: {
         backgroundColor: Constants.color.white,
-        marginTop: 60,
+        marginTop: 65,
+
         shadowColor: '#666',
         shadowOffset: {
             width: 0,

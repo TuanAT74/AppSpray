@@ -6,6 +6,18 @@ import HeaderHome from '../common/HeaderHome'
 import Constants from './../../controller/Constants'
 import { useNavigation, useRoute } from '@react-navigation/native'
 
+const PaymentDetailsItem = ({ title, value, nexusPoint = false, style }) => {
+    return (
+        <View style={[styles.viewName, style]}>
+            <Text style={styles.textName}>{title}</Text>
+            <View style={{ alignItems: 'flex-end' }}>
+                <Text style={styles.textJame}>{value}</Text>
+                {nexusPoint && <Text style={styles.textNexusPoint}>Nexus Point</Text>}
+            </View>
+        </View>
+    )
+}
+
 const PaymentDetails = () => {
     const navigation = useNavigation()
     const route = useRoute()
@@ -33,24 +45,18 @@ const PaymentDetails = () => {
                 <HeaderHome />
                 <Text style={styles.textPayment}>Payment Details</Text>
                 <View style={styles.viewInformation}>
-                    <View style={{ ...styles.viewName, marginTop: 20 }}>
-                        <Text style={styles.textName}>Name</Text>
-                        <Text style={styles.textJame}>{name}</Text>
-                    </View>
-                    <View style={styles.viewName}>
-                        <Text style={styles.textName}>Amount</Text>
-                        <View>
-                            <Text style={styles.textJame}>-{point}</Text>
-                            <Text style={styles.textNexusPoint}>Nexus Point</Text>
-                        </View>
-                    </View>
-                    <View style={styles.viewTotal}>
-                        <Text style={styles.textName}>TOTAL</Text>
-                        <View>
-                            <Text style={styles.textJame}>-{point}</Text>
-                            <Text style={styles.textNexus}>Nexus Point</Text>
-                        </View>
-                    </View>
+                    <PaymentDetailsItem
+                        title='Name'
+                        value={name}
+                        style={{ borderBottomWidth: 1 }}
+                    />
+                    <PaymentDetailsItem
+                        title='Amount'
+                        value={-point}
+                        nexusPoint={true}
+                        style={{ borderBottomWidth: 1 }}
+                    />
+                    <PaymentDetailsItem title='TOTAL' value={-point} nexusPoint={true} />
                 </View>
             </ScrollView>
             <View style={styles.viewButtonConfirm}>
@@ -69,12 +75,14 @@ const styles = StyleSheet.create({
         flex: 1
     },
     textPayment: {
-        marginTop: 80,
+        // marginTop: 80,
         paddingHorizontal: 20,
         fontSize: 20,
         fontFamily: Constants.font.PoppinsSemiBold,
         color: Constants.color.black,
-        marginBottom: 20
+        marginBottom: 20,
+        marginTop: Constants.screen.width * 0.68 - (45 + 32 + 24 + 50),
+        includeFontPadding: false
     },
     viewInformation: {
         backgroundColor: Constants.color.white,
@@ -85,23 +93,28 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginHorizontal: 20,
-        borderBottomWidth: 1,
         borderColor: Constants.color.gray,
         borderStyle: 'dashed',
         paddingBottom: 10,
-        marginBottom: 15
+        marginBottom: 5,
+        marginTop: 20
     },
     textName: {
         fontSize: 16,
         color: Constants.color.black,
-        fontFamily: Constants.font.PoppinsSemiBold
+        fontFamily: Constants.font.PoppinsSemiBold,
+        includeFontPadding: false
     },
     textJame: {
         fontSize: 16,
-        fontFamily: Constants.font.PoppinsMedium
+        fontFamily: Constants.font.PoppinsMedium,
+        alignItems: 'flex-end',
+        includeFontPadding: false
     },
     textNexusPoint: {
-        fontFamily: Constants.font.PoppinsMedium
+        fontFamily: Constants.font.PoppinsSemiBold,
+        fontSize: 8,
+        includeFontPadding: false
     },
     buttonNext: {
         backgroundColor: Constants.color.button,
@@ -112,7 +125,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: Constants.color.white,
         paddingVertical: 10,
-        fontFamily: Constants.font.PoppinsMedium
+        fontFamily: Constants.font.PoppinsMedium,
+        includeFontPadding: false
     },
     viewButtonConfirm: {
         backgroundColor: Constants.color.white,
