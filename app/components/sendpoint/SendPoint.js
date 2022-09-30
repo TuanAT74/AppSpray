@@ -14,11 +14,11 @@ const SendPoint = () => {
     const phone = route.params?.phone ?? ''
     const point = route.params?.point ?? 0
 
-    const onSuccessed = (data) => {
+    const onSuccesse = (data) => {
         navigation.push(Constants.screenName.SuccessTransaction, {
             name: data?.name,
             balance: data?.balance,
-            amount: data.amount,
+            amount: data?.amount,
             transaction_fee: data?.transaction_fee
         })
     }
@@ -35,14 +35,14 @@ const SendPoint = () => {
     const ConfirmSendPoint = () => {
         RNProgressHud.show()
         TransactionAPIs.sendPoint(phone, point)
-            .then(onSuccessed)
+            .then(onSuccesse)
             .catch(onFailed)
             .finally(() => RNProgressHud.dismiss())
     }
 
     return (
         <>
-            <Background color={Constants.color.white} />
+            <Background color='white' />
             <ScrollView style={styles.container}>
                 <Header
                     title='Send Nexus Point'

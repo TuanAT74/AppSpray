@@ -23,14 +23,14 @@ import Constants from '../../controller/Constants'
 //3. thêm android:requestLegacyExternalStorage="true" vào application
 //4. thêm include ':@react-native-community_cameraroll'project(':@react-native-community_cameraroll').projectDir = new File(rootProject.projectDir, 	'../node_modules/@react-native-community/cameraroll/android') vào android/settings.gradle
 //5 . npm i react-native-modal @react-native-community/cameraroll '@react-native-clipboard/clipboard
-// 6. npm install --save fbjs
+//6. npm install --save fbjs
 
 const ImgQrCode = ({ title, value, dataQR, isModalVisible, setModalVisible }) => {
     const [productQRref, setProductQRref] = useState()
 
     const downloadQRCode = async () => {
         if (Platform.OS === 'android' && !(await Uti.hasAndroidPermission)) {
-            Alert.alert('Thông báo', 'Vui lòng cập nhật quyền truy cập')
+            Alert.alert('Notification', 'Please update your access rights')
             Linking.openSettings()
             return
         }
@@ -43,7 +43,7 @@ const ImgQrCode = ({ title, value, dataQR, isModalVisible, setModalVisible }) =>
                         return CameraRoll.save(filePath, 'photo')
                     })
                     .then(() => {
-                        ToastAndroid.show('Save QR Code complete', ToastAndroid.LONG)
+                        ToastAndroid.show('Save QR Code successful', ToastAndroid.LONG)
                     })
             })
         }
@@ -51,7 +51,7 @@ const ImgQrCode = ({ title, value, dataQR, isModalVisible, setModalVisible }) =>
 
     const copyPhone = () => {
         Clipboard.setString(value)
-        alert('coppy thành công')
+        alert('Copy successful')
     }
 
     return (

@@ -8,7 +8,7 @@ import Util from '../../controller/APIs/Util'
 
 const SuccessTransaction = () => {
     const navigation = useNavigation()
-    
+
     const route = useRoute()
     const name = route.params?.name ?? ''
     const balance = route.params?.balance ?? 0
@@ -29,16 +29,14 @@ const SuccessTransaction = () => {
 
     return (
         <>
-            <Background color={Constants.color.white} />
+            <Background color='white' />
             <ScrollView style={styles.container}>
                 <Header title='Successful' showIconSuccess={true} fontSize={25} />
                 <View style={styles.boxContent}>
-                    <View style={styles.image}>
-                        <Image
-                            source={Constants.image.img_SuccessTransaction}
-                            style={styles.icon}
-                        />
-                    </View>
+                    <Image
+                        source={Constants.image.img_SuccessTransaction}
+                        style={styles.imgSuccess}
+                    />
                     <Text style={styles.textTitle}>Successful Transaction</Text>
                     <View style={[styles.info, styles.infoName]}>
                         <Text style={styles.textInfoDefault}>Name</Text>
@@ -89,13 +87,11 @@ const styles = StyleSheet.create({
         shadowRadius: 2.22,
         elevation: 3
     },
-    image: {
+    imgSuccess: {
+        width: 130,
+        height: 140,
         alignSelf: 'center',
         marginTop: 30
-    },
-    icon: {
-        width: 130,
-        height: 140
     },
     info: {
         flexDirection: 'row',

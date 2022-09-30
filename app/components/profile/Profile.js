@@ -43,6 +43,9 @@ const Profile = () => {
 
     const [isModalVisible, setModalVisible] = useState(false)
     const [profile, setProfile] = useState()
+
+    console.log(AppManager.shared.currentUser)
+
     const onQrcodePhone = () => {
         setModalVisible(true)
     }
