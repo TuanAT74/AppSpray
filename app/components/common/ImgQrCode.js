@@ -14,6 +14,7 @@ import QRCode from 'react-native-qrcode-svg'
 import RNFS from 'react-native-fs'
 import CameraRoll from '@react-native-community/cameraroll'
 import Clipboard from '@react-native-clipboard/clipboard'
+import RNProgressHud from 'progress-hud'
 import Modal from 'react-native-modal'
 import Uti from '../../controller/APIs/Util'
 import Constants from '../../controller/Constants'
@@ -30,7 +31,7 @@ const ImgQrCode = ({ title, value, dataQR, isModalVisible, setModalVisible }) =>
 
     const downloadQRCode = async () => {
         if (Platform.OS === 'android' && !(await Uti.hasAndroidPermission)) {
-            Alert.alert('Thông báo', 'Vui lòng cập nhật quyền truy cập')
+            Alert.alert('Notification', 'Please update your access rights')
             Linking.openSettings()
             return
         }
@@ -43,7 +44,7 @@ const ImgQrCode = ({ title, value, dataQR, isModalVisible, setModalVisible }) =>
                         return CameraRoll.save(filePath, 'photo')
                     })
                     .then(() => {
-                        ToastAndroid.show('Save QR Code complete', ToastAndroid.LONG)
+                        ToastAndroid.show('Save QR Code successful', ToastAndroid.LONG)
                     })
             })
         }
@@ -51,7 +52,7 @@ const ImgQrCode = ({ title, value, dataQR, isModalVisible, setModalVisible }) =>
 
     const copyPhone = () => {
         Clipboard.setString(value)
-        alert('coppy thành công')
+        RNProgressHud.showSuccessWithStatus('Copy successful')
     }
 
     return (

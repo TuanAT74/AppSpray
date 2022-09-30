@@ -25,7 +25,7 @@ const ButtonItem = ({
         <TouchableOpacity
             style={styles.button}
             onPress={onPress}
-            activeOpacity={0.6}
+            activeOpacity={0.7}
             disabled={disabled}
         >
             <View style={styles.boxIconText}>
@@ -40,9 +40,10 @@ const ButtonItem = ({
 
 const Profile = () => {
     const navigation = useNavigation()
-
     const [isModalVisible, setModalVisible] = useState(false)
     const [profile, setProfile] = useState()
+    console.log(profile)
+
     const onQrcodePhone = () => {
         setModalVisible(true)
     }
@@ -76,87 +77,81 @@ const Profile = () => {
     }, [])
 
     return (
-        <>
-            <ScrollView style={styles.container}>
-                <ImgQrCode
-                    title='Nexus Point'
-                    value={AppManager.shared.currentUser?.phone ?? ''}
-                    dataQR={`{"app": "NexusPoint","type": "0", "phone": "${AppManager.shared.currentUser?.phone}"}`}
-                    isModalVisible={isModalVisible}
-                    setModalVisible={(value) => setModalVisible(value)}
-                />
-                <Background hideLogo={true} color='#F7F7F7' />
-                <Header title='PROFILE' />
-                <View style={styles.boxProfile}>
-                    <Image source={getAvatar()} style={styles.imgAvatar} />
-                    <View style={styles.boxInforUser}>
-                        <Image source={Constants.image.img_Qrcode} style={styles.imgQrcode} />
-                        <View style={styles.inforUser}>
-                            <Text style={styles.textUser}>Jonathan Doe</Text>
-                            <Text style={styles.textPhone}>No.{profile?.phone}</Text>
+        <ScrollView style={styles.container}>
+            <ImgQrCode
+                title='Nexus Point'
+                value={AppManager.shared.currentUser?.phone ?? ''}
+                dataQR={`{"app": "NexusPoint","type": "0", "phone": "${AppManager.shared.currentUser?.phone}"}`}
+                isModalVisible={isModalVisible}
+                setModalVisible={(value) => setModalVisible(value)}
+            />
+            <Background hideLogo={true} color='#F7F7F7' />
+            <Header title='PROFILE' />
+            <View style={styles.boxProfile}>
+                <Image source={getAvatar()} style={styles.imgAvatar} />
+                <View style={styles.boxInforUser}>
+                    <Image source={Constants.image.img_Qrcode} style={styles.imgQrcode} />
+                    <View style={styles.inforUser}>
+                        <Text style={styles.textUser}>Jonathan Doe</Text>
+                        <Text style={styles.textPhone}>No.{profile?.phone}</Text>
+                    </View>
+                    <View style={{ width: 23 }}></View>
+                </View>
+                <View style={styles.boxQrCode}>
+                    <TouchableOpacity
+                        onPress={onQrcodePhone}
+                        activeOpacity={0.8}
+                        style={styles.buttonQr}
+                    >
+                        <Image
+                            source={Constants.image.img_Qrcode}
+                            style={styles.imgQrcodeInButton}
+                        />
+                        <View style={styles.boxTextQr}>
+                            <Text style={styles.textOnQr}>Nexus Point</Text>
+                            <Text style={styles.textQr}>QR Code</Text>
                         </View>
-                        <View style={{ width: 23 }}></View>
-                    </View>
-                    <View style={styles.boxQrCode}>
-                        <TouchableOpacity
-                            onPress={onQrcodePhone}
-                            activeOpacity={0.8}
-                            style={styles.buttonQr}
-                        >
-                            <Image
-                                source={Constants.image.img_Qrcode}
-                                style={styles.imgQrcodeInButton}
-                            />
-                            <View style={styles.boxTextQr}>
-                                <Text style={styles.textOnQr}>Nexus Point</Text>
-                                <Text style={styles.textQr}>QR Code</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.8} style={styles.buttonQr}>
-                            <Image
-                                source={Constants.image.img_Qrcode}
-                                style={styles.imgQrcodeInButton}
-                            />
-                            <View style={styles.boxTextQr}>
-                                <Text style={styles.textOnQr}>NEXToken</Text>
-                                <Text style={styles.textQr}>QR Code</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} style={styles.buttonQr}>
+                        <Image
+                            source={Constants.image.img_Qrcode}
+                            style={styles.imgQrcodeInButton}
+                        />
+                        <View style={styles.boxTextQr}>
+                            <Text style={styles.textOnQr}>NEXToken</Text>
+                            <Text style={styles.textQr}>QR Code</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
-                <View style={{ marginBottom: 24 }}>
-                    <ButtonItem
-                        title='2 Factor Authentication'
-                        icon={Constants.icons.ic_Factor}
-                        toggle={true}
-                        disabled
-                    />
-                    <ButtonItem
-                        title='Change Profile'
-                        onPress={() => navigation.navigate(Constants.screenName.ChangeProfile)}
-                        icon={Constants.icons.ic_Profile}
-                        iconToWard={true}
-                    />
-                    <ButtonItem
-                        title='Payment History'
-                        icon={Constants.icons.ic_Payment}
-                        iconToWard={true}
-                    />
-                    <ButtonItem
-                        title='Setting'
-                        icon={Constants.icons.ic_Setting}
-                        iconToWard={true}
-                    />
-                    <ButtonItem
-                        title='Terms of Services'
-                        icon={Constants.icons.ic_Service}
-                        iconToWard={true}
-                    />
-                    <ButtonItem title='Help & Support' icon={Constants.icons.ic_Help} />
-                    <ButtonItem title='Logout' icon={Constants.icons.ic_Logout} />
-                </View>
-            </ScrollView>
-        </>
+            </View>
+            <View style={{ marginBottom: 24 }}>
+                <ButtonItem
+                    title='2 Factor Authentication'
+                    icon={Constants.icons.ic_Factor}
+                    toggle={true}
+                    disabled
+                />
+                <ButtonItem
+                    title='Change Profile'
+                    onPress={() => navigation.navigate(Constants.screenName.ChangeProfile)}
+                    icon={Constants.icons.ic_Profile}
+                    iconToWard={true}
+                />
+                <ButtonItem
+                    title='Payment History'
+                    icon={Constants.icons.ic_Payment}
+                    iconToWard={true}
+                />
+                <ButtonItem title='Setting' icon={Constants.icons.ic_Setting} iconToWard={true} />
+                <ButtonItem
+                    title='Terms of Services'
+                    icon={Constants.icons.ic_Service}
+                    iconToWard={true}
+                />
+                <ButtonItem title='Help & Support' icon={Constants.icons.ic_Help} />
+                <ButtonItem title='Logout' icon={Constants.icons.ic_Logout} />
+            </View>
+        </ScrollView>
     )
 }
 
@@ -177,7 +172,8 @@ const styles = StyleSheet.create({
         borderColor: Constants.color.border,
         justifyContent: 'space-between',
         paddingHorizontal: 40,
-        marginHorizontal: 20
+        marginHorizontal: 20,
+        paddingBottom: 20
     },
     imgAvatar: {
         marginTop: 35,

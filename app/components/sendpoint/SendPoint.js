@@ -9,7 +9,6 @@ import TransactionAPIs from './../../controller/APIs/TransactionAPIs'
 
 const SendPoint = () => {
     const navigation = useNavigation()
-
     const route = useRoute()
     const phone = route.params?.phone ?? ''
     const point = route.params?.point ?? 0
@@ -41,15 +40,15 @@ const SendPoint = () => {
     }
 
     return (
-        <>
+        <View style={styles.container}>
             <Background color={Constants.color.white} />
-            <ScrollView style={styles.container}>
-                <Header
-                    title='Send Nexus Point'
-                    fontSize={25}
-                    showBackButton={true}
-                    showNotification={false}
-                />
+            <Header
+                title='Send Nexus Point'
+                fontSize={25}
+                showBackButton={true}
+                showNotification={false}
+            />
+            <ScrollView>
                 <View style={styles.boxContent}>
                     <Text style={styles.textTitle}>Payment complete</Text>
                     <Image source={Constants.image.img_Complete} style={styles.img} />
@@ -58,7 +57,7 @@ const SendPoint = () => {
                     </TouchableOpacity>
                 </View>
             </ScrollView>
-        </>
+        </View>
     )
 }
 
@@ -108,6 +107,7 @@ const styles = StyleSheet.create({
         marginVertical: 14,
         fontFamily: Constants.font.PoppinsSemiBold,
         fontSize: 14,
-        color: Constants.color.white
+        color: Constants.color.white,
+        includeFontPadding: false
     }
 })
