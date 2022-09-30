@@ -36,7 +36,7 @@ const Register = () => {
                 })
             })
             .catch((err) => {
-                Alert.alert(err.response.data.message)
+                Alert.alert(err.response?.data?.message)
             })
             .finally(() => {
                 RNProgressHud.dismiss()

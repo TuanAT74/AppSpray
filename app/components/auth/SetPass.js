@@ -44,7 +44,7 @@ const SetPass = () => {
                 navigation.navigate(Constants.screenName.Login)
             })
             .catch((err) => {
-                Alert.alert(err.response.data.message)
+                Alert.alert(err.response?.data?.message)
             })
             .finally(() => {
                 RNProgressHud.dismiss()

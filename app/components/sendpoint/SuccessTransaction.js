@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 13,
         fontFamily: Constants.font.PoppinsSemiBold,
-        marginBottom: 38
+        marginBottom: 38,
+        includeFontPadding: false
     },
     boxContent: {
         marginHorizontal: 25,
@@ -103,18 +104,21 @@ const styles = StyleSheet.create({
     textInfoDefault: {
         fontFamily: Constants.font.PoppinsSemiBold,
         color: Constants.color.black,
-        fontSize: 16
+        fontSize: 16,
+        includeFontPadding: false
     },
     textInfoTransaction: {
         fontFamily: Constants.font.PoppinsMedium,
-        fontSize: 16
+        fontSize: 16,
+        includeFontPadding: false
     },
     point: {
         alignItems: 'flex-end'
     },
     textNexusPoint: {
         fontSize: 8,
-        fontFamily: Constants.font.PoppinsSemiBold
+        fontFamily: Constants.font.PoppinsSemiBold,
+        includeFontPadding: false
     },
     infoName: {
         borderBottomWidth: 1,
@@ -133,6 +137,7 @@ const styles = StyleSheet.create({
         marginVertical: 13,
         color: Constants.color.white,
         fontFamily: Constants.font.PoppinsSemiBold,
-        fontSize: 14
+        fontSize: 14,
+        includeFontPadding: false
     }
 })

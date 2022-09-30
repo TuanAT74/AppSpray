@@ -26,6 +26,7 @@ export default class CommonAPIs {
     }
 
     static async login(phone, password) {
+        clg
         try {
             let data = {
                 phone,

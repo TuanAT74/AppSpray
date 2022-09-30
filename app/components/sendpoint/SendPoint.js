@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
         marginVertical: 14,
         fontFamily: Constants.font.PoppinsSemiBold,
         fontSize: 14,
-        color: Constants.color.white
+        color: Constants.color.white,
+        includeFontPadding: false
     }
 })
