@@ -22,6 +22,6 @@ export default class Util {
     }
 
     static FormatPrice = (yourNumber) => {
-        return yourNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        return yourNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     }
 }

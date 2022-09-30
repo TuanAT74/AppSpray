@@ -5992,13 +5992,6 @@
   "resolved" "https://registry.npmjs.org/react-native-permissions/-/react-native-permissions-3.6.1.tgz"
   "version" "3.6.1"
 
-"react-native-qr-decode-image-camera@^1.1.1":
-  "integrity" "sha512-ROGWR+dJb845SUgpMdNrZSsZcAFvkBN8I1Zb1x/onF4U9qXE3iqXivn//NMXi1vyJTOTbDo7IQesHUqcliu5dQ=="
-  "resolved" "https://registry.npmjs.org/react-native-qr-decode-image-camera/-/react-native-qr-decode-image-camera-1.1.1.tgz"
-  "version" "1.1.1"
-  dependencies:
-    "prop-types" "^15.8.1"
-
 "react-native-qrcode-scanner@^1.5.5":
   "integrity" "sha512-il79uStkFqUvofqXJQfOL30qgQyU17MUKxj7IGHv6oT2OxIY/vutTwuPPDbsivtv0yTMHP4dGx/79oys4eAuNw=="
   "resolved" "https://registry.npmjs.org/react-native-qrcode-scanner/-/react-native-qrcode-scanner-1.5.5.tgz"
