@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import React from 'react'
-import RNProgressHud from 'progress-hud'
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
+import RNProgressHud from 'progress-hud'
 import Background from '../common/Background'
 import Constants from '../../controller/Constants'
 import Header from '../common/Header'
 import TransactionAPIs from './../../controller/APIs/TransactionAPIs'
 
-const Complete = () => {
+const SendPoint = () => {
     const navigation = useNavigation()
+
     const route = useRoute()
     const phone = route.params?.phone ?? ''
     const point = route.params?.point ?? 0
@@ -61,7 +62,7 @@ const Complete = () => {
     )
 }
 
-export default Complete
+export default SendPoint
 
 const styles = StyleSheet.create({
     container: {
@@ -89,7 +90,8 @@ const styles = StyleSheet.create({
         color: Constants.color.black,
         marginTop: 37,
         marginBottom: 64,
-        textAlign: 'center'
+        textAlign: 'center',
+        includeFontPadding: false
     },
     button: {
         marginHorizontal: 20,

@@ -19,7 +19,7 @@ export default Constants = {
         Convert: 'Convert',
         StoreDetail: 'StoreDetail',
         SuccessTransaction: 'SuccessTransaction',
-        Complete: 'Complete',
+        SendPoint: 'SendPoint',
         RemittanceAmount: 'RemittanceAmount',
         PaymentDetails: 'PaymentDetails'
     },

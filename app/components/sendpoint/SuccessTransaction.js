@@ -1,17 +1,31 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import Background from '../common/Background'
 import Constants from '../../controller/Constants'
 import Header from '../common/Header'
+import Util from '../../controller/APIs/Util'
 
 const SuccessTransaction = () => {
     const navigation = useNavigation()
+    
     const route = useRoute()
     const name = route.params?.name ?? ''
     const balance = route.params?.balance ?? 0
     const amount = route.params?.amount ?? 0
     const transaction_fee = route.params?.transaction_fee ?? 0
+
+    const TransactionItem = ({ title, value }) => {
+        return (
+            <View style={styles.info}>
+                <Text style={styles.textInfoDefault}>{title}</Text>
+                <View style={styles.point}>
+                    <Text style={styles.textInfoTransaction}>{Util.FormatPrice(value)}</Text>
+                    <Text style={styles.textNexusPoint}>Nexus Point</Text>
+                </View>
+            </View>
+        )
+    }
 
     return (
         <>
@@ -30,27 +44,9 @@ const SuccessTransaction = () => {
                         <Text style={styles.textInfoDefault}>Name</Text>
                         <Text style={styles.textInfoTransaction}>{name}</Text>
                     </View>
-                    <View style={styles.info}>
-                        <Text style={styles.textInfoDefault}>Balance in Wallet</Text>
-                        <View style={styles.point}>
-                            <Text style={styles.textInfoTransaction}>{balance}</Text>
-                            <Text style={styles.textNexusPoint}>Nexus Point</Text>
-                        </View>
-                    </View>
-                    <View style={styles.info}>
-                        <Text style={styles.textInfoDefault}>Amount</Text>
-                        <View style={styles.point}>
-                            <Text style={styles.textInfoTransaction}>-{amount}</Text>
-                            <Text style={styles.textNexusPoint}>Nexus Point</Text>
-                        </View>
-                    </View>
-                    <View style={styles.info}>
-                        <Text style={styles.textInfoDefault}>Transaction Fee</Text>
-                        <View style={styles.point}>
-                            <Text style={styles.textInfoTransaction}>{transaction_fee}</Text>
-                            <Text style={styles.textNexusPoint}>Nexus Point</Text>
-                        </View>
-                    </View>
+                    <TransactionItem title='Balance in Wallet' value={balance} />
+                    <TransactionItem title='Amount' value={`-${amount}`} />
+                    <TransactionItem title='Transaction Fee' value={transaction_fee} />
                     <TouchableOpacity
                         onPress={() => navigation.navigate(Constants.screenName.Home)}
                         style={styles.button}

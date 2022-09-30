@@ -16,7 +16,7 @@ const PaymentDetails = () => {
     const name = route.params?.name ?? ''
 
     const onSendPointSuccessed = (data) => {
-        navigation.push(Constants.screenName.Complete, {
+        navigation.push(Constants.screenName.SendPoint, {
             point,
             transactionFee: data?.transaction_fee,
             name,

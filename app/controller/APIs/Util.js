@@ -1,4 +1,4 @@
-import { PermissionsAndroid, Alert } from 'react-native'
+import { PermissionsAndroid, Alert, Platform } from 'react-native'
 export default class Util {
     static async hasAndroidPermission() {
         const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
@@ -19,5 +19,14 @@ export default class Util {
                 error?.message ??
                 'An error has occurred. Please try again!'
         )
+    }
+
+    static FormatPrice = (yourNumber) => {
+        yourNumber = yourNumber
+        if (Platform.OS === 'ios') {
+            return yourNumber.toLocaleString('it-IT', { style: 'currency' })
+        } else {
+            return yourNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        }
     }
 }

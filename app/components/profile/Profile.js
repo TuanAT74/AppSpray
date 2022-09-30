@@ -199,11 +199,13 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontFamily: Constants.font.PoppinsSemiBold,
         textAlign: 'center',
-        color: Constants.color.black
+        color: Constants.color.black,
+        includeFontPadding: false
     },
     textPhone: {
         fontSize: 14,
-        fontFamily: Constants.font.PoppinsMedium
+        fontFamily: Constants.font.PoppinsMedium,
+        includeFontPadding: false
     },
     boxQrCode: {
         flexDirection: 'row',
@@ -218,8 +220,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
         borderColor: Constants.color.border,
-        paddingHorizontal: 18,
-        paddingVertical: 0
+        paddingHorizontal: 16
     },
     boxTextQr: {
         marginLeft: 15
@@ -227,12 +228,14 @@ const styles = StyleSheet.create({
     textOnQr: {
         fontSize: 10,
         fontFamily: Constants.font.PoppinsSemiBold,
-        color: Constants.color.black
+        color: Constants.color.black,
+        includeFontPadding: false
     },
     textQr: {
         fontSize: 16,
         fontFamily: Constants.font.PoppinsSemiBold,
-        color: Constants.color.black
+        color: Constants.color.black,
+        includeFontPadding: false
     },
     button: {
         flexDirection: 'row',
@@ -250,14 +253,16 @@ const styles = StyleSheet.create({
         marginLeft: 12,
         fontSize: 16,
         fontFamily: Constants.font.PoppinsMedium,
-        color: Constants.color.colorText
+        color: Constants.color.colorText,
+        includeFontPadding: false
     },
 
     textButtonLight: {
         marginVertical: 18,
         marginLeft: 12,
         fontSize: 15,
-        fontFamily: Constants.font.PoppinsMedium
+        fontFamily: Constants.font.PoppinsMedium,
+        includeFontPadding: false
     },
     boxIconText: {
         flexDirection: 'row',

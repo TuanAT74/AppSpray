@@ -15,7 +15,7 @@ import Convert from './../home/Convert'
 import StoreDetail from './../home/StoreDetail'
 
 import SuccessTransaction from '../sendpoint/SuccessTransaction'
-import Complete from '../sendpoint/Complete'
+import SendPoint from '../sendpoint/SendPoint'
 
 import RemittanceAmount from './../sendpoint/RemittanceAmount'
 import PaymentDetails from './../sendpoint/PaymentDetails'
@@ -51,7 +51,7 @@ const RootNavigation = () => {
                     name={Constants.screenName.SuccessTransaction}
                     component={SuccessTransaction}
                 />
-                <Stack.Screen name={Constants.screenName.Complete} component={Complete} />
+                <Stack.Screen name={Constants.screenName.SendPoint} component={SendPoint} />
                 <Stack.Screen
                     name={Constants.screenName.RemittanceAmount}
                     component={RemittanceAmount}
