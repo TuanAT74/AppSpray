@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
     },
     imageBrTop: {
         width: Dimensions.get('window').width,
-        height: 250
+        height: 240
     }
 })
