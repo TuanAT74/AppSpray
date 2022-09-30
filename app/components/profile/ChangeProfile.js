@@ -25,7 +25,6 @@ LogBox.ignoreLogs(['Animated: `useNativeDriver`', 'componentWillReceiveProps'])
 const ChangeProfile = () => {
     const navigation = useNavigation()
     const [profile, setProfile] = useState()
-
     const refActionSheet = useRef(null)
 
     const onShowImageActionSheet = () => {
@@ -163,8 +162,8 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 30,
         color: Constants.color.white,
-        fontFamily: Constants.font.PoppinsSemiBold
-        // includeFontPadding: false
+        fontFamily: Constants.font.PoppinsSemiBold,
+        includeFontPadding: false
     },
     icon: {
         color: Constants.color.white,
@@ -191,14 +190,16 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         paddingVertical: 10,
         paddingHorizontal: 10,
-        fontFamily: Constants.font.PoppinsMedium
+        fontFamily: Constants.font.PoppinsMedium,
+        includeFontPadding: false
     },
     textName: {
         fontSize: 20,
         marginHorizontal: 20,
         marginBottom: 5,
         fontFamily: Constants.font.PoppinsMedium,
-        color: Constants.color.black
+        color: Constants.color.black,
+        includeFontPadding: false
     },
     buttonSave: {
         alignItems: 'center',
@@ -214,7 +215,8 @@ const styles = StyleSheet.create({
         fontFamily: Constants.font.PoppinsMedium,
         color: Constants.color.white,
         paddingVertical: 13,
-        fontWeight: Constants.font.PoppinsSemiBold
+        fontWeight: Constants.font.PoppinsSemiBold,
+        includeFontPadding: false
     },
     viewInformation: {
         marginBottom: 20
