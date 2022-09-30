@@ -17,7 +17,7 @@ const SendPoint = () => {
         navigation.push(Constants.screenName.SuccessTransaction, {
             name: data?.name,
             balance: data?.balance,
-            amount: data.amount,
+            amount: data?.amount,
             transaction_fee: data?.transaction_fee
         })
     }
