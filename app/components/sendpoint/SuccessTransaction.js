@@ -8,9 +8,8 @@ import Util from '../../controller/APIs/Util'
 
 const SuccessTransaction = () => {
     const navigation = useNavigation()
-    
     const route = useRoute()
-    const name = route.params?.name ?? ''
+    const name = route.params?.name ?? 'Name Default'
     const balance = route.params?.balance ?? 0
     const amount = route.params?.amount ?? 0
     const transaction_fee = route.params?.transaction_fee ?? 0
@@ -28,17 +27,15 @@ const SuccessTransaction = () => {
     }
 
     return (
-        <>
+        <View style={styles.container}>
             <Background color={Constants.color.white} />
-            <ScrollView style={styles.container}>
-                <Header title='Successful' showIconSuccess={true} fontSize={25} />
+            <Header title='Successful' showIconSuccess={true} fontSize={25} />
+            <ScrollView>
                 <View style={styles.boxContent}>
-                    <View style={styles.image}>
-                        <Image
-                            source={Constants.image.img_SuccessTransaction}
-                            style={styles.icon}
-                        />
-                    </View>
+                    <Image
+                        source={Constants.image.img_SuccessTransaction}
+                        style={styles.imgSuccess}
+                    />
                     <Text style={styles.textTitle}>Successful Transaction</Text>
                     <View style={[styles.info, styles.infoName]}>
                         <Text style={styles.textInfoDefault}>Name</Text>
@@ -55,7 +52,7 @@ const SuccessTransaction = () => {
                     </TouchableOpacity>
                 </View>
             </ScrollView>
-        </>
+        </View>
     )
 }
 
@@ -71,7 +68,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 13,
         fontFamily: Constants.font.PoppinsSemiBold,
-        marginBottom: 38
+        marginBottom: 38,
+        includeFontPadding: false
     },
     boxContent: {
         marginHorizontal: 25,
@@ -89,13 +87,11 @@ const styles = StyleSheet.create({
         shadowRadius: 2.22,
         elevation: 3
     },
-    image: {
+    imgSuccess: {
+        width: 130,
+        height: 140,
         alignSelf: 'center',
         marginTop: 30
-    },
-    icon: {
-        width: 130,
-        height: 140
     },
     info: {
         flexDirection: 'row',
@@ -107,18 +103,21 @@ const styles = StyleSheet.create({
     textInfoDefault: {
         fontFamily: Constants.font.PoppinsSemiBold,
         color: Constants.color.black,
-        fontSize: 16
+        fontSize: 16,
+        includeFontPadding: false
     },
     textInfoTransaction: {
         fontFamily: Constants.font.PoppinsMedium,
-        fontSize: 16
+        fontSize: 16,
+        includeFontPadding: false
     },
     point: {
         alignItems: 'flex-end'
     },
     textNexusPoint: {
         fontSize: 8,
-        fontFamily: Constants.font.PoppinsSemiBold
+        fontFamily: Constants.font.PoppinsSemiBold,
+        includeFontPadding: false
     },
     infoName: {
         borderBottomWidth: 1,
@@ -137,6 +136,7 @@ const styles = StyleSheet.create({
         marginVertical: 13,
         color: Constants.color.white,
         fontFamily: Constants.font.PoppinsSemiBold,
-        fontSize: 14
+        fontSize: 14,
+        includeFontPadding: false
     }
 })

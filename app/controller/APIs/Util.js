@@ -22,11 +22,6 @@ export default class Util {
     }
 
     static FormatPrice = (yourNumber) => {
-        yourNumber = yourNumber
-        if (Platform.OS === 'ios') {
-            return yourNumber.toLocaleString('it-IT', { style: 'currency' })
-        } else {
-            return yourNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        }
+        return yourNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
 }
