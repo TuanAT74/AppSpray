@@ -19,6 +19,7 @@ import RNProgressHud from 'progress-hud'
 import CommonAPIs from './../../controller/APIs/CommonAPIs'
 import TransactionAPIs from './../../controller/APIs/TransactionAPIs'
 import AppManager from '../../controller/APIs/AppManager'
+import Util from '../../controller/APIs/Util'
 
 const RemittanceAmount = () => {
     const navigation = useNavigation()
@@ -75,16 +76,11 @@ const RemittanceAmount = () => {
     }
 
     const onFailed = (error) => {
-        Alert.alert(
-            'Notification',
-            error?.response?.data?.message ??
-                error?.message ??
-                'An error has occurred. Please try again!'
-        )
+        Util.showError(error)
     }
 
-    const handleClickOnNext = () => {
-        if (!point || point === 0) {
+    const handleOnClickNext = () => {
+        if (!point || point == 0) {
             Alert.alert('Notification', 'Please enter the number of points')
             return
         }
@@ -154,7 +150,7 @@ const RemittanceAmount = () => {
                 </View>
             </ScrollView>
             <View style={styles.viewButton}>
-                <TouchableOpacity style={styles.buttonNext} onPress={handleClickOnNext}>
+                <TouchableOpacity style={styles.buttonNext} onPress={handleOnClickNext}>
                     <Text style={styles.textNext}>Next</Text>
                 </TouchableOpacity>
             </View>
