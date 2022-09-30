@@ -75,13 +75,12 @@ const styles = StyleSheet.create({
         flex: 1
     },
     textPayment: {
-        // marginTop: 80,
+        marginTop: 80,
         paddingHorizontal: 20,
         fontSize: 20,
         fontFamily: Constants.font.PoppinsSemiBold,
         color: Constants.color.black,
         marginBottom: 20,
-        marginTop: Constants.screen.width * 0.68 - (45 + 32 + 24 + 50),
         includeFontPadding: false
     },
     viewInformation: {
