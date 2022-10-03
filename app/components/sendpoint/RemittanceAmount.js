@@ -7,8 +7,7 @@ import {
     FlatList,
     TouchableOpacity,
     ScrollView,
-    Alert,
-    Dimensions
+    Alert
 } from 'react-native'
 import React, { useState } from 'react'
 import Background from '../common/Background'
@@ -91,7 +90,13 @@ const RemittanceAmount = () => {
 
     return (
         <View style={styles.container}>
-            <ScrollView contentContainerStyle={{ flex: 1 }}>
+            <ScrollView
+                contentContainerStyle={{
+                    flex: 1,
+                    width: '100%',
+                    minHeight: '105%'
+                }}
+            >
                 <Background hideLogo={false} color='#F7F7F7' />
                 <Header title='Send Nexus Point' showBackButton fontSize={25} />
                 <HeaderHome />
@@ -117,7 +122,6 @@ const RemittanceAmount = () => {
                     <View style={{ backgroundColor: Constants.color.white }}>
                         <FlatList
                             data={list}
-                            scrollEnabled={false}
                             keyExtractor={(item) => item.id}
                             renderItem={({ item }) => <HistoryItem data={item} />}
                         />
