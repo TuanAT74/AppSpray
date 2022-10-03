@@ -20,6 +20,7 @@ import CommonAPIs from './../../controller/APIs/CommonAPIs'
 import TransactionAPIs from './../../controller/APIs/TransactionAPIs'
 import AppManager from '../../controller/APIs/AppManager'
 import Util from '../../controller/APIs/Util'
+import HistoryItem from './../common/HistoryItem'
 
 const RemittanceAmount = () => {
     const navigation = useNavigation()
@@ -41,27 +42,6 @@ const RemittanceAmount = () => {
             name: 'Electricity',
             date: '2 Jun 2020',
             point: '-500'
-        },
-        {
-            id: 3,
-            icon: Constants.icons.sendPink,
-            name: 'Electricity',
-            date: '2 Jun 2020',
-            point: '-500'
-        },
-        {
-            id: 4,
-            icon: Constants.icons.sendPink,
-            name: 'Electricity',
-            date: '2 Jun 2020',
-            point: '-500'
-        },
-        {
-            id: 5,
-            icon: Constants.icons.sendPink,
-            name: 'Electricity',
-            date: '2 Jun 2020',
-            point: '-501'
         }
     ]
 
@@ -106,7 +86,7 @@ const RemittanceAmount = () => {
         <View style={styles.container}>
             <ScrollView>
                 <Background hideLogo={false} color='#F7F7F7' />
-                <Header title='Send Nexus Point' showBackButton />
+                <Header title='Send Nexus Point' showBackButton fontSize={25} />
                 <HeaderHome />
                 <View style={styles.remittanceAmountView}>
                     <Text style={styles.remittanceAmountText}>Remittance amount</Text>
@@ -131,21 +111,7 @@ const RemittanceAmount = () => {
                         data={list}
                         scrollEnabled={false}
                         keyExtractor={(item) => item.id}
-                        renderItem={({ item }) => (
-                            <View style={styles.viewList}>
-                                <View style={styles.viewButtonSend}>
-                                    <Image source={Constants.icons.sendPink} style={styles.icon} />
-                                </View>
-                                <View style={styles.viewTextName}>
-                                    <Text style={styles.textName}>{item.name}</Text>
-                                    <Text style={styles.textDate}>{item.date}</Text>
-                                </View>
-                                <View style={styles.ViewTextPoint}>
-                                    <Text style={styles.textPoint}>{item.point}</Text>
-                                    <Text style={styles.textNexusPoint}>Nexus Point</Text>
-                                </View>
-                            </View>
-                        )}
+                        renderItem={({ item }) => <HistoryItem data={item} />}
                     />
                 </View>
             </ScrollView>
@@ -252,7 +218,7 @@ const styles = StyleSheet.create({
     viewTextName: {
         flex: 1
     },
-    ViewTextPoint: {
+    textPointView: {
         marginHorizontal: 20
     },
     textName: {

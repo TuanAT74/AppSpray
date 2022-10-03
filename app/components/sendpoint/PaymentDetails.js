@@ -12,7 +12,7 @@ const PaymentDetailsItem = ({ title, value, showNexusPointText = false, style })
             <Text style={styles.nameText}>{title}</Text>
             <View style={{ alignItems: 'flex-end' }}>
                 <Text style={styles.valueText}>{value}</Text>
-                {showNexusPointText && <Text style={styles.textNexusPoint}>Nexus Point</Text>}
+                {showNexusPointText && <Text style={styles.nexusPointText}>Nexus Point</Text>}
             </View>
         </View>
     )
@@ -39,7 +39,7 @@ const PaymentDetails = () => {
         <View style={styles.container}>
             <ScrollView>
                 <Background hideLogo={false} />
-                <Header title='Payment Details' showBackButton />
+                <Header title='Payment Details' showBackButton fontSize={25} />
                 <HeaderHome />
                 <Text style={styles.paymentText}>Payment Details</Text>
                 <View style={styles.informationView}>
@@ -51,7 +51,7 @@ const PaymentDetails = () => {
                     <PaymentDetailsItem
                         title='Amount'
                         value={`-${point}`}
-                        nexusPoint={true}
+                        showNexusPointText={true}
                         style={{ borderBottomWidth: 1 }}
                     />
                     <PaymentDetailsItem
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
-    textPayment: {
+    paymentText: {
         marginTop: 80,
         paddingHorizontal: 20,
         fontSize: 20,
