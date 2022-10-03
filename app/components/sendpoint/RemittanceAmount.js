@@ -105,22 +105,22 @@ const RemittanceAmount = () => {
     return (
         <View style={styles.container}>
             <ScrollView>
-                <Background hideLogo='false' color='#F7F7F7' />
+                <Background hideLogo={false} color='#F7F7F7' />
                 <Header title='Send Nexus Point' showBackButton />
                 <HeaderHome />
-                <View style={styles.viewRemittanceAmount}>
-                    <Text style={styles.textRemittanceAmount}>Remittance amount</Text>
+                <View style={styles.remittanceAmountView}>
+                    <Text style={styles.remittanceAmountText}>Remittance amount</Text>
                     <View style={styles.buttonInput}>
                         <TextInput
                             placeholder='123.000'
-                            style={styles.textInput}
+                            style={styles.inputText}
                             keyboardType='numeric'
                             onChangeText={setPoint}
                             value={point}
                         />
                         <Image source={Constants.icons.ic_point} style={styles.iconPoint} />
                     </View>
-                    <View style={styles.viewPoint}>
+                    <View style={styles.pointView}>
                         <Text style={styles.textAED}>232.54</Text>
                         <Text style={{ ...styles.textAED, paddingLeft: 10 }}>AED</Text>
                     </View>
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
-    viewRemittanceAmount: {
+    remittanceAmountView: {
         backgroundColor: Constants.color.white,
         marginTop: 65,
 
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
         width: 25,
         height: 25
     },
-    textRemittanceAmount: {
+    remittanceAmountText: {
         fontSize: 20,
         marginBottom: 10,
         marginTop: 50,
@@ -200,13 +200,13 @@ const styles = StyleSheet.create({
         color: Constants.color.black,
         fontFamily: Constants.font.PoppinsSemiBold
     },
-    textInput: {
+    inputText: {
         fontSize: 14,
         fontFamily: Constants.font.PoppinsMedium,
         flex: 1,
         paddingVertical: 8
     },
-    viewPoint: {
+    pointView: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
         paddingHorizontal: 30,
