@@ -74,7 +74,7 @@ const ConfirmRegister = () => {
                 <View style={styles.viewConfirm}>
                     <Text style={styles.textConfirm}>Verification</Text>
                     <View style={styles.image}>
-                        <Image source={Constants.icons.ic_confirm} />
+                        <Image source={Constants.icons.confirm} />
                     </View>
                     <Text style={styles.textInput}>
                         Please enter the code was sent in your phone number

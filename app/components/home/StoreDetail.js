@@ -9,19 +9,19 @@ const StoreDetail = () => {
         <View style={styles.container}>
             <Background color='#F7F7F7' />
             <View style={styles.viewImageHeader}>
-                <Image source={Constants.image.img_StoreDetail} style={styles.imageStore} />
-                <Image source={Constants.image.img_Shadow} style={styles.imageShadow} />
+                <Image source={Constants.image.storeDetail} style={styles.imageStore} />
+                <Image source={Constants.image.shadow} style={styles.imageShadow} />
                 <View style={styles.viewIcon}>
                     <Icon name='chevron-back-outline' size={50} color={Constants.color.white} />
                     <Icon name='ios-notifications' size={40} color={Constants.color.white} />
                 </View>
                 <TouchableOpacity style={styles.buttonStore}>
-                    <Image source={Constants.icons.ic_Car} />
+                    <Image source={Constants.icons.car} />
                     <Text style={styles.textStore}>Restaurant</Text>
                 </TouchableOpacity>
                 <Text style={styles.textName}>T-JAY SUSHI</Text>
                 <View style={styles.viewGps}>
-                    <Image source={Constants.icons.ic_Gps} />
+                    <Image source={Constants.icons.gps} />
                     <Text style={styles.textGps}>
                         Financial Center Street, Along Sheikh Zayed Road, Next to Burj Khalifa
                     </Text>

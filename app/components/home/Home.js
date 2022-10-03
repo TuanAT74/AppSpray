@@ -44,7 +44,7 @@ const Home = () => {
                         navigation.push(Constants.screenName.Scan)
                     }}
                 >
-                    <Image source={Constants.icons.ic_qrcode} style={styles.imgButton} />
+                    <Image source={Constants.icons.qrcode} style={styles.imgButton} />
                     <Text style={styles.textButton}>Scan</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -53,11 +53,11 @@ const Home = () => {
                         navigation.push(Constants.screenName.RemittanceAmount)
                     }}
                 >
-                    <Image source={Constants.icons.ic_send} style={styles.imgButton} />
+                    <Image source={Constants.icons.send} style={styles.imgButton} />
                     <Text style={styles.textButton}>Send</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.viewButton}>
-                    <Image source={Constants.icons.ic_receive} style={styles.imgButton} />
+                    <Image source={Constants.icons.receive} style={styles.imgButton} />
                     <Text style={styles.textButton}>Receive</Text>
                 </TouchableOpacity>
             </View>

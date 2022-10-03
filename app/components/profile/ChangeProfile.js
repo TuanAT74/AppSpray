@@ -38,7 +38,7 @@ const ChangeProfile = () => {
         ) {
             return { uri: AppManager.shared.currentUser?.avatar }
         }
-        return Constants.image.img_Avatar
+        return Constants.image.avatar
     }
 
     const onSuccess = (user) => {

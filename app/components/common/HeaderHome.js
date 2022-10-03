@@ -10,7 +10,7 @@ const HeaderHome = () => {
     return (
         <>
             <View style={styles.viewNexusPoint}>
-                <Image source={Constants.icons.ic_point} style={styles.imgPoint} />
+                <Image source={Constants.icons.point} style={styles.imgPoint} />
                 <View style={styles.viewTextNexusPoint}>
                     <Text style={styles.textNexusPointNumber}>23.254</Text>
                     <Text style={styles.textNexusPoint}>Nexus Point</Text>

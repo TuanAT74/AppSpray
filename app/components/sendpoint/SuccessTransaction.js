@@ -32,10 +32,7 @@ const SuccessTransaction = () => {
             <Header title='Successful' showIconSuccess={true} fontSize={25} />
             <ScrollView>
                 <View style={styles.boxContent}>
-                    <Image
-                        source={Constants.image.img_SuccessTransaction}
-                        style={styles.imgSuccess}
-                    />
+                    <Image source={Constants.image.successTransaction} style={styles.imgSuccess} />
                     <Text style={styles.textTitle}>Successful Transaction</Text>
                     <View style={[styles.info, styles.infoName]}>
                         <Text style={styles.textInfoDefault}>Name</Text>
@@ -91,7 +88,8 @@ const styles = StyleSheet.create({
         width: 130,
         height: 140,
         alignSelf: 'center',
-        marginTop: 30
+        marginTop: 30,
+        resizeMode: 'contain'
     },
     info: {
         flexDirection: 'row',

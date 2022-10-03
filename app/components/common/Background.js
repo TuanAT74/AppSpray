@@ -6,14 +6,14 @@ const Background = ({ hideLogo = false, color }) => {
     return (
         <View style={{ ...styles.container, backgroundColor: color }}>
             <Image
-                source={Constants.icons.ic_background}
+                source={Constants.icons.background}
                 style={{
                     ...styles.imageBrTop
                 }}
             />
             <View style={styles.spray}>
                 <Image
-                    source={Constants.icons.ic_spray}
+                    source={Constants.icons.spray}
                     style={{
                         tintColor: hideLogo ? 'transparent' : null
                     }}

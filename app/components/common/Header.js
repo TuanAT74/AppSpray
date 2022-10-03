@@ -21,12 +21,12 @@ const Header = ({
                         onPress={() => navigation.goBack()}
                         activeOpacity={0.6}
                     >
-                        <Image source={Constants.icons.Left} style={styles.icon} />
+                        <Image source={Constants.icons.left} style={styles.icon} />
                     </TouchableOpacity>
                 )}
                 <Text style={{ ...styles.textProfile, fontSize }}>{title}</Text>
                 {showIconSuccess && (
-                    <Image source={Constants.icons.ic_Balance} style={styles.iconSuccess} />
+                    <Image source={Constants.icons.balance} style={styles.iconSuccess} />
                 )}
             </View>
 
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     iconSuccess: {
-        marginLeft: 10
+        marginLeft: 10,
+        resizeMode: 'contain'
     }
 })

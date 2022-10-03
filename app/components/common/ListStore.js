@@ -48,7 +48,7 @@ const ListStore = ({ data }) => {
                     >
                         <View style={styles.viewImage}>
                             <Image source={{ uri: item.avatar }} style={styles.imageStore} />
-                            <Image source={Constants.image.img_Shadow} style={styles.imageShadow} />
+                            <Image source={Constants.image.shadow} style={styles.imageShadow} />
                             <View style={styles.viewStore}>
                                 <Text style={styles.nameStore}>{item.name}</Text>
                                 <View style={styles.viewEvaluate}>
