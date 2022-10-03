@@ -15,7 +15,8 @@ const ButtonItem = ({
     icon,
     iconToWard = false,
     toggle = false,
-    disabled = false
+    disabled = false,
+    color = Constants.color.black
 }) => {
     const [isSwitchOn, setIsSwitchOn] = useState(true)
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
@@ -29,7 +30,7 @@ const ButtonItem = ({
         >
             <View style={styles.boxIconText}>
                 <Image source={icon} />
-                <Text style={styles.textButton}>{title}</Text>
+                <Text style={{ ...styles.textButton, color: color }}>{title}</Text>
             </View>
             {iconToWard && <Image source={Constants.icons.right} />}
             {toggle && <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color='#7879E8' />}
@@ -41,7 +42,6 @@ const Profile = () => {
     const navigation = useNavigation()
     const [isModalVisible, setModalVisible] = useState(false)
     const [profile, setProfile] = useState()
-    console.log(profile)
 
     const onQrcodePhone = () => {
         setModalVisible(true)
@@ -100,17 +100,17 @@ const Profile = () => {
                     <TouchableOpacity
                         onPress={onQrcodePhone}
                         activeOpacity={0.8}
-                        style={styles.buttonQr}
+                        style={{ ...styles.buttonQr, marginRight: 16 }}
                     >
-                        <Image source={Constants.image.qrcode} style={styles.imgQrcodeInButton} />
-                        <View style={styles.boxTextQr}>
+                        <Image source={Constants.image.qrcode} style={styles.qrcodeImg} />
+                        <View>
                             <Text style={styles.textOnQr}>Nexus Point</Text>
                             <Text style={styles.textQr}>QR Code</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={0.8} style={styles.buttonQr}>
-                        <Image source={Constants.image.qrcode} style={styles.imgQrcodeInButton} />
-                        <View style={styles.boxTextQr}>
+                        <Image source={Constants.image.qrcode} style={styles.qrcodeImg} />
+                        <View>
                             <Text style={styles.textOnQr}>NEXToken</Text>
                             <Text style={styles.textQr}>QR Code</Text>
                         </View>
@@ -141,8 +141,17 @@ const Profile = () => {
                     icon={Constants.icons.service}
                     iconToWard={true}
                 />
-                <ButtonItem title='Help & Support' icon={Constants.icons.help} />
-                <ButtonItem title='Logout' icon={Constants.icons.logout} />
+                <ButtonItem
+                    title='Help & Support'
+                    icon={Constants.icons.help}
+                    color={Constants.color.gray}
+                />
+
+                <ButtonItem
+                    title='Logout'
+                    icon={Constants.icons.logout}
+                    color={Constants.color.gray}
+                />
             </View>
         </ScrollView>
     )
@@ -163,8 +172,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderBottomWidth: 1,
         borderColor: Constants.color.border,
-        justifyContent: 'space-between',
-        paddingHorizontal: 40,
+        justifyContent: 'center',
         marginHorizontal: 20,
         paddingBottom: 20
     },
@@ -179,10 +187,12 @@ const styles = StyleSheet.create({
     },
     imgQrcode: {
         width: 23,
-        height: 23
+        height: 23,
+        resizeMode: 'contain'
     },
     inforUser: {
-        alignItems: 'center'
+        alignItems: 'center',
+        marginHorizontal: 22
     },
     textUser: {
         fontSize: 20,
@@ -198,21 +208,21 @@ const styles = StyleSheet.create({
     },
     boxQrCode: {
         flexDirection: 'row',
-        marginVertical: 20,
         justifyContent: 'space-between',
-        marginHorizontal: 20
+        marginHorizontal: 20,
+        marginVertical: 20
     },
     buttonQr: {
+        height: 46,
+        flex: 1,
         borderWidth: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
         borderColor: Constants.color.border,
-        paddingHorizontal: 16
-    },
-    boxTextQr: {
-        marginLeft: 15
+        paddingHorizontal: 12,
+        paddingVertical: 8
     },
     textOnQr: {
         fontSize: 10,
@@ -224,7 +234,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: Constants.font.PoppinsSemiBold,
         color: Constants.color.black,
-        includeFontPadding: false
+        includeFontPadding: false,
+        marginTop: -4
     },
     button: {
         flexDirection: 'row',
@@ -241,21 +252,18 @@ const styles = StyleSheet.create({
         marginVertical: 18,
         marginLeft: 12,
         fontSize: 16,
-        fontFamily: Constants.font.PoppinsMedium,
-        color: Constants.color.colorText,
-        includeFontPadding: false
-    },
-
-    textButtonLight: {
-        marginVertical: 18,
-        marginLeft: 12,
-        fontSize: 15,
-        fontFamily: Constants.font.PoppinsMedium,
+        fontFamily: Constants.font.PoppinsSemiBold,
         includeFontPadding: false
     },
     boxIconText: {
         flexDirection: 'row',
         alignItems: 'center'
+    },
+    qrcodeImg: {
+        width: 23,
+        height: 23,
+        marginRight: 8,
+        resizeMode: 'contain'
     }
 })
 

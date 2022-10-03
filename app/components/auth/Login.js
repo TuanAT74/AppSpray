@@ -17,8 +17,6 @@ import { useNavigation } from '@react-navigation/native'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import RNProgressHud from 'progress-hud'
 
-import StorageManager from './../../controller/APIs/StorageManager'
-
 const Login = () => {
     const navigation = useNavigation()
     const [passWord, setPassWord] = useState('123456')

@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
         fontSize: 8,
         fontFamily: Constants.font.PoppinsSemiBold,
         includeFontPadding: false,
-        paddingLeft: 15
+        paddingLeft: 15,
+        marginTop: -5
     },
     viewEquiv: {
         flexDirection: 'row',
