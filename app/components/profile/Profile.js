@@ -16,7 +16,7 @@ const ButtonItem = ({
     iconToWard = false,
     toggle = false,
     disabled = false,
-    color = Constants.color.black
+    fontFamily = Constants.font.PoppinsSemiBold
 }) => {
     const [isSwitchOn, setIsSwitchOn] = useState(true)
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
@@ -30,7 +30,7 @@ const ButtonItem = ({
         >
             <View style={styles.boxIconText}>
                 <Image source={icon} />
-                <Text style={{ ...styles.textButton, color: color }}>{title}</Text>
+                <Text style={{ ...styles.textButton, fontFamily: fontFamily }}>{title}</Text>
             </View>
             {iconToWard && <Image source={Constants.icons.right} />}
             {toggle && <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color='#7879E8' />}
@@ -85,7 +85,7 @@ const Profile = () => {
                 setModalVisible={(value) => setModalVisible(value)}
             />
             <Background hideLogo={true} color='#F7F7F7' />
-            <Header title='PROFILE' />
+            <Header title='Profile' />
             <View style={styles.boxProfile}>
                 <Image source={getAvatar()} style={styles.imgAvatar} />
                 <View style={styles.boxInforUser}>
@@ -144,13 +144,13 @@ const Profile = () => {
                 <ButtonItem
                     title='Help & Support'
                     icon={Constants.icons.help}
-                    color={Constants.color.gray}
+                    fontFamily={Constants.font.HKGroteskRegular}
                 />
 
                 <ButtonItem
                     title='Logout'
                     icon={Constants.icons.logout}
-                    color={Constants.color.gray}
+                    fontFamily={Constants.font.HKGroteskRegular}
                 />
             </View>
         </ScrollView>
@@ -252,8 +252,8 @@ const styles = StyleSheet.create({
         marginVertical: 18,
         marginLeft: 12,
         fontSize: 16,
-        fontFamily: Constants.font.PoppinsSemiBold,
-        includeFontPadding: false
+        includeFontPadding: false,
+        color: Constants.color.black
     },
     boxIconText: {
         flexDirection: 'row',

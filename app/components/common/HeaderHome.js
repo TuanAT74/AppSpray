@@ -5,7 +5,7 @@ import Constants from './../../controller/Constants'
 import { useNavigation } from '@react-navigation/native'
 import AppManager from './../../controller/APIs/AppManager'
 
-const HeaderHome = () => {
+const HeaderHome = ({ buttonPayment = false }) => {
     const navigation = useNavigation()
     return (
         <>
@@ -20,6 +20,32 @@ const HeaderHome = () => {
                 <Text style={styles.textEquiv}>Equiv :</Text>
                 <Text style={styles.textAED}>AED</Text>
             </View>
+            {buttonPayment && (
+                <View style={styles.viewButtonHeader}>
+                    <TouchableOpacity
+                        style={styles.viewButtonP}
+                        onPress={() => {
+                            navigation.push(Constants.screenName.Scan)
+                        }}
+                    >
+                        <Image source={Constants.icons.qrcode} style={styles.imgButton} />
+                        <Text style={styles.textButton}>Scan</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.viewButtonP}
+                        onPress={() => {
+                            navigation.push(Constants.screenName.RemittanceAmount)
+                        }}
+                    >
+                        <Image source={Constants.icons.send} style={styles.imgButton} />
+                        <Text style={styles.textButton}>Send</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.viewButton}>
+                        <Image source={Constants.icons.receive} style={styles.imgButton} />
+                        <Text style={styles.textButton}>Receive</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
         </>
     )
 }
@@ -115,6 +141,38 @@ const styles = StyleSheet.create({
         fontFamily: Constants.font.PoppinsMedium
     },
     imgPoint: {
+        width: 30,
+        height: 30
+    },
+    viewButtonHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: 20,
+        marginTop: 20
+    },
+    viewButtonP: {
+        backgroundColor: Constants.color.white,
+        width: 76,
+        height: 76,
+        borderRadius: 20,
+        shadowColor: '#666',
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 3,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    textButton: {
+        fontSize: 14,
+        fontFamily: Constants.font.PoppinsMedium,
+        marginTop: 5
+    },
+    imgButton: {
+        marginTop: 10,
         width: 30,
         height: 30
     }

@@ -36,31 +36,7 @@ const Home = () => {
         <View style={styles.container}>
             <Background hideLogo={true} color='#F7F7F7' />
             <Header />
-            <HeaderHome />
-            <View style={styles.viewButtonHeader}>
-                <TouchableOpacity
-                    style={styles.viewButton}
-                    onPress={() => {
-                        navigation.push(Constants.screenName.Scan)
-                    }}
-                >
-                    <Image source={Constants.icons.qrcode} style={styles.imgButton} />
-                    <Text style={styles.textButton}>Scan</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.viewButton}
-                    onPress={() => {
-                        navigation.push(Constants.screenName.RemittanceAmount)
-                    }}
-                >
-                    <Image source={Constants.icons.send} style={styles.imgButton} />
-                    <Text style={styles.textButton}>Send</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.viewButton}>
-                    <Image source={Constants.icons.receive} style={styles.imgButton} />
-                    <Text style={styles.textButton}>Receive</Text>
-                </TouchableOpacity>
-            </View>
+            <HeaderHome buttonPayment />
             <ScrollView style={styles.scrollView}>
                 <View style={styles.viewCategory}>
                     <FlatList
@@ -157,7 +133,6 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         marginTop: 30
-        // marginBottom: 10
     },
     imageStore: {
         height: 20,
@@ -172,37 +147,5 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         marginRight: 10,
         justifyContent: 'center'
-    },
-    viewButtonHeader: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: 20,
-        marginTop: 20
-    },
-    viewButton: {
-        backgroundColor: Constants.color.white,
-        width: 76,
-        height: 76,
-        borderRadius: 20,
-        shadowColor: '#666',
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-        elevation: 3,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    textButton: {
-        fontSize: 14,
-        fontFamily: Constants.font.PoppinsMedium,
-        marginTop: 5
-    },
-    imgButton: {
-        marginTop: 10,
-        width: 30,
-        height: 30
     }
 })
