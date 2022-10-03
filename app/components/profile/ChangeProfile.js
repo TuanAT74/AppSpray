@@ -106,7 +106,7 @@ const ChangeProfile = () => {
         <ScrollView>
             <View style={styles.container}>
                 <Background />
-                <Header title='CHANGE PROFILE' showBackButton />
+                <Header title='Change Profile' showBackButton />
                 <View style={styles.viewChange}>
                     <TouchableOpacity onPress={onShowImageActionSheet}>
                         <Image source={getAvatar()} style={styles.imgAvatar} />

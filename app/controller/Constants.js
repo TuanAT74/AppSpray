@@ -85,7 +85,8 @@ export default Constants = {
         PoppinsMedium: 'Poppins-Medium',
         PoppinsRegular: 'Poppins-Regular',
         PoppinsSemiBold: 'Poppins-SemiBold',
-        PoppinsThin: 'Poppins-Thin'
+        PoppinsThin: 'Poppins-Thin',
+        HKGroteskRegular: 'HKGrotesk-Regular'
     },
     keys: {
         currentUser: 'currentUser'

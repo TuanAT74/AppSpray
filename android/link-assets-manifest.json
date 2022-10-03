@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "app/assets/fonts/HKGrotesk-Regular.ttf",
+      "sha1": "b35653d34f64a128da4d4bd291bd56bb8974da00"
+    },
+    {
       "path": "app/assets/fonts/Poppins-Bold.ttf",
       "sha1": "875cf0cecd647bcf22e79d633d868c1b1ec98dfa"
     },
