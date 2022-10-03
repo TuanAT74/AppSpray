@@ -32,7 +32,7 @@ const ButtonItem = ({
                 <Image source={icon} />
                 <Text style={styles.textButton}>{title}</Text>
             </View>
-            {iconToWard && <Image source={Constants.icons.ic_Right} style={styles.ic_Right} />}
+            {iconToWard && <Image source={Constants.icons.right} />}
             {toggle && <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color='#7879E8' />}
         </TouchableOpacity>
     )
@@ -55,7 +55,7 @@ const Profile = () => {
         ) {
             return { uri: AppManager.shared.currentUser?.avatar }
         }
-        return Constants.image.img_Avatar
+        return Constants.image.avatar
     }
 
     const getUserProfile = () => {
@@ -90,7 +90,7 @@ const Profile = () => {
             <View style={styles.boxProfile}>
                 <Image source={getAvatar()} style={styles.imgAvatar} />
                 <View style={styles.boxInforUser}>
-                    <Image source={Constants.image.img_Qrcode} style={styles.imgQrcode} />
+                    <Image source={Constants.image.qrcode} style={styles.imgQrcode} />
                     <View style={styles.inforUser}>
                         <Text style={styles.textUser}>Jonathan Doe</Text>
                         <Text style={styles.textPhone}>No.{profile?.phone}</Text>
@@ -103,20 +103,14 @@ const Profile = () => {
                         activeOpacity={0.8}
                         style={styles.buttonQr}
                     >
-                        <Image
-                            source={Constants.image.img_Qrcode}
-                            style={styles.imgQrcodeInButton}
-                        />
+                        <Image source={Constants.image.qrcode} style={styles.imgQrcodeInButton} />
                         <View style={styles.boxTextQr}>
                             <Text style={styles.textOnQr}>Nexus Point</Text>
                             <Text style={styles.textQr}>QR Code</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={0.8} style={styles.buttonQr}>
-                        <Image
-                            source={Constants.image.img_Qrcode}
-                            style={styles.imgQrcodeInButton}
-                        />
+                        <Image source={Constants.image.qrcode} style={styles.imgQrcodeInButton} />
                         <View style={styles.boxTextQr}>
                             <Text style={styles.textOnQr}>NEXToken</Text>
                             <Text style={styles.textQr}>QR Code</Text>
@@ -127,29 +121,29 @@ const Profile = () => {
             <View style={{ marginBottom: 24 }}>
                 <ButtonItem
                     title='2 Factor Authentication'
-                    icon={Constants.icons.ic_Factor}
+                    icon={Constants.icons.factor}
                     toggle={true}
                     disabled
                 />
                 <ButtonItem
                     title='Change Profile'
                     onPress={() => navigation.navigate(Constants.screenName.ChangeProfile)}
-                    icon={Constants.icons.ic_Profile}
+                    icon={Constants.icons.profile}
                     iconToWard={true}
                 />
                 <ButtonItem
                     title='Payment History'
-                    icon={Constants.icons.ic_Payment}
+                    icon={Constants.icons.payment}
                     iconToWard={true}
                 />
-                <ButtonItem title='Setting' icon={Constants.icons.ic_Setting} iconToWard={true} />
+                <ButtonItem title='Setting' icon={Constants.icons.setting} iconToWard={true} />
                 <ButtonItem
                     title='Terms of Services'
-                    icon={Constants.icons.ic_Service}
+                    icon={Constants.icons.service}
                     iconToWard={true}
                 />
-                <ButtonItem title='Help & Support' icon={Constants.icons.ic_Help} />
-                <ButtonItem title='Logout' icon={Constants.icons.ic_Logout} />
+                <ButtonItem title='Help & Support' icon={Constants.icons.help} />
+                <ButtonItem title='Logout' icon={Constants.icons.logout} />
             </View>
         </ScrollView>
     )

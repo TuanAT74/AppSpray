@@ -15,7 +15,7 @@ export default class TransactionAPIs {
         Accept: 'application/json'
     }
 
-    static async sendPoint(phone: string, amount: string, type_use = 1, code_transaction = '') {
+    static async sendPoint(phone: string, amount: string, type_use = 1) {
         try {
             if (!AppManager.shared.isHaveAccessToken()) {
                 return Promise.reject(Constants.tokenError)
@@ -23,8 +23,7 @@ export default class TransactionAPIs {
             const data = {
                 phone,
                 amount_point: amount,
-                type_use,
-                code_transaction
+                type_use
             }
             const headers = {
                 ...this.headers,

@@ -70,7 +70,7 @@ const ImgQrCode = ({ title, value, dataQR, isModalVisible, setModalVisible }) =>
                     style={styles.imgQrCode}
                 />
                 <TouchableOpacity onPress={downloadQRCode}>
-                    <Image source={Constants.icons.Download} style={{ marginVertical: 20 }} />
+                    <Image source={Constants.icons.download} style={{ marginVertical: 20 }} />
                 </TouchableOpacity>
                 <Text style={styles.textPhone}>{value}</Text>
                 <TouchableOpacity onPress={copyPhone} style={styles.buttonCopy}>

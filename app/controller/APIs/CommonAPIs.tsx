@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 import StorageManager from './StorageManager'
 import Constants from './../Constants'
 import AppManager from './AppManager'

@@ -118,7 +118,7 @@ const RemittanceAmount = () => {
                             onChangeText={setPoint}
                             value={point}
                         />
-                        <Image source={Constants.icons.ic_point} style={styles.iconPoint} />
+                        <Image source={Constants.icons.point} style={styles.iconPoint} />
                     </View>
                     <View style={styles.viewPoint}>
                         <Text style={styles.textAED}>232.54</Text>

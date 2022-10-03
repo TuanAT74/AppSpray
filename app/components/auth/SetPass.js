@@ -58,7 +58,7 @@ const SetPass = () => {
                 <View style={styles.viewSetPassWord}>
                     <Text style={styles.text}> SET YOUR PASSWORD</Text>
                     <View style={styles.image}>
-                        <Image source={Constants.icons.ic_security} />
+                        <Image source={Constants.icons.security} />
                     </View>
                     <Text style={styles.textInput}>Input new password</Text>
                     <View style={styles.buttonPassword}>

@@ -56,7 +56,7 @@ const Login = () => {
                 <View style={styles.viewLogin}>
                     <Text style={styles.textLogin}>Login</Text>
                     <View style={styles.image}>
-                        <Image source={Constants.icons.ic_login} style={styles.icon} />
+                        <Image source={Constants.icons.login} style={styles.icon} />
                     </View>
                     <Text style={styles.textInput}>Type Phone Number and Password to Continue</Text>
                     <View style={styles.buttonPassword}>

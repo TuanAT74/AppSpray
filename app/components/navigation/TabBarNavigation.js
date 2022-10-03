@@ -57,7 +57,7 @@ const TabBarNavigation = () => {
                             onPress={() => navigation.navigate(Constants.screenName.Scan)}
                         >
                             <Image
-                                source={Constants.icons.ic_Scan}
+                                source={Constants.icons.scan}
                                 resizeMode='contain'
                                 style={{
                                     width: 70,

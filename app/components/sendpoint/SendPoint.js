@@ -6,6 +6,7 @@ import Background from '../common/Background'
 import Constants from '../../controller/Constants'
 import Header from '../common/Header'
 import TransactionAPIs from './../../controller/APIs/TransactionAPIs'
+import Util from '../../controller/APIs/Util'
 
 const SendPoint = () => {
     const navigation = useNavigation()
@@ -13,7 +14,7 @@ const SendPoint = () => {
     const phone = route.params?.phone ?? ''
     const point = route.params?.point ?? 0
 
-    const onSuccesse = (data) => {
+    const onSuccessed = (data) => {
         navigation.push(Constants.screenName.SuccessTransaction, {
             name: data?.name,
             balance: data?.balance,
@@ -22,20 +23,15 @@ const SendPoint = () => {
         })
     }
 
-    const onFaile = (error) => {
-        Alert.alert(
-            'Notification',
-            error?.response?.data?.message ??
-                error?.message ??
-                'An error has occurred. Please try again!'
-        )
+    const onFailed = (error) => {
+        Util.showError(error)
     }
 
-    const ConfirmSendPoint = () => {
+    const confirmSendPoint = () => {
         RNProgressHud.show()
         TransactionAPIs.sendPoint(phone, point)
-            .then(onSuccesse)
-            .catch(onFaile)
+            .then(onSuccessed)
+            .catch(onFailed)
             .finally(() => RNProgressHud.dismiss())
     }
 
@@ -51,8 +47,8 @@ const SendPoint = () => {
             <ScrollView>
                 <View style={styles.boxContent}>
                     <Text style={styles.textTitle}>Payment complete</Text>
-                    <Image source={Constants.image.img_Complete} style={styles.img} />
-                    <TouchableOpacity onPress={ConfirmSendPoint} style={styles.button}>
+                    <Image source={Constants.image.complete} style={styles.imgComplete} />
+                    <TouchableOpacity onPress={confirmSendPoint} style={styles.buttonConfirm}>
                         <Text style={styles.textButton}>Confirm</Text>
                     </TouchableOpacity>
                 </View>
@@ -92,7 +88,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         includeFontPadding: false
     },
-    button: {
+    buttonConfirm: {
         marginHorizontal: 20,
         justifyContent: 'center',
         alignItems: 'center',
@@ -100,7 +96,7 @@ const styles = StyleSheet.create({
         marginTop: 85,
         borderRadius: 30
     },
-    img: {
+    imgComplete: {
         alignSelf: 'center'
     },
     textButton: {

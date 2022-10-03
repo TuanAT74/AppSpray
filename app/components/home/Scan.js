@@ -138,7 +138,7 @@ const Scan = () => {
                                 navigation.goBack()
                             }}
                         >
-                            <Image source={Constants.icons.Left} style={{ marginLeft: 20 }} />
+                            <Image source={Constants.icons.left} style={{ marginLeft: 20 }} />
                             <Text style={styles.scanText}>SCAN</Text>
                         </TouchableOpacity>
                     </View>
@@ -162,15 +162,15 @@ const Scan = () => {
                     <View style={styles.viewIcon}>
                         <HandleButtonImage
                             title='Gallery'
-                            icon={Constants.icons.ic_Gallery}
+                            icon={Constants.icons.gallery}
                             onPress={onShowGallery}
                         />
                         <HandleButtonImage
                             title='Light'
-                            icon={Constants.icons.ic_Light}
+                            icon={Constants.icons.light}
                             onPress={onChangeFlashMode}
                         />
-                        <HandleButtonImage title='Help' icon={Constants.icons.ic_Help1} />
+                        <HandleButtonImage title='Help' icon={Constants.icons.help1} />
                     </View>
                 </View>
             </RNCamera>

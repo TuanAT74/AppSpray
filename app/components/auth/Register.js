@@ -50,14 +50,14 @@ const Register = () => {
                 <View style={styles.viewRegister}>
                     <Text style={styles.textRegister}>Register</Text>
                     <View style={styles.image}>
-                        <Image source={Constants.icons.ic_phone} />
+                        <Image source={Constants.icons.phone} />
                     </View>
                     <Text style={styles.textInput}>
                         Input Phone Number to Continue the registration
                     </Text>
                     <TouchableOpacity style={styles.button}>
                         <View style={styles.country}>
-                            <Image source={Constants.icons.ic_japan} />
+                            <Image source={Constants.icons.japan} />
                             <Text style={styles.textCountry}>+81</Text>
                         </View>
                         <TextInput
