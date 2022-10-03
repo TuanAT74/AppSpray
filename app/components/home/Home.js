@@ -174,25 +174,27 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     viewButtonHeader: {
+        width: Constants.screen.width - 44,
+        height: 100,
+        bottom: -25,
+        alignSelf: 'center',
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: 20,
-        marginTop: 20
+        justifyContent: 'space-between'
     },
     viewButton: {
-        backgroundColor: Constants.color.white,
         width: 76,
         height: 76,
+        backgroundColor: 'white',
+        alignItems: 'center',
         borderRadius: 20,
-        shadowColor: '#666',
+        shadowColor: '#000',
         shadowOffset: {
             width: 0,
             height: 1
         },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-        elevation: 3,
-        alignItems: 'center',
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
         justifyContent: 'center'
     },
     textButton: {
