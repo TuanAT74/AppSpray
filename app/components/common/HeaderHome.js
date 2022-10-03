@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         marginTop: 10,
         paddingHorizontal: 15
-        // marginBottom: 50
     },
     textEquiv: {
         fontSize: 14,

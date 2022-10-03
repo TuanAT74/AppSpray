@@ -33,10 +33,6 @@ const Scan = () => {
     const navigation = useNavigation()
     const [isBarcodeRead, setIsBarcodeRead] = useState(false)
     const [flash, setFlash] = useState(false)
-    const cameraRef = useRef()
-    const isScanning = useRef(true)
-    const route = useRoute()
-    const phone = route.params?.phone ?? ''
 
     const GeneratorQRCode = (uri) => {
         RNProgressHud.show()
@@ -115,7 +111,6 @@ const Scan = () => {
     return (
         <View style={{ flex: 1 }}>
             <RNCamera
-                ref={cameraRef}
                 style={styles.camera}
                 autoFocus='on'
                 captureAudio={false}

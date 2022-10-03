@@ -1,4 +1,12 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native'
+import {
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    TouchableOpacity,
+    ScrollView,
+    Dimensions
+} from 'react-native'
 import React from 'react'
 import Background from './../common/Background'
 import Header from '../common/Header'
@@ -37,28 +45,32 @@ const PaymentDetails = () => {
 
     return (
         <View style={styles.container}>
-            <ScrollView>
-                <Background hideLogo={false} />
-                <Header title='Payment Details' showBackButton fontSize={25} />
-                <HeaderHome />
-                <Text style={styles.paymentText}>Payment Details</Text>
-                <View style={styles.informationView}>
-                    <PaymentDetailsItem
-                        title='Name'
-                        value={name}
-                        style={{ borderBottomWidth: 1 }}
-                    />
-                    <PaymentDetailsItem
-                        title='Amount'
-                        value={`-${point}`}
-                        showNexusPointText={true}
-                        style={{ borderBottomWidth: 1 }}
-                    />
-                    <PaymentDetailsItem
-                        title='TOTAL'
-                        value={`-${point}`}
-                        showNexusPointText={true}
-                    />
+            <ScrollView contentContainerStyle={{ flex: 1 }}>
+                <View style={{ flex: 1 }}>
+                    <Background hideLogo={false} />
+                    <Header title='Payment Details' showBackButton fontSize={25} />
+                    <HeaderHome />
+                    <View style={styles.content}>
+                        <Text style={styles.paymentText}>Payment Details</Text>
+                        <View style={styles.informationView}>
+                            <PaymentDetailsItem
+                                title='Name'
+                                value={name}
+                                style={{ borderBottomWidth: 1 }}
+                            />
+                            <PaymentDetailsItem
+                                title='Amount'
+                                value={`-${point}`}
+                                showNexusPointText={true}
+                                style={{ borderBottomWidth: 1 }}
+                            />
+                            <PaymentDetailsItem
+                                title='TOTAL'
+                                value={`-${point}`}
+                                showNexusPointText={true}
+                            />
+                        </View>
+                    </View>
                 </View>
             </ScrollView>
             <View style={styles.buttonConfirmView}>
@@ -76,8 +88,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
+    content: {
+        ...StyleSheet.absoluteFillObject,
+        top: Constants.screen.width * 0.68,
+        zIndex: 999
+    },
     paymentText: {
-        marginTop: 80,
+        marginTop: 20,
         paddingHorizontal: 20,
         fontSize: 20,
         fontFamily: Constants.font.PoppinsSemiBold,
@@ -125,7 +142,7 @@ const styles = StyleSheet.create({
     nextText: {
         textAlign: 'center',
         color: Constants.color.white,
-        paddingVertical: 10,
+        paddingVertical: 13,
         fontFamily: Constants.font.PoppinsMedium,
         includeFontPadding: false
     },

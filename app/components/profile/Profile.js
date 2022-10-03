@@ -18,7 +18,6 @@ const ButtonItem = ({
     disabled = false
 }) => {
     const [isSwitchOn, setIsSwitchOn] = useState(true)
-
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
 
     return (

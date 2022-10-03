@@ -7,7 +7,8 @@ import {
     FlatList,
     TouchableOpacity,
     ScrollView,
-    Alert
+    Alert,
+    Dimensions
 } from 'react-native'
 import React, { useState } from 'react'
 import Background from '../common/Background'
@@ -16,7 +17,6 @@ import HeaderHome from '../common/HeaderHome'
 import Constants from './../../controller/Constants'
 import { useNavigation, useRoute } from '@react-navigation/core'
 import RNProgressHud from 'progress-hud'
-import CommonAPIs from './../../controller/APIs/CommonAPIs'
 import TransactionAPIs from './../../controller/APIs/TransactionAPIs'
 import AppManager from '../../controller/APIs/AppManager'
 import Util from '../../controller/APIs/Util'
@@ -42,6 +42,13 @@ const RemittanceAmount = () => {
             name: 'Electricity',
             date: '2 Jun 2020',
             point: '-500'
+        },
+        {
+            id: 3,
+            icon: Constants.icons.sendPink,
+            name: 'Electricity',
+            date: '2 Jun 2020',
+            point: '-500'
         }
     ]
 
@@ -60,7 +67,7 @@ const RemittanceAmount = () => {
     }
 
     const handleOnClickNext = () => {
-        if (!point || point == 0) {
+        if (!point || point <= 0) {
             Alert.alert('Notification', 'Please enter the number of points')
             return
         }
@@ -84,35 +91,37 @@ const RemittanceAmount = () => {
 
     return (
         <View style={styles.container}>
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ flex: 1 }}>
                 <Background hideLogo={false} color='#F7F7F7' />
                 <Header title='Send Nexus Point' showBackButton fontSize={25} />
                 <HeaderHome />
-                <View style={styles.remittanceAmountView}>
-                    <Text style={styles.remittanceAmountText}>Remittance amount</Text>
-                    <View style={styles.buttonInput}>
-                        <TextInput
-                            placeholder='123.000'
-                            style={styles.inputText}
-                            keyboardType='numeric'
-                            onChangeText={setPoint}
-                            value={point}
+                <View style={styles.content}>
+                    <View style={styles.remittanceAmountView}>
+                        <Text style={styles.remittanceAmountText}>Remittance amount</Text>
+                        <View style={styles.buttonInput}>
+                            <TextInput
+                                placeholder='123.000'
+                                style={styles.inputText}
+                                keyboardType='numeric'
+                                onChangeText={setPoint}
+                                value={point}
+                            />
+                            <Image source={Constants.icons.point} style={styles.iconPoint} />
+                        </View>
+                        <View style={styles.pointView}>
+                            <Text style={styles.textAED}>232.54</Text>
+                            <Text style={{ ...styles.textAED, paddingLeft: 10 }}>AED</Text>
+                        </View>
+                    </View>
+                    <Text style={styles.textTransaction}>Transaction History</Text>
+                    <View style={{ backgroundColor: Constants.color.white }}>
+                        <FlatList
+                            data={list}
+                            scrollEnabled={false}
+                            keyExtractor={(item) => item.id}
+                            renderItem={({ item }) => <HistoryItem data={item} />}
                         />
-                        <Image source={Constants.icons.point} style={styles.iconPoint} />
                     </View>
-                    <View style={styles.pointView}>
-                        <Text style={styles.textAED}>232.54</Text>
-                        <Text style={{ ...styles.textAED, paddingLeft: 10 }}>AED</Text>
-                    </View>
-                </View>
-                <Text style={styles.textTransaction}>Transaction History</Text>
-                <View style={{ backgroundColor: Constants.color.white }}>
-                    <FlatList
-                        data={list}
-                        scrollEnabled={false}
-                        keyExtractor={(item) => item.id}
-                        renderItem={({ item }) => <HistoryItem data={item} />}
-                    />
                 </View>
             </ScrollView>
             <View style={styles.viewButton}>
@@ -130,10 +139,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
+    content: {
+        ...StyleSheet.absoluteFillObject,
+        top: Constants.screen.width * 0.68,
+        zIndex: 999
+    },
     remittanceAmountView: {
         backgroundColor: Constants.color.white,
-        marginTop: 65,
-
         shadowColor: '#666',
         shadowOffset: {
             width: 0,
@@ -207,37 +219,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.22,
         shadowRadius: 2.22,
-
         elevation: 3
-    },
-    viewList: {
-        flexDirection: 'row',
-        marginTop: 10,
-        marginBottom: 20
-    },
-    viewTextName: {
-        flex: 1
-    },
-    textPointView: {
-        marginHorizontal: 20
-    },
-    textName: {
-        fontSize: 16,
-        color: Constants.color.black,
-        fontFamily: Constants.font.PoppinsSemiBold
-    },
-    textDate: {
-        fontFamily: Constants.font.PoppinsMedium
-    },
-    textPoint: {
-        fontSize: 16,
-        fontFamily: Constants.font.PoppinsSemiBold,
-        color: Constants.color.black
-        // paddingLeft: 20
-    },
-    textNexusPoint: {
-        fontSize: 8,
-        fontFamily: Constants.font.PoppinsMedium
     },
     buttonNext: {
         backgroundColor: Constants.color.button,
